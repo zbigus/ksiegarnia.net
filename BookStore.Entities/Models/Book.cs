@@ -15,6 +15,6 @@ namespace BookStore.Entities.Models
         public int Price { get; set; }
         public string Description { get; set; }
         
-        public virtual ICollection<Category> Categories { get; set; }
+        public virtual ICollection<BookCategory> BookCategories { get; set; }
     }
 }

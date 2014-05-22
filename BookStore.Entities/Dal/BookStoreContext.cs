@@ -13,11 +13,27 @@ namespace BookStore.Entities.Dal
         public DbSet<Order> Orders { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<BookCategory> BookCategories { get; set; }
 
         public BookStoreContext()
             : base(ConnectionStringManager.Current)
         {
-            Debug.Write(Database.Connection.ConnectionString);
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BookCategory>()
+               .HasKey(bc => new { bc.BookID, bc.CategoryID });
+
+            modelBuilder.Entity<Book>()
+                        .HasMany(b => b.BookCategories)
+                        .WithRequired()
+                        .HasForeignKey(bc => bc.BookID);
+
+            modelBuilder.Entity<Category>()
+                        .HasMany(c => c.BookCategories)
+                        .WithRequired()
+                        .HasForeignKey(bc => bc.CategoryID); 
         }
     }
 }
