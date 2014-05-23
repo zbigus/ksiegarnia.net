@@ -1,4 +1,5 @@
-﻿namespace BookStore.Entities.Models
+﻿using System.Runtime.Serialization;
+namespace BookStore.Entities.Models
 {
     public class BookCategory
     {
