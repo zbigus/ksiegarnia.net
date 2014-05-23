@@ -11,138 +11,144 @@ namespace BookStore.Logic.Repository
 {
     public class Repository : IRepository, IDisposable
     {
-        private BookStoreContext db = new BookStoreContext();
+        private BookStoreContext _db = new BookStoreContext();
 
         public IQueryable<Book> GetAllBooks() {
-            return db.Books.AsQueryable();
+            return _db.Books.AsQueryable();
         }
         public Book GetBookByID(int id)
         {
-            return db.Books.FirstOrDefault(s => s.ID == id);
+            return _db.Books.FirstOrDefault(s => s.ID == id);
         }
         public bool DeleteBook(int id)
         {
-            var book = db.Books.Find(id);
-            if (book != null)
+            var book = _db.Books.Find(id);
+            if (book == null)
             {
-                db.Books.Remove(book);
-                db.SaveChanges();
-                return true;
+                return false;
             }
-            return false;
+            _db.Books.Remove(book);
+            _db.SaveChanges();
+            return true;
         }
         public bool AddBook(Book b)
         {
-            if (db.Books.Find(b.ID) == null)
+            if (_db.Books.Find(b.ID) != null)
             {
-                db.Books.Add(b);
-                db.SaveChanges();
-                return true;
+                return false;
             }
-            return false;
+            _db.Books.Add(b);
+            _db.SaveChanges();
+            return true;
         }
 
         public Attachment GetAttachmentByID(int id)
         {
-            return db.Attachments.Find(id);
+            return _db.Attachments.Find(id);
         }
         public bool AddAttachment(Attachment a)
         {
-            if (db.Attachments.Find(a.ID) == null)
+            if (_db.Attachments.Find(a.ID) != null)
             {
-                db.Attachments.Add(a);
-                db.SaveChanges();
-                return true;
+                return false;
             }
-            return false;
+            _db.Attachments.Add(a);
+            _db.SaveChanges();
+            return true;
         }
         public bool DeleteAttachment(int id)
         {
-            var attachment = db.Attachments.Find(id);
-            if (attachment != null)
+            var attachment = _db.Attachments.Find(id);
+            if (attachment == null)
             {
-                db.Attachments.Remove(attachment);
-                db.SaveChanges();
-                return true;
+                return false; 
             }
-            return false;
+            _db.Attachments.Remove(attachment);
+            _db.SaveChanges();
+            return true;
         }
         public IQueryable<Order> GetAllOrders()
         {
-            return db.Orders.AsQueryable();
+            return _db.Orders.AsQueryable();
         }
         public IQueryable<Order> GetOrdersByBookID(int id)
         {
-            return db.Orders.Where(s=> s.BookID == id);
+            return _db.Orders.Where(s=> s.BookID == id);
         }
         public IQueryable<Order> GetOrdersByUserID(int id)
         {
-            return db.Orders.Where(s => s.UserID == id);
+            return _db.Orders.Where(s => s.UserID == id);
         }
         public OrderStatus GetOrderStatus(int id)
         {
-            return db.Orders.FirstOrDefault(s=> s.ID == id).Status;
+            var order = _db.Orders.FirstOrDefault(s => s.ID == id);
+            if (order != null)
+            {
+                return order.Status;
+            }
+            throw new NullReferenceException();
+
         }
         public bool UpdateOrderStatus(int id, OrderStatus newStatus)
         {
-            var order = db.Orders.Find(id);
-            if (order != null) {
-                order.Status = newStatus;
-                db.SaveChanges();
-                return true;
+            var order = _db.Orders.Find(id);
+            if (order == null) {
+                return false;
             }
-            return false;
+            order.Status = newStatus;
+            _db.SaveChanges();
+            return true;
         }
         public bool DeleteOrder(int id)
         {
-            var order = db.Orders.Find(id);
-            if (order != null) {
-                db.Orders.Remove(order);
-                db.SaveChanges();
-                return true;
+            var order = _db.Orders.Find(id);
+            if (order == null) {
+                return false;
             }
-            return false;
+            _db.Orders.Remove(order);
+            _db.SaveChanges();
+            return true;
         }
         public bool AddOrder(Order order)
         {
-            if (db.Orders.Find(order.ID) == null)
+            if (_db.Orders.Find(order.ID) != null)
             {
-                db.Orders.Add(order);
-                db.SaveChanges();
-                return true;
+                return false;
             }
-            return false;
+            _db.Orders.Add(order);
+            _db.SaveChanges();
+            return true;
         }
         public IQueryable<User> GetAllUsers()
         {
-            return db.Users.AsQueryable();
+            return _db.Users.AsQueryable();
         }
-        public IQueryable<User> GetUsersByRole(Role role)
+        public IQueryable<User> GetUsersByRole(string role)
         {
-            return db.Users.Where(s => s.Role == role);
+            return _db.Users.Where(s => s.Role.Name.Equals(role,StringComparison.OrdinalIgnoreCase));
         }
         public bool AddUser(User user)
         {
-            if (db.Users.Find(user.ID) == null)
+            if (_db.Users.Find(user.ID) != null)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return true;
+                return false;
             }
-            return false;
+            _db.Users.Add(user);
+            _db.SaveChanges();
+            return true;
         }
         /*IQueryable<Book> GetBooksByCategorie(Category category) {
-            var bookCategories = db.BookCategories.Where(s=> s.Category == category);
+            var bookCategories = _db.BookCategories.Where(s=> s.Category == category);
             
         }*/
         protected void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (db != null)
+                if (_db != null)
                 {
-                    db.Dispose();
-                    db = null;
+                    _db.Dispose();
+                    _db = null;
                 }
             }
         }

@@ -1,4 +1,5 @@
-﻿using BookStore.Entities.Helpers;
+﻿using System.Linq;
+using BookStore.Entities.Helpers;
 using BookStore.Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace BookStore.Entities.Dal
                     Email = "Admin@Admin.com",
                     Address = "Ulica świętego Admina",
                     RoleID = 1,
-                    Password = Md5Helper.CreateMd5Hash("Admin")
+                    Password = Md5Helper.CreateMd5Hash("Admin"),
                 },
                 new User
                 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace BookStore.Entities.Models
 {
@@ -14,6 +15,6 @@ namespace BookStore.Entities.Models
         public string Address { get; set; }
         public int RoleID { get; set; }
 
-        public virtual Role Role { get; set; }
+        public Role Role { get; set; }
     }
 }

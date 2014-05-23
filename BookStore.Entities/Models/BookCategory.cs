@@ -6,7 +6,7 @@ namespace BookStore.Entities.Models
         public int BookID { get; set; }
         public int CategoryID { get; set; }
 
-        public virtual Book Book { get; set; }
-        public virtual Category Category { get; set; }
+        public Book Book { get; set; }
+        public Category Category { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace BookStore.Logic.Repository
         ///</summary>
 
         IQueryable<User> GetAllUsers();
-        IQueryable<User> GetUsersByRole(Role role);
+        IQueryable<User> GetUsersByRole(string role);
         bool AddUser(User user);
 
         ///<summary>

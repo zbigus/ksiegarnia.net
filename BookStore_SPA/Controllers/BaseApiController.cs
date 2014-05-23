@@ -1,4 +1,5 @@
 ﻿using BookStore.Entities.Models;
+using BookStore.Logic.Models;
 using BookStore.Logic.Repository;
 using Microsoft.Practices.Unity;
 using System;
@@ -9,20 +10,42 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Dependencies;
 
+
+
 namespace BookStore_SPA.Controllers
 {
     public class BaseApiController : ApiController
     {
-        public IRepository _repo;
+        private static IRepository _repo ;
+        
+        protected static IRepository Repo {
+            get {
+                return _repo;
+            }
+        }
 
+        protected ModelFactory ModelFactory;
+
+        protected ModelFactory TheModelFactory
+        {
+            get
+            {
+                if (ModelFactory == null)
+                {
+                    ModelFactory = new ModelFactory();
+                }
+                return ModelFactory;
+            }
+        }
+        
         public BaseApiController(IRepository repo) {
-            this._repo = repo;
+            _repo = repo;
         }
 
     }
     public class UnityResolver : IDependencyResolver
     {
-        protected IUnityContainer container;
+        protected IUnityContainer Container;
 
         public UnityResolver(IUnityContainer container)
         {
@@ -30,14 +53,14 @@ namespace BookStore_SPA.Controllers
             {
                 throw new ArgumentNullException("container");
             }
-            this.container = container;
+            Container = container;
         }
 
         public object GetService(Type serviceType)
         {
             try
             {
-                return container.Resolve(serviceType);
+                return Container.Resolve(serviceType);
             }
             catch (ResolutionFailedException)
             {
@@ -49,7 +72,7 @@ namespace BookStore_SPA.Controllers
         {
             try
             {
-                return container.ResolveAll(serviceType);
+                return Container.ResolveAll(serviceType);
             }
             catch (ResolutionFailedException)
             {
@@ -59,13 +82,13 @@ namespace BookStore_SPA.Controllers
 
         public IDependencyScope BeginScope()
         {
-            var child = container.CreateChildContainer();
+            var child = Container.CreateChildContainer();
             return new UnityResolver(child);
         }
 
         public void Dispose()
         {
-            container.Dispose();
+            Container.Dispose();
         }
     }
 }
