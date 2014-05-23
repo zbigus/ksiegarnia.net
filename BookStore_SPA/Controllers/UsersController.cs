@@ -16,7 +16,7 @@ namespace BookStore_SPA.Controllers
 
         public IHttpActionResult Get() {
             var query = Repo.GetAllUsers();
-            var results = query.ToList();
+            var results = query.ToList().Select(s=> TheModelFactory.Create(s));
             return Ok(results);
         }
         [Route("api/Users/{role}")]
