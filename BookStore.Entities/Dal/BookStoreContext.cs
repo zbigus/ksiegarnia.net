@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
 using BookStore.Entities.Models;
-using System.Diagnostics;
 using BookStore.Entities.Managers;
 
 namespace BookStore.Entities.Dal

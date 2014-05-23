@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BookStore.Entities.Models
+﻿namespace BookStore.Entities.Models
 {
     public class Attachment
     {
