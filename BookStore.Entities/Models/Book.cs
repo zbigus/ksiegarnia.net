@@ -14,6 +14,9 @@ namespace BookStore.Entities.Models
         public DateTime Year { get; set; }
         public int Price { get; set; }
         public string Description { get; set; }
+
+        public DateTime? InsertDate { get; set; }
+        public DateTime? ModificationDate { get; set; }
         
         public virtual ICollection<BookCategory> BookCategories { get; set; }
     }

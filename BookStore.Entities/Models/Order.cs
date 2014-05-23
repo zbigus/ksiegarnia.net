@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace BookStore.Entities.Models
 {
@@ -10,6 +9,9 @@ namespace BookStore.Entities.Models
         public int UserID { get; set; }
         public string ShopComment { get; set; }
         public OrderStatus Status { get; set; }
+
+        public DateTime? InsertDate { get; set; }
+        public DateTime? ModificationDate { get; set; }
 
         public virtual Book Book { get; set; }
         public virtual User User { get; set; }

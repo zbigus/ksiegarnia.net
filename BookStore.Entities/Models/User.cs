@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace BookStore.Entities.Models
 {
@@ -13,6 +12,9 @@ namespace BookStore.Entities.Models
         public string Email { get; set; }
         public string Address { get; set; }
         public int RoleID { get; set; }
+
+        public DateTime? InsertDate { get; set; }
+        public DateTime? ModificationDate { get; set; }
 
         public virtual Role Role { get; set; }
     }
