@@ -60,9 +60,6 @@
     <Compile Include="Repository\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\BookStore.Entities\BookStore.Entities.csproj">
       <Project>{72d26dd4-02d7-4811-b417-3906d653c098}</Project>
       <Name>BookStore.Entities</Name>
