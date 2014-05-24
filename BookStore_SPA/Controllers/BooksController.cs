@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Description;
+using BookStore.Entities.Models;
 using BookStore.Logic.Repository;
 
 namespace BookStore.SPA.Controllers
@@ -42,7 +44,7 @@ namespace BookStore.SPA.Controllers
             }
             if (Repo.AddBook(book))
             {
-                return CreatedAtRoute("DefaultApi", new { id = book.ID }, book);
+                return CreatedAtRoute("DefaultApi", new { id = book.Id }, book);
             }
             return Conflict();
         }
