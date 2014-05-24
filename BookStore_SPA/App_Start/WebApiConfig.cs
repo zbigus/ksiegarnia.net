@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
@@ -23,6 +24,7 @@ namespace BookStore_SPA
             // Use camel case for JSON data.
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
             //Our API DI resolver config
             var container = new UnityContainer();
             container.RegisterType<IRepository, Repository>(new HierarchicalLifetimeManager());

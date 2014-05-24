@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using BookStore.Entities.Models;
 using BookStore.Logic.Repository;
 using System;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace BookStore_SPA.Controllers
 {
@@ -31,11 +33,26 @@ namespace BookStore_SPA.Controllers
             var initialData = Repo.GetAllBooks().ToList().Select(s => TheModelFactory.CreateInitial(s));
             return Ok(initialData);
         }
-        /*public IHttpActionResult Delete(int id) {
+        //[Authorize]
+        [ResponseType(typeof(Book))]
+        public IHttpActionResult Delete(int id) {
             if (Repo.DeleteBook(id)) {
                 return Ok();
             }
             return NotFound();            
-        }*/
+        }
+
+        public IHttpActionResult Post([FromBody] Book book)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (Repo.AddBook(book))
+            {
+                return CreatedAtRoute("DefaultApi", new { id = book.ID }, book);
+            }
+            return Conflict();
+        }
     }
 }
