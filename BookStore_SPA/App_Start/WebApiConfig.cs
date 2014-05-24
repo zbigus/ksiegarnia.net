@@ -24,7 +24,6 @@ namespace BookStore_SPA
             // Use camel case for JSON data.
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
             //Our API DI resolver config
             var container = new UnityContainer();
             container.RegisterType<IRepository, Repository>(new HierarchicalLifetimeManager());
