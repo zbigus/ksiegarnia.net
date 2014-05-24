@@ -2,7 +2,7 @@ namespace BookStore.Logic.Models
 {
     public class BookCategory
     {
-        public int BookID { get; set; }
-        public int CategoryID { get; set; }
+        public int BookId { get; set; }
+        public int CategoryId { get; set; }
     }
 }

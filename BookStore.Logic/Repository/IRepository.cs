@@ -1,12 +1,9 @@
-﻿using System;
-using BookStore.Entities.Models;
-using System.Collections.Generic;
+﻿using BookStore.Entities.Models;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookStore.Logic.Repository
 {
+    //TODO: Może partial zamiast oznaczania metod przez komentarze? Albo można to też rozbić na osobne interfejsy
     public interface IRepository {
         
         /// <summary>
@@ -14,7 +11,7 @@ namespace BookStore.Logic.Repository
         /// </summary>
         
         IQueryable<Book> GetAllBooks();
-        Book GetBookByID(int id);
+        Book GetBookById(int id);
         bool DeleteBook(int id);
         bool AddBook(Book b);
 
@@ -22,7 +19,7 @@ namespace BookStore.Logic.Repository
         ///Attachment related methods
         ///</summary>
 
-        Attachment GetAttachmentByID(int id);
+        Attachment GetAttachmentById(int id);
         bool AddAttachment(Attachment a);
         bool DeleteAttachment(int id);
 
@@ -31,8 +28,8 @@ namespace BookStore.Logic.Repository
         ///</summary>
 
         IQueryable<Order> GetAllOrders();
-        IQueryable<Order> GetOrdersByBookID(int id);
-        IQueryable<Order> GetOrdersByUserID(int id);
+        IQueryable<Order> GetOrdersByBookId(int id);
+        IQueryable<Order> GetOrdersByUserId(int id);
         OrderStatus GetOrderStatus(int id);
         bool UpdateOrderStatus(int id, OrderStatus newStatus);
         bool DeleteOrder(int id);

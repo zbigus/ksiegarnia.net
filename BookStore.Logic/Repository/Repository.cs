@@ -16,7 +16,7 @@ namespace BookStore.Logic.Repository
         public IQueryable<Book> GetAllBooks() {
             return _db.Books.AsQueryable();
         }
-        public Book GetBookByID(int id)
+        public Book GetBookById(int id)
         {
             return _db.Books.FirstOrDefault(s => s.Id == id);
         }
@@ -42,7 +42,7 @@ namespace BookStore.Logic.Repository
             return true;
         }
 
-        public Attachment GetAttachmentByID(int id)
+        public Attachment GetAttachmentById(int id)
         {
             return _db.Attachments.Find(id);
         }
@@ -71,11 +71,11 @@ namespace BookStore.Logic.Repository
         {
             return _db.Orders.AsQueryable();
         }
-        public IQueryable<Order> GetOrdersByBookID(int id)
+        public IQueryable<Order> GetOrdersByBookId(int id)
         {
             return _db.Orders.Where(s=> s.BookId == id);
         }
-        public IQueryable<Order> GetOrdersByUserID(int id)
+        public IQueryable<Order> GetOrdersByUserId(int id)
         {
             return _db.Orders.Where(s => s.UserId == id);
         }

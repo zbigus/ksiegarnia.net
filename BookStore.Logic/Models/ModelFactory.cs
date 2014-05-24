@@ -1,35 +1,26 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using BookStore.Entities.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookStore.Entities.Models;
 
 namespace BookStore.Logic.Models
 {
     public class ModelFactory
     {
-        public ModelFactory(){
-        }
-
         public UserModel Create(User user)
         {
             return new UserModel
             {
-                ID = user.Id,
+                Id = user.Id,
                 Login = user.Login,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
                 Address = user.Address,
-                RoleID = user.RoleId
+                RoleId = user.RoleId
             };
         }
 
-        public SampleBookModel CreateInitial(Book b)
+        public SimpleBookModel CreateInitial(Book b)
         {
-            return new SampleBookModel
+            return new SimpleBookModel
             {
                 Author = b.Author,
                 Title =  b.Title,

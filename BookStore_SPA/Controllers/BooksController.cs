@@ -13,7 +13,7 @@ namespace BookStore.SPA.Controllers
             return Ok(Repo.GetAllBooks());
         }
         public IHttpActionResult Get(int id) {
-            var book = Repo.GetBookByID(id);
+            var book = Repo.GetBookById(id);
             if (book != null)
             {
                 return Ok(book);
