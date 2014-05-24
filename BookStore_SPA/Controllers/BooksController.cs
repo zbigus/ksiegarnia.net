@@ -25,11 +25,26 @@ namespace BookStore.SPA.Controllers
             var initialData = Repo.GetAllBooks().ToList().Select(s => TheModelFactory.CreateInitial(s));
             return Ok(initialData);
         }
-        /*public IHttpActionResult Delete(int id) {
+        //[Authorize]
+        [ResponseType(typeof(Book))]
+        public IHttpActionResult Delete(int id) {
             if (Repo.DeleteBook(id)) {
                 return Ok();
             }
             return NotFound();            
-        }*/
+        }
+
+        public IHttpActionResult Post([FromBody] Book book)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (Repo.AddBook(book))
+            {
+                return CreatedAtRoute("DefaultApi", new { id = book.ID }, book);
+            }
+            return Conflict();
+        }
     }
 }
