@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace BookStore_SPA
+namespace BookStore.SPA
 {
     public class FilterConfig
     {

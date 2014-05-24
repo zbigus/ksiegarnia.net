@@ -2,8 +2,8 @@
 {
     public class Attachment
     {
-        public int ID { get; set; }
-        public int BookID { get; set; }
+        public int Id { get; set; }
+        public int BookId { get; set; }
         public byte[] Content { get; set; }
 
         public virtual Book Book { get; set; }

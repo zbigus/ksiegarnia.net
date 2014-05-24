@@ -22,17 +22,17 @@ namespace BookStore.Entities.Dal
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BookCategory>()
-               .HasKey(bc => new { bc.BookID, bc.CategoryID });
+               .HasKey(bc => new {bc.BookId, bc.CategoryId });
 
             modelBuilder.Entity<Book>()
                         .HasMany(b => b.BookCategories)
                         .WithRequired()
-                        .HasForeignKey(bc => bc.BookID);
+                        .HasForeignKey(bc => bc.BookId);
 
             modelBuilder.Entity<Category>()
                         .HasMany(c => c.BookCategories)
                         .WithRequired()
-                        .HasForeignKey(bc => bc.CategoryID); 
+                        .HasForeignKey(bc => bc.CategoryId); 
         }
     }
 }

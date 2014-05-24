@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Runtime.Serialization;
 using System.Collections.Generic;
 
 namespace BookStore.Entities.Models
 {
-    public class Book
+    public class Book : ChangeBase
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         //TODO: Dodać walidację, tylko 13 cyfr
-        public string ISBN { get; set; }
+        public string Isbn { get; set; }
         public string Publisher { get; set; }
         public DateTime Year { get; set; }
         public int Price { get; set; }
         public string Description { get; set; }
 
-        public DateTime? InsertDate { get; set; }
-        public DateTime? ModificationDate { get; set; }
-        
         public ICollection<BookCategory> BookCategories { get; set; }
     }
 }

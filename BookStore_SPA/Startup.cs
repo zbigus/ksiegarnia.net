@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using BookStore.SPA;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(BookStore_SPA.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 
-namespace BookStore_SPA
+namespace BookStore.SPA
 {
     public partial class Startup
     {

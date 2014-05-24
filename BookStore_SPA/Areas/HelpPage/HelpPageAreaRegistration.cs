@@ -1,7 +1,8 @@
 using System.Web.Http;
 using System.Web.Mvc;
+using BookStore.SPA.Areas.HelpPage.App_Start;
 
-namespace BookStore_SPA.Areas.HelpPage
+namespace BookStore.SPA.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

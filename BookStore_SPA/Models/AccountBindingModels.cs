@@ -1,8 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace BookStore_SPA.Models
+namespace BookStore.SPA.Models
 {
     // Models used as parameters to AccountController actions.
 

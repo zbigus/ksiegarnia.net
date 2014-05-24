@@ -10,10 +10,11 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using BookStore_SPA.Areas.HelpPage.ModelDescriptions;
-using BookStore_SPA.Areas.HelpPage.Models;
+using BookStore.SPA.Areas.HelpPage.ModelDescriptions;
+using BookStore.SPA.Areas.HelpPage.Models;
+using BookStore.SPA.Areas.HelpPage.SampleGeneration;
 
-namespace BookStore_SPA.Areas.HelpPage
+namespace BookStore.SPA.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

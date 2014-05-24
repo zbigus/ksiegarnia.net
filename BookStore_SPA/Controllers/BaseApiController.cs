@@ -1,18 +1,12 @@
-﻿using BookStore.Entities.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Http;
+using System.Web.Http.Dependencies;
 using BookStore.Logic.Models;
 using BookStore.Logic.Repository;
 using Microsoft.Practices.Unity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Dependencies;
 
-
-
-namespace BookStore_SPA.Controllers
+namespace BookStore.SPA.Controllers
 {
     public class BaseApiController : ApiController
     {

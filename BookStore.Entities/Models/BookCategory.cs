@@ -1,10 +1,9 @@
-﻿using System.Runtime.Serialization;
-namespace BookStore.Entities.Models
+﻿namespace BookStore.Entities.Models
 {
     public class BookCategory
     {
-        public int BookID { get; set; }
-        public int CategoryID { get; set; }
+        public int BookId { get; set; }
+        public int CategoryId { get; set; }
 
         public Book Book { get; set; }
         public Category Category { get; set; }

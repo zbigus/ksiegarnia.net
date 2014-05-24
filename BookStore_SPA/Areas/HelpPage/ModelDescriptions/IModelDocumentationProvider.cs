@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace BookStore_SPA.Areas.HelpPage.ModelDescriptions
+namespace BookStore.SPA.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

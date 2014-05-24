@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace BookStore_SPA.Areas.HelpPage.ModelDescriptions
+namespace BookStore.SPA.Areas.HelpPage.ModelDescriptions
 {
     public class ComplexTypeModelDescription : ModelDescription
     {

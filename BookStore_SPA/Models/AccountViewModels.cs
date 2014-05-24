@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace BookStore_SPA.Models
+namespace BookStore.SPA.Models
 {
     // Models returned by AccountController actions.
 

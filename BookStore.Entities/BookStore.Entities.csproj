@@ -55,6 +55,7 @@
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BookCategory.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ChangeBase.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\Role.cs" />

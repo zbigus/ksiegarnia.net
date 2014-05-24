@@ -17,13 +17,13 @@ namespace BookStore.Logic.Models
         {
             return new UserModel
             {
-                ID = user.ID,
+                ID = user.Id,
                 Login = user.Login,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
                 Address = user.Address,
-                RoleID = user.RoleID
+                RoleID = user.RoleId
             };
         }
 

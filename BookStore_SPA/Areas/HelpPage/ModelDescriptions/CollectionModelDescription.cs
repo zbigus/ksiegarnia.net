@@ -1,4 +1,4 @@
-namespace BookStore_SPA.Areas.HelpPage.ModelDescriptions
+namespace BookStore.SPA.Areas.HelpPage.ModelDescriptions
 {
     public class CollectionModelDescription : ModelDescription
     {

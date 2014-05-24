@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using System.Xml.XPath;
-using BookStore_SPA.Areas.HelpPage.ModelDescriptions;
+using BookStore.SPA.Areas.HelpPage.ModelDescriptions;
 
-namespace BookStore_SPA.Areas.HelpPage
+namespace BookStore.SPA.Areas.HelpPage
 {
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.

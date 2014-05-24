@@ -18,7 +18,7 @@ namespace BookStore.Logic.Repository
         }
         public Book GetBookByID(int id)
         {
-            return _db.Books.FirstOrDefault(s => s.ID == id);
+            return _db.Books.FirstOrDefault(s => s.Id == id);
         }
         public bool DeleteBook(int id)
         {
@@ -33,7 +33,7 @@ namespace BookStore.Logic.Repository
         }
         public bool AddBook(Book b)
         {
-            if (_db.Books.Find(b.ID) != null)
+            if (_db.Books.Find(b.Id) != null)
             {
                 return false;
             }
@@ -48,7 +48,7 @@ namespace BookStore.Logic.Repository
         }
         public bool AddAttachment(Attachment a)
         {
-            if (_db.Attachments.Find(a.ID) != null)
+            if (_db.Attachments.Find(a.Id) != null)
             {
                 return false;
             }
@@ -73,15 +73,15 @@ namespace BookStore.Logic.Repository
         }
         public IQueryable<Order> GetOrdersByBookID(int id)
         {
-            return _db.Orders.Where(s=> s.BookID == id);
+            return _db.Orders.Where(s=> s.BookId == id);
         }
         public IQueryable<Order> GetOrdersByUserID(int id)
         {
-            return _db.Orders.Where(s => s.UserID == id);
+            return _db.Orders.Where(s => s.UserId == id);
         }
         public OrderStatus GetOrderStatus(int id)
         {
-            var order = _db.Orders.FirstOrDefault(s => s.ID == id);
+            var order = _db.Orders.FirstOrDefault(s => s.Id == id);
             if (order != null)
             {
                 return order.Status;
@@ -111,7 +111,7 @@ namespace BookStore.Logic.Repository
         }
         public bool AddOrder(Order order)
         {
-            if (_db.Orders.Find(order.ID) != null)
+            if (_db.Orders.Find(order.Id) != null)
             {
                 return false;
             }
@@ -129,7 +129,7 @@ namespace BookStore.Logic.Repository
         }
         public bool AddUser(User user)
         {
-            if (_db.Users.Find(user.ID) != null)
+            if (_db.Users.Find(user.Id) != null)
             {
                 return false;
             }

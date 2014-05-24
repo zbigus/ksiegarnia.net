@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using BookStore_SPA.Areas.HelpPage.ModelDescriptions;
-using BookStore_SPA.Areas.HelpPage.Models;
+using BookStore.SPA.Areas.HelpPage.ModelDescriptions;
+using BookStore.SPA.Areas.HelpPage.Models;
 
-namespace BookStore_SPA.Areas.HelpPage.Controllers
+namespace BookStore.SPA.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.
