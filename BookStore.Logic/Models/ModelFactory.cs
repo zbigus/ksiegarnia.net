@@ -14,7 +14,7 @@ namespace BookStore.Logic.Models
                 LastName = user.LastName,
                 Email = user.Email,
                 Address = user.Address,
-                Role = user.Role.Name
+                //Role = user.Role.Name
             };
         }
 

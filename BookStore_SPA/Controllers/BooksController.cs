@@ -2,7 +2,7 @@
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookStore.Entities.Models;
-using BookStore.Logic.Repository;
+using BookStore.Logic.RepositoryInterfaces;
 
 namespace BookStore.SPA.Controllers
 {

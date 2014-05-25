@@ -4,6 +4,7 @@ using BookStore.SPA.Controllers;
 using Microsoft.Owin.Security.OAuth;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Serialization;
+using BookStore.Logic.RepositoryInterfaces;
 
 namespace BookStore.SPA
 {

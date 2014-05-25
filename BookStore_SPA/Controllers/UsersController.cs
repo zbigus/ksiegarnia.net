@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Http;
-using BookStore.Logic.Repository;
+using BookStore.Logic.RepositoryInterfaces;
 
 namespace BookStore.SPA.Controllers
 {
@@ -10,6 +10,10 @@ namespace BookStore.SPA.Controllers
 
         public IHttpActionResult Get() {
             var query = Repo.GetAllUsers();
+            if (query == null)
+            {
+                return NotFound();
+            }
             var results = query.ToList().Select(s=> TheModelFactory.Create(s));
             return Ok(results);
         }
