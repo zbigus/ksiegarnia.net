@@ -10,13 +10,14 @@ namespace BookStore.SPA.Controllers
     {
         public BooksController(IRepository repo) : base(repo) { }
         public IHttpActionResult Get() {
-            return Ok(Repo.GetAllBooks());
+            return Ok(Repo.GetAllBooks().ToList().Select(s=> TheModelFactory.Create(s)));
         }
         public IHttpActionResult Get(int id) {
             var book = Repo.GetBookById(id);
             if (book != null)
             {
-                return Ok(book);
+                var result = TheModelFactory.Create(book);
+                return Ok(result);
             }
             return NotFound();
         }
@@ -44,7 +45,7 @@ namespace BookStore.SPA.Controllers
             }
             if (Repo.AddBook(book))
             {
-                return CreatedAtRoute("DefaultApi", new { id = book.Id }, book);
+                return CreatedAtRoute("DefaultApi", new { id = book.Id }, TheModelFactory.Create(book));
             }
             return Conflict();
         }

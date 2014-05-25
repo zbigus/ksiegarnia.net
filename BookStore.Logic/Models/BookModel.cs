@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace BookStore.Logic.Models
 {
@@ -9,5 +10,8 @@ namespace BookStore.Logic.Models
         public string Publisher { get; set; }
         public DateTime Year { get; set; }
         public string Description { get; set; }
+        public byte[] AttachmentContent { get; set; }
+        public List<string> Categories { get; set; }
+
     }
 }

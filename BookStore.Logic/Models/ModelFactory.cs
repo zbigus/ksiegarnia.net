@@ -14,7 +14,7 @@ namespace BookStore.Logic.Models
                 LastName = user.LastName,
                 Email = user.Email,
                 Address = user.Address,
-                RoleId = user.RoleId
+                Role = user.Role.Name
             };
         }
 
@@ -25,6 +25,19 @@ namespace BookStore.Logic.Models
                 Author = b.Author,
                 Title =  b.Title,
                 Price = b.Price
+            };
+        }
+        public BookModel Create(Book b)
+        {
+            return new BookModel
+            {
+                Author = b.Author,
+                Title = b.Title,
+                Price = b.Price,
+                Isbn = b.Isbn,
+                Publisher = b.Publisher,
+                Year = b.Year,
+                Description = b.Description
             };
         }
     }
