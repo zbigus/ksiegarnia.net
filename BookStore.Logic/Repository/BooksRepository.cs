@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Logic.Repository
 {
-    public partial class Repository : IRepository
+    public partial class Repository 
     {
         public IQueryable<Book> GetAllBooks()
         {

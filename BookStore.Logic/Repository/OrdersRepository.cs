@@ -8,7 +8,7 @@ using BookStore.Logic.RepositoryInterfaces;
 
 namespace BookStore.Logic.Repository
 {
-    public partial class Repository : IRepository
+    public partial class Repository 
     {
         public IQueryable<Order> GetAllOrders()
         {
