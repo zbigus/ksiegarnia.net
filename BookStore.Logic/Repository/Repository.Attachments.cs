@@ -1,11 +1,11 @@
 ﻿using BookStore.Entities.Dal;
 using BookStore.Entities.Models;
-using BookStore.Logic.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookStore.Logic.Interfaces;
 
 namespace BookStore.Logic.Repository
 {

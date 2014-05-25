@@ -1,11 +1,7 @@
-﻿using BookStore.Entities.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using BookStore.Entities.Models;
 
-namespace BookStore.Logic.RepositoryInterfaces
+namespace BookStore.Logic.Interfaces
 {
     public interface IOrdersRepository
     {

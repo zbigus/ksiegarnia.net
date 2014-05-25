@@ -1,10 +1,10 @@
 ﻿using System.Web.Http;
+using BookStore.Logic.Interfaces;
 using BookStore.Logic.Repository;
 using BookStore.SPA.Controllers;
 using Microsoft.Owin.Security.OAuth;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Serialization;
-using BookStore.Logic.RepositoryInterfaces;
 
 namespace BookStore.SPA
 {

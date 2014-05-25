@@ -24,7 +24,7 @@ namespace BookStore.Entities.Dal
             context.SaveChanges();
 
             //Dodajemy domyslne kategorie
-            Category.DefaultCategories.ForEach(def => context.Categories.Add(new Category {Name = def}));
+            CreateDefaultCategories().ForEach(category => context.Categories.Add(category));
             context.SaveChanges();
 
             //Dodajemy jedna kategorie dla ksiazki
@@ -45,9 +45,7 @@ namespace BookStore.Entities.Dal
                     Year = DateTime.Now,
                     Price = 0,
                     Publisher = "Rączka",
-                    Isbn = "1111111111111",
-                    InsertDate = DateTime.Now,
-                    ModificationDate = DateTime.Now
+                    Isbn = "1111111111111"
                 },
                 new Book
                 {
@@ -58,9 +56,7 @@ namespace BookStore.Entities.Dal
                     Year = DateTime.Now,
                     Price = 0,
                     Publisher = "Rączka",
-                    Isbn = "2222222222222",
-                    InsertDate = DateTime.Now,
-                    ModificationDate = DateTime.Now
+                    Isbn = "2222222222222"
                 },
                 new Book
                 {
@@ -71,9 +67,7 @@ namespace BookStore.Entities.Dal
                     Year = DateTime.Now,
                     Price = 0,
                     Publisher = "Rączka",
-                    Isbn = "3333333333333",
-                    InsertDate = DateTime.Now,
-                    ModificationDate = DateTime.Now
+                    Isbn = "3333333333333"
                 },
                 new Book
                 {
@@ -84,9 +78,7 @@ namespace BookStore.Entities.Dal
                     Year = DateTime.Now,
                     Price = 0,
                     Publisher = "Rączka",
-                    Isbn = "4444444444444",
-                    InsertDate = DateTime.Now,
-                    ModificationDate = DateTime.Now
+                    Isbn = "4444444444444"
                 },
             };
         }
@@ -103,9 +95,7 @@ namespace BookStore.Entities.Dal
                     Email = "Admin@Admin.com",
                     Address = "Ulica świętego Admina",
                     RoleId = 1,
-                    Password = Md5Helper.CreateMd5Hash("Admin"),
-                    InsertDate = DateTime.Now,
-                    ModificationDate = DateTime.Now
+                    Password = Md5Helper.CreateMd5Hash("Admin")
                 },
                 new User
                 {
@@ -115,9 +105,7 @@ namespace BookStore.Entities.Dal
                     Email = "User@Admin.com",
                     Address = "Ulica świętego Usera",
                     RoleId = 2,
-                    Password = Md5Helper.CreateMd5Hash("User"),
-                    InsertDate = DateTime.Now,
-                    ModificationDate = DateTime.Now
+                    Password = Md5Helper.CreateMd5Hash("User")
                 }
             };
         }
@@ -126,9 +114,23 @@ namespace BookStore.Entities.Dal
         {
             return new List<Role>
             {
-                new Role {Id = 1, Name = "Admin"},
-                new Role {Id = 2, Name = "User"}
+                new Role {Id = 1, Name = Role.Admin},
+                new Role {Id = 2, Name = Role.User}
             };
         }
+
+        public static List<Category> CreateDefaultCategories()
+        {
+            return new List<Category>
+            {
+                new Category {Name = "Dramat"},
+                new Category {Name = "Akcja"},
+                new Category {Name = "Science Fiction"},
+                new Category {Name = "Fantastyka"},
+                new Category {Name = "Horror"},
+                new Category {Name = "Historyczny"},
+                new Category {Name = "Poemat"}
+            };
+        }  
     }
 }
