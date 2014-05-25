@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Logic.RepositoryInterfaces
 {
-    public partial interface IRepository
+    public interface IAttachmentsRepository
     {
         Attachment GetAttachmentById(int id);
         bool AddAttachment(Attachment a);

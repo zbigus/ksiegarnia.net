@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Logic.RepositoryInterfaces
 {
-    public partial interface IRepository
+    public interface IBooksRepository
     {
 
         IQueryable<Book> GetAllBooks();

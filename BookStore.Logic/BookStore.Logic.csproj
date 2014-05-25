@@ -56,6 +56,7 @@
     <Compile Include="RepositoryInterfaces\IAttachmentsRepository.cs" />
     <Compile Include="RepositoryInterfaces\IBooksRepository.cs" />
     <Compile Include="RepositoryInterfaces\IOrdersRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IRepository.cs" />
     <Compile Include="RepositoryInterfaces\IUsersRepository.cs" />
     <Compile Include="Repository\AttachmentsRepository.cs" />
     <Compile Include="Repository\BooksRepository.cs" />
