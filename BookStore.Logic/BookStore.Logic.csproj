@@ -55,11 +55,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryInterfaces\IAttachmentsRepository.cs" />
     <Compile Include="RepositoryInterfaces\IBooksRepository.cs" />
+    <Compile Include="RepositoryInterfaces\ICategoryRepository.cs" />
     <Compile Include="RepositoryInterfaces\IOrdersRepository.cs" />
     <Compile Include="RepositoryInterfaces\IRepository.cs" />
     <Compile Include="RepositoryInterfaces\IUsersRepository.cs" />
     <Compile Include="Repository\AttachmentsRepository.cs" />
     <Compile Include="Repository\BooksRepository.cs" />
+    <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\OrdersRepository.cs" />
     <Compile Include="Repository\UsersRepository.cs" />
   </ItemGroup>

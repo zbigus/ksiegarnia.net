@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Logic.RepositoryInterfaces
 {
-    public interface IRepository: IBooksRepository, IAttachmentsRepository, IUsersRepository, IOrdersRepository
+    public interface IRepository: IBooksRepository, IAttachmentsRepository, IUsersRepository, IOrdersRepository, ICategoryRepository
     {
     }
 }

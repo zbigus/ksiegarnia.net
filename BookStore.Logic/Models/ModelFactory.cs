@@ -40,5 +40,14 @@ namespace BookStore.Logic.Models
                 Description = b.Description
             };
         }
+
+        public CategoryModel Create(Category c)
+        {
+            return new CategoryModel
+            {
+                Id = c.Id,
+                Name = c.Name
+            };
+        }
     }
 }
