@@ -61,10 +61,11 @@ namespace BookStore.Logic.Repository
 
         public BookModel GetBook(int id)
         {
-            var book = _db.Books.Find(id);
-            if (book == null)
+            var b = _db.Books.Find(id);
+            if (b == null)
                 return null;
-            return BookModel.Create(book);
+
+            return BookModel.Create(b);
         }
 
         public bool DeleteBook(int id)

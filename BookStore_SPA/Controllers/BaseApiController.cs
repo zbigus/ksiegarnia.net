@@ -10,16 +10,11 @@ namespace BookStore.SPA.Controllers
 {
     public class BaseApiController : ApiController
     {
-        private static IRepository _repo ;
-        
-        protected static IRepository Repo {
-            get {
-                return _repo;
-            }
-        }
-        
-        public BaseApiController(IRepository repo) {
-            _repo = repo;
+        protected IRepository Repo { get; private set; }
+
+        public BaseApiController(IRepository repo)
+        {
+            Repo = repo;
         }
 
     }
