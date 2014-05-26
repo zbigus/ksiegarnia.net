@@ -22,6 +22,7 @@ namespace BookStore.Logic.Models
         {
             return new SimpleBookModel
             {
+                Id=b.Id,
                 Author = b.Author,
                 Title =  b.Title,
                 Price = b.Price
@@ -31,6 +32,7 @@ namespace BookStore.Logic.Models
         {
             return new BookModel
             {
+                Id = b.Id,
                 Author = b.Author,
                 Title = b.Title,
                 Price = b.Price,

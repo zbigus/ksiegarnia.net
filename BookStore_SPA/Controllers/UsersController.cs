@@ -14,7 +14,7 @@ namespace BookStore.SPA.Controllers
             {
                 return NotFound();
             }
-            var results = query.ToList().Select(s=> TheModelFactory.Create(s));
+            var results = query.ToList();
             return Ok(results);
         }
         [Route("api/Users/{role}")]

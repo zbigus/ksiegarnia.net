@@ -1,4 +1,6 @@
-﻿using BookStore.Entities.Models;
+﻿using System.Data.Entity;
+using BookStore.Entities.Models;
+using BookStore.Logic.Models;
 using BookStore.Logic.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
@@ -29,14 +31,21 @@ namespace BookStore.Logic.Repository
             _db.SaveChanges();
             return true;
         }
-        public bool AddBook(Book b)
+        public bool AddBook(Book b, string category,out int id)
         {
             if (_db.Books.Find(b.Id) != null)
             {
+                id = 0;
                 return false;
             }
             _db.Books.Add(b);
             _db.SaveChanges();
+
+            id = b.Id;
+            var query = from d in _db.Categories where d.Name == category select d.Id;
+            _db.BookCategories.Add(new BookCategory {BookId = b.Id, CategoryId = query.ToArray()[0]});
+            _db.SaveChanges();
+
             return true;
         }
     }
