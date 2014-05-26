@@ -43,7 +43,6 @@ namespace BookStore.SPA.Controllers
             }
             return NotFound();            
         }
-        //[Route("api/Books/{category}")]
         [HttpPost]
         public IHttpActionResult Post([FromBody] object[] data)
         {
@@ -56,8 +55,7 @@ namespace BookStore.SPA.Controllers
             int id;
             if (Repo.AddBook(book,categories,out id))
             {
-                //return CreatedAtRoute("DefaultApi", new { id = id }, book);
-                return Ok();
+                return CreatedAtRoute("DefaultApi", new { id = id }, book);
             }
             return Conflict();
         }
