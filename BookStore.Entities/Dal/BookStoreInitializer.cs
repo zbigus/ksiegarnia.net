@@ -39,45 +39,45 @@ namespace BookStore.Entities.Dal
                 new Book
                 {
                     Id = 1,
-                    Author = "Rączka",
-                    Description = "Nauki doktora rączki część 1.",
-                    Title = ".Net part 1",
+                    Author = "Stephenie Meyer",
+                    Description = "Zmierzch",
+                    Title = "Zmierzch",
                     Year = DateTime.Now,
-                    Price = 0,
-                    Publisher = "Rączka",
+                    Price = 40,
+                    Publisher = "Ja",
                     Isbn = "1111111111111"
                 },
                 new Book
                 {
                     Id = 2,
-                    Author = "Rączka",
-                    Description = "Nauki doktora rączki część 2.",
-                    Title = ".Net part 2",
+                    Author = "Stephenie Meyer",
+                    Description = "Księżyc w nowiu",
+                    Title = "Księżyc w nowiu",
                     Year = DateTime.Now,
-                    Price = 0,
-                    Publisher = "Rączka",
+                    Price = 30,
+                    Publisher = "JA",
                     Isbn = "2222222222222"
                 },
                 new Book
                 {
                     Id = 3,
-                    Author = "Rączka",
-                    Description = "Nauki doktora rączki część 3.",
-                    Title = ".Net part 3",
+                    Author = "Stephenie Meyer",
+                    Description = "Zaćmienie",
+                    Title = "Zaćmienie",
                     Year = DateTime.Now,
-                    Price = 0,
-                    Publisher = "Rączka",
+                    Price = 50,
+                    Publisher = "Ja",
                     Isbn = "3333333333333"
                 },
                 new Book
                 {
                     Id = 4,
-                    Author = "Rączka",
-                    Description = "Nauki doktora rączki część 4.",
-                    Title = ".Net part 4",
+                    Author = "Stephenie Meyer",
+                    Description = "Przed świtem",
+                    Title = "Przed świtem",
                     Year = DateTime.Now,
                     Price = 0,
-                    Publisher = "Rączka",
+                    Publisher = "Ja",
                     Isbn = "4444444444444"
                 },
             };
