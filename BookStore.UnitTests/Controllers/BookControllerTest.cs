@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 
 namespace BookStore.UnitTests.Controllers
 {
+    
     [TestClass]
     public class BookControllerTest
     {
@@ -27,7 +28,6 @@ namespace BookStore.UnitTests.Controllers
         {
             var result = booksController.Get();
             Assert.IsTrue(result.GetType() == typeof(OkNegotiatedContentResult<IEnumerable<BookModel>>));
-            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -35,7 +35,6 @@ namespace BookStore.UnitTests.Controllers
         {
             var result = booksController.GetInitialData();
             Assert.IsTrue(result.GetType() == typeof(OkNegotiatedContentResult<IEnumerable<SimpleBookModel>>));
-            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -44,7 +43,6 @@ namespace BookStore.UnitTests.Controllers
             _mockUserRepo.Setup(m => m.GetBookById(It.IsAny<int>())).Returns(new Book());
             var result = booksController.Get(It.IsAny<int>());
             Assert.IsTrue(result.GetType() == typeof(OkNegotiatedContentResult<BookModel>));
-            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -53,7 +51,6 @@ namespace BookStore.UnitTests.Controllers
             _mockUserRepo.Setup(m => m.GetBookById(It.IsAny<int>())).Returns(default(Book));
             var result = booksController.Get(It.IsAny<int>());
             Assert.IsTrue(result.GetType() == typeof(NotFoundResult));
-            Assert.IsNotNull(result);
         }
 
        [TestMethod]
