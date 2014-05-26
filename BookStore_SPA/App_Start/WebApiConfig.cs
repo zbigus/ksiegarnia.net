@@ -1,10 +1,10 @@
 ﻿using System.Web.Http;
+using BookStore.Logic.Interfaces;
 using BookStore.Logic.Repository;
 using BookStore.SPA.Controllers;
 using Microsoft.Owin.Security.OAuth;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Serialization;
-using BookStore.Logic.RepositoryInterfaces;
 
 namespace BookStore.SPA
 {
@@ -17,7 +17,7 @@ namespace BookStore.SPA
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            //config.Formatters.Remove(config.Formatters.XmlFormatter);
             // Use camel case for JSON data.
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 

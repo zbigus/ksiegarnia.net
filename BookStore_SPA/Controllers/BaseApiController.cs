@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Dependencies;
+using BookStore.Logic.Interfaces;
 using BookStore.Logic.Models;
-using BookStore.Logic.RepositoryInterfaces;
 using Microsoft.Practices.Unity;
 
 namespace BookStore.SPA.Controllers

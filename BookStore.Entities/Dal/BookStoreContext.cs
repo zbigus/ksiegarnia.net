@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using BookStore.Entities.Models;
 using BookStore.Entities.Managers;
 
@@ -17,6 +19,20 @@ namespace BookStore.Entities.Dal
         public BookStoreContext()
             : base(ConnectionStringManager.Current)
         {
+        }
+
+        public override int SaveChanges()
+        {
+            foreach (var entry in ChangeTracker.Entries<ChangeBase>()
+                        .Where(e => e.State == EntityState.Added && e.State == EntityState.Modified))
+            {
+                var now = DateTime.Now;
+                if (entry.State == EntityState.Added)
+                    entry.Entity.InsertDate = now;
+                entry.Entity.ModificationDate = now;
+
+            }
+            return base.SaveChanges();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

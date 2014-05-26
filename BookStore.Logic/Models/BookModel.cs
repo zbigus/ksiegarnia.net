@@ -10,7 +10,10 @@ namespace BookStore.Logic.Models
         public string Publisher { get; set; }
         public DateTime Year { get; set; }
         public string Description { get; set; }
+        //TODO: Zamieniæ na listê. Ksi¹¿ka mo¿e mieæ parê za³¹czników
         public byte[] AttachmentContent { get; set; }
-        //public string Category { get; set; }
+        //TODO: Zamieniæ na listê. Ksi¹¿ka mo¿e mieæ parê kategorii
+        public string Category { get; set; }
+
     }
 }

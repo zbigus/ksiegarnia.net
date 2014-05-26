@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Http;
-using BookStore.Logic.RepositoryInterfaces;
+using BookStore.Logic.Interfaces;
 
 namespace BookStore.SPA.Controllers
 {

@@ -53,17 +53,17 @@
     <Compile Include="Models\SimpleBookModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryInterfaces\IAttachmentsRepository.cs" />
-    <Compile Include="RepositoryInterfaces\IBooksRepository.cs" />
-    <Compile Include="RepositoryInterfaces\ICategoryRepository.cs" />
-    <Compile Include="RepositoryInterfaces\IOrdersRepository.cs" />
-    <Compile Include="RepositoryInterfaces\IRepository.cs" />
-    <Compile Include="RepositoryInterfaces\IUsersRepository.cs" />
-    <Compile Include="Repository\AttachmentsRepository.cs" />
-    <Compile Include="Repository\BooksRepository.cs" />
-    <Compile Include="Repository\CategoryRepository.cs" />
-    <Compile Include="Repository\OrdersRepository.cs" />
-    <Compile Include="Repository\UsersRepository.cs" />
+    <Compile Include="Interfaces\IAttachmentsRepository.cs" />
+    <Compile Include="Interfaces\IBooksRepository.cs" />
+    <Compile Include="Interfaces\ICategoryRepository.cs" />
+    <Compile Include="Interfaces\IOrdersRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUsersRepository.cs" />
+    <Compile Include="Repository\Repository.Attachments.cs" />
+    <Compile Include="Repository\Repository.Books.cs" />
+    <Compile Include="Repository\Repository.Category.cs" />
+    <Compile Include="Repository\Repository.Orders.cs" />
+    <Compile Include="Repository\Repository.Users.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookStore.Entities\BookStore.Entities.csproj">
