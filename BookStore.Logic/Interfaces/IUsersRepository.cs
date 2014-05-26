@@ -1,13 +1,13 @@
-﻿using System.Linq;
-using BookStore.Entities.Models;
+﻿using System.Collections.Generic;
+using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Interfaces
 {
     public interface IUsersRepository
     {
-        IQueryable<User> GetAllUsers();
-        IQueryable<User> GetUsersByRole(string role);
-        IQueryable<User> GetUsersIDByLogin(string login);
-        bool AddUser(User user);
+        IEnumerable<UserModel> GetUsers();
+        string GetRole(int userId);
+        UserModel GetUser(string login, string password);
+        bool AddUser(UserModel user, string password);
     }
 }

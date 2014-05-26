@@ -18,7 +18,7 @@ namespace BookStore.SPA.Controllers
         }
         public IHttpActionResult Get()
         {
-            return Ok(Repo.GetAllOrders().ToList().Select(s => TheModelFactory.Create(s)));
+            return Ok(Repo.GetOrders());
         }
 
         public IHttpActionResult Post([FromBody] OrderModel o)
@@ -28,9 +28,9 @@ namespace BookStore.SPA.Controllers
                 return BadRequest(ModelState);
             }
             int id;
-            if (Repo.AddOrder(o, out id))
+            if (Repo.AddOrder(o))
             {
-                return CreatedAtRoute("DefaultApi", new { id = id }, o);
+                return Ok();
             }
             return Conflict();
         }
@@ -41,17 +41,6 @@ namespace BookStore.SPA.Controllers
             if (Repo.DeleteOrder(id))
             {
                 return Ok();
-            }
-            return NotFound();
-        }
-
-        [Route("api/Orders/Status/{id}")]
-        public IHttpActionResult GetOrderStatus(int id)
-        {
-            string stats;
-            if (Repo.GetOrderStatus(id,out stats))
-            {
-                return Ok(stats);
             }
             return NotFound();
         }

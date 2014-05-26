@@ -1,29 +1,33 @@
 ﻿using BookStore.Entities.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Repository
 {
-    partial class Repository
+    public partial class Repository
     {
-        public IQueryable<Category> GetAllCategories()
+        public IEnumerable<CategoryModel> GetCategories()
         {
-            return _db.Categories.AsQueryable();
+            return _db.Categories.Select(category => CategoryModel.Create(category)).ToList();
         }
 
         public bool AddCategory(string name)
         {
             if (_db.Categories.FirstOrDefault(s=> s.Name == name) != null)
-            {
                 return false;
-            }
             _db.Categories.Add(new Category{Name = name});
             _db.SaveChanges();
             return true;
         }
-        
+
+        public bool DeleteCategory(int id)
+        {
+            var category = _db.Categories.Find(id);
+            if (category == null)
+                return false;
+            _db.Categories.Remove(category);
+            return true;
+        }
     }
 }

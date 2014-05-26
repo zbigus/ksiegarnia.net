@@ -16,10 +16,10 @@ namespace BookStore.SPA.Controllers
 
         public IHttpActionResult Get()
         {
-            return Ok(Repo.GetAllCategories().ToList().Select(s=>TheModelFactory.Create(s)));
+            return Ok(Repo.GetCategories());
         }
 
-        public IHttpActionResult Post([FromBody] Category category)
+        public IHttpActionResult Post([FromBody] CategoryModel category)
         {
             if (!ModelState.IsValid)
             {
@@ -27,7 +27,7 @@ namespace BookStore.SPA.Controllers
             }
             if (Repo.AddCategory(category.Name))
             {
-                return CreatedAtRoute("DefaultApi", new { id = category.Id }, TheModelFactory.Create(category));
+                return Ok();
             }
             return Conflict();
         }

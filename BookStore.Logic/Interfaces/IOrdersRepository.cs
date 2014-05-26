@@ -1,17 +1,17 @@
-﻿using System.Linq;
-using BookStore.Entities.Models;
+﻿using System.Collections.Generic;
 using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Interfaces
 {
     public interface IOrdersRepository
     {
-        IQueryable<Order> GetAllOrders();
-        IQueryable<Order> GetOrdersByBookId(int id);
-        IQueryable<Order> GetOrdersByUserId(int id);
-        bool GetOrderStatus(int id, out string status);
-        bool UpdateOrderStatus(int id, OrderStatus newStatus);
-        bool DeleteOrder(int id);
-        bool AddOrder(OrderModel order,out int id);
+        IEnumerable<OrderModel> GetOrders();
+        IEnumerable<OrderModel> GetOrders(int userId); 
+        IEnumerable<OrderModel> GetOrdersByBookId(int bookId);
+        bool DeleteOrder(int orderId);
+        bool AddOrder(OrderModel order);
+        bool CancelOrder(int orderId, string comment);
+        bool ExecuteOrder(int orderId);
+        bool AcceptOrder(int orderId);
     }
 }

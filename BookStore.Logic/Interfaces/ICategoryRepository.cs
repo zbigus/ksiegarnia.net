@@ -1,11 +1,12 @@
-﻿using System.Linq;
-using BookStore.Entities.Models;
+﻿using System.Collections.Generic;
+using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Interfaces
 {
     public interface ICategoryRepository
     {
-        IQueryable<Category> GetAllCategories();
+        IEnumerable<CategoryModel> GetCategories();
         bool AddCategory(string name);
+        bool DeleteCategory(int id);
     }
 }

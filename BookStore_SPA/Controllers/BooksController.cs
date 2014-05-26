@@ -14,26 +14,23 @@ namespace BookStore.SPA.Controllers
     public class BooksController : BaseApiController
     {
         public BooksController(IRepository repo) : base(repo) { }
-        public IHttpActionResult Get() {
-            return Ok(Repo.GetAllBooks().ToList().Select(s=> TheModelFactory.Create(s)));
+        
+        public IHttpActionResult Get()
+        {
+            var book = Repo.GetBooks();
+            return Ok(book);
         }
+
         //[HttpGet]
-        public IHttpActionResult Get(int id) {
-            var book = Repo.GetBookById(id);
+        public IHttpActionResult Get(int id)
+        {
+            var book = Repo.GetBook(id);
             if (book != null)
-            {
-                var result = TheModelFactory.Create(book);
-                return Ok(result);
-            }
+                return Ok(book);
             return NotFound();
         }
 
-        [Route("api/Books/Initial")]
-        public IHttpActionResult GetInitialData()
-        {
-            var initialData = Repo.GetAllBooks().ToList().Select(s=>TheModelFactory.CreateInitial(s));
-            return Ok(initialData);
-        }
+        
         //[Authorize]
         [Route("api/Books/Delete/{id}")]
         [ResponseType(typeof(Book))]
@@ -43,6 +40,7 @@ namespace BookStore.SPA.Controllers
             }
             return NotFound();            
         }
+
         [HttpPost]
         public IHttpActionResult Post([FromBody] object[] data)
         {
@@ -53,9 +51,10 @@ namespace BookStore.SPA.Controllers
             var book = JsonConvert.DeserializeObject<BookModel>(data[0].ToString());
             var categories = JsonConvert.DeserializeObject<List<string>>(data[1].ToString());
             int id;
-            if (Repo.AddBook(book,categories,out id))
+            if (Repo.AddBook(book))
             {
-                return CreatedAtRoute("DefaultApi", new { id = id }, book);
+                return Ok();
+                //return CreatedAtRoute("DefaultApi", book);
             }
             return Conflict();
         }

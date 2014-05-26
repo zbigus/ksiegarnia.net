@@ -17,20 +17,6 @@ namespace BookStore.SPA.Controllers
                 return _repo;
             }
         }
-
-        protected ModelFactory ModelFactory;
-
-        protected ModelFactory TheModelFactory
-        {
-            get
-            {
-                if (ModelFactory == null)
-                {
-                    ModelFactory = new ModelFactory();
-                }
-                return ModelFactory;
-            }
-        }
         
         public BaseApiController(IRepository repo) {
             _repo = repo;

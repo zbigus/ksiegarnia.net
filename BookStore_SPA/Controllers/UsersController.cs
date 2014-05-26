@@ -9,34 +9,26 @@ namespace BookStore.SPA.Controllers
         public UsersController(IRepository repo) : base(repo) { }
 
         public IHttpActionResult Get() {
-            var query = Repo.GetAllUsers();
+            var query = Repo.GetUsers();
             if (query == null)
             {
                 return NotFound();
             }
-            var results = query.ToList().Select(s=>TheModelFactory.Create(s));
+            var results = query;
             return Ok(results);
         }
-        [Route("api/Users/Role/{role}")]
-        public IHttpActionResult Get(string role) {
-            var users = Repo.GetUsersByRole(role);
-            if (users == null)
-            {
-                return NotFound();
-            }
-            var result = users.ToList().Select(s => TheModelFactory.Create(s));
-            return Ok(result);
-        }
+        
         [Route("api/Users/GetID/{login}")]
-        public IHttpActionResult GetIDByLogin(string login)
+        public IHttpActionResult GetIdByLogin(string login)
         {
-            var users = Repo.GetUsersIDByLogin(login);
-            if (users == null)
-            {
-                return NotFound();
-            }
-            var result = users.ToList().Select(s => s.Id);
-            return Ok(result);
+            return Ok();
+            //var users = Repo.GetUsersIDByLogin(login);
+            //if (users == null)
+            //{
+            //    return NotFound();
+            //}
+            //var result = users.ToList().Select(s => s.Id);
+            //return Ok(result);
         }
     }
 }

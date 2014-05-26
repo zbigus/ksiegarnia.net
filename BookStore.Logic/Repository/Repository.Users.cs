@@ -1,52 +1,38 @@
 ﻿using BookStore.Entities.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Repository
 {
-    public partial class Repository : IDisposable
+    public partial class Repository
     {
-        public IQueryable<User> GetAllUsers()
+        public IEnumerable<UserModel> GetUsers()
         {
-            return _db.Users.AsQueryable();
-        }
-        public IQueryable<User> GetUsersByRole(string role)
-        {
-            return _db.Users.Where(s => s.Role.Name.Equals(role, StringComparison.OrdinalIgnoreCase));
-        }
-        public IQueryable<User> GetUsersIDByLogin(string login)
-        {
-            return _db.Users.Where(s => s.Login.Equals(login, StringComparison.OrdinalIgnoreCase));
-        }
-        public bool AddUser(User user)
-        {
-            if (_db.Users.Find(user.Id) != null)
-            {
-                return false;
-            }
-            _db.Users.Add(user);
-            _db.SaveChanges();
-            return true;
-        }
-        protected void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_db != null)
-                {
-                    _db.Dispose();
-                    _db = null;
-                }
-            }
+            return _db.Users.Select(user => UserModel.Create(user)).ToList();
         }
 
-        public void Dispose()
+        public string GetRole(int userId)
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            //TODO: wyrzucić błąd jak się nie znajdzie
+            var user = _db.Users.Find(userId);
+            return _db.Roles.Find(user.RoleId).Name;
+        }
+
+        public UserModel GetUser(string login, string password)
+        {
+            var user = _db.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
+            return user == null ? null : UserModel.Create(user);
+        }
+
+        public bool AddUser(UserModel user, string password)
+        {
+            var u = _db.Users.FirstOrDefault(arg => arg.Login == user.Login);
+            if (u != null)
+                return false;
+            _db.Users.Add(new User { Address = user.Address, Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, Login = user.Login, Password = password, });
+            _db.SaveChanges();
+            return true;
         }
     }
 }
