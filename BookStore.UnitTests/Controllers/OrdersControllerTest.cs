@@ -13,10 +13,8 @@ using System.Web.Http.Results;
 namespace BookStore.UnitTests.Controllers
 {
     [TestClass]
-    public class OrdersControllerTest
+    public class OrdersControllerTest:BaseTestControllersClass
     {
-        static Mock<IRepository> _mockUserRepo = new Mock<IRepository>();
-
         OrdersController ordersController = new OrdersController(_mockUserRepo.Object);
 
         [TestMethod]

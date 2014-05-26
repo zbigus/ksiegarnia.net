@@ -17,10 +17,8 @@ namespace BookStore.UnitTests.Controllers
 {
 
     [TestClass]
-    public class UsersControllerTest
+    public class UsersControllerTest:BaseTestControllersClass
     {
-        static Mock<IRepository> _mockUserRepo = new Mock<IRepository>();
-
         UsersController usersController = new UsersController(_mockUserRepo.Object);
 
         [TestMethod]

@@ -99,6 +99,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BaseTestControllersClass.cs" />
     <Compile Include="Controllers\BookControllerTest.cs" />
     <Compile Include="Controllers\OrdersControllerTest.cs" />
     <Compile Include="Controllers\UsersControllerTest.cs" />
