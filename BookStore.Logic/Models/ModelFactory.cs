@@ -51,5 +51,18 @@ namespace BookStore.Logic.Models
                 Name = c.Name
             };
         }
+
+        public OrderModel Create(Order o)
+        {
+            return new OrderModel
+            {
+                Id = o.Id,
+                UserID = o.UserId,
+                BookID = o.BookId,
+                ShopComment = o.ShopComment,
+                Status = o.Status
+           };
+        }
+
     }
 }

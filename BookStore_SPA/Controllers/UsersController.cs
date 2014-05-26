@@ -14,10 +14,10 @@ namespace BookStore.SPA.Controllers
             {
                 return NotFound();
             }
-            var results = query.ToList();
+            var results = query.ToList().Select(s=>TheModelFactory.Create(s));
             return Ok(results);
         }
-        [Route("api/Users/{role}")]
+        [Route("api/Users/Role/{role}")]
         public IHttpActionResult Get(string role) {
             var users = Repo.GetUsersByRole(role);
             if (users == null)
@@ -25,6 +25,17 @@ namespace BookStore.SPA.Controllers
                 return NotFound();
             }
             var result = users.ToList().Select(s => TheModelFactory.Create(s));
+            return Ok(result);
+        }
+        [Route("api/Users/GetID/{login}")]
+        public IHttpActionResult GetIDByLogin(string login)
+        {
+            var users = Repo.GetUsersIDByLogin(login);
+            if (users == null)
+            {
+                return NotFound();
+            }
+            var result = users.ToList().Select(s => s.Id);
             return Ok(result);
         }
     }

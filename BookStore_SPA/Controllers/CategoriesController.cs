@@ -16,7 +16,7 @@ namespace BookStore.SPA.Controllers
 
         public IHttpActionResult Get()
         {
-            return Ok(Repo.GetAllCategories().ToList());
+            return Ok(Repo.GetAllCategories().ToList().Select(s=>TheModelFactory.Create(s)));
         }
 
         public IHttpActionResult Post([FromBody] Category category)

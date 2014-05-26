@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using BookStore.Entities.Models;
+using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Interfaces
 {
@@ -8,9 +9,9 @@ namespace BookStore.Logic.Interfaces
         IQueryable<Order> GetAllOrders();
         IQueryable<Order> GetOrdersByBookId(int id);
         IQueryable<Order> GetOrdersByUserId(int id);
-        OrderStatus GetOrderStatus(int id);
+        bool GetOrderStatus(int id, out string status);
         bool UpdateOrderStatus(int id, OrderStatus newStatus);
         bool DeleteOrder(int id);
-        bool AddOrder(Order order);
+        bool AddOrder(OrderModel order,out int id);
     }
 }

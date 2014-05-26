@@ -31,7 +31,7 @@ namespace BookStore.SPA.Controllers
         [Route("api/Books/Initial")]
         public IHttpActionResult GetInitialData()
         {
-            var initialData = Repo.GetAllBooks().ToList().Select(s=>TheModelFactory.Create(s));
+            var initialData = Repo.GetAllBooks().ToList().Select(s=>TheModelFactory.CreateInitial(s));
             return Ok(initialData);
         }
         //[Authorize]

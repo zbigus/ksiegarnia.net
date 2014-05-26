@@ -1,4 +1,5 @@
 ﻿using BookStore.Entities.Models;
+using BookStore.Logic.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,16 +22,19 @@ namespace BookStore.Logic.Repository
         {
             return _db.Orders.Where(s => s.UserId == id);
         }
-        public OrderStatus GetOrderStatus(int id)
-        {
-            var order = _db.Orders.FirstOrDefault(s => s.Id == id);
-            if (order != null)
-            {
-                return order.Status;
-            }
-            throw new NullReferenceException();
 
+        public bool GetOrderStatus(int id, out string status)
+        {
+            var order = _db.Orders.Find(id);
+            if (order == null)
+            {
+                status = null;
+                return false;
+            }
+            status = order.Status.ToString();
+            return true;
         }
+
         public bool UpdateOrderStatus(int id, OrderStatus newStatus)
         {
             var order = _db.Orders.Find(id);
@@ -53,14 +57,26 @@ namespace BookStore.Logic.Repository
             _db.SaveChanges();
             return true;
         }
-        public bool AddOrder(Order order)
+        public bool AddOrder(OrderModel order, out int id)
         {
             if (_db.Orders.Find(order.Id) != null)
             {
+                id = 0;
                 return false;
             }
-            _db.Orders.Add(order);
+            var o = new Order
+            {
+                Id = order.Id,
+                BookId = order.BookID,
+                UserId = order.UserID,
+                InsertDate = DateTime.Now,
+                ModificationDate = DateTime.Now,
+                ShopComment = order.ShopComment,
+                Status = order.Status
+            };
+            _db.Orders.Add(o);
             _db.SaveChanges();
+            id = o.Id;
             return true;
         }
     }
