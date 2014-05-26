@@ -15,7 +15,7 @@
 
         private static void SetDefaultConnectionString()
         {
-            SetConnectionString("91.236.74.193", "BookStoreDatabase", "abis", "siba");
+            SetConnectionString("91.236.74.193", "BookStoreDatabase3", "abis", "siba");
         }
 
         /// <summary>

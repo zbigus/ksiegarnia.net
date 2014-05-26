@@ -9,14 +9,17 @@ namespace BookStore.Logic.Repository
     {
         public IEnumerable<AttachmentModel> GetAttachments()
         {
-            return _db.Attachments.Select(attachment => AttachmentModel.Create(attachment))
+            return _db.Attachments
+                .ToList()
+                .Select(AttachmentModel.Create)
                 .ToList();
         }
 
         public IEnumerable<AttachmentModel> GetAttachments(int bookId)
         {
             return _db.Attachments.Where(att => att.BookId == bookId)
-                .Select(attachment => AttachmentModel.Create(attachment))
+                .ToList()
+                .Select(AttachmentModel.Create)
                 .ToList();
         }
 

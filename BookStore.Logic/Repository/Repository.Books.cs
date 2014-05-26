@@ -1,49 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BookStore.Entities.Models;
 using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Repository
 {
     public partial class Repository
     {
-        //public bool AddBook(BookModel b, List<string> category,out int id)
-        //{
-        //    if (_db.Books.Find(b.Id) != null)
-        //    {
-        //        id = 0;
-        //        return false;
-        //    }
-        //    var book = new Book
-        //    {
-        //        Id=b.Id,
-        //        Author = b.Author,
-        //        Title = b.Title,
-        //        Isbn = b.Isbn,
-        //        Publisher = b.Publisher,
-        //        Year = b.Year,
-        //        Price = b.Price,
-        //        Description = b.Description,
-        //        InsertDate = DateTime.Now,
-        //        ModificationDate = DateTime.Now
-        //    };
-        //    _db.Books.Add(book);
-        //    _db.SaveChanges();
-
-        //    id = book.Id;
-        //    foreach (var item in category)
-        //    {
-        //        var query = from d in _db.Categories where d.Name == item select d.Id;
-        //        var index = query.ToArray()[0];
-        //        _db.BookCategories.Add(new BookCategory {BookId = book.Id, CategoryId = index});
-        //        _db.SaveChanges();
-        //    }
-
-        //    return true;
-        //}
         public IEnumerable<SimpleBookModel> GetBooks()
         {
-            return _db.Books.ToList().Select(SimpleBookModel.Create);
+            return _db.Books.ToList().Select(SimpleBookModel.Create).ToList();
         }
 
         public IEnumerable<SimpleBookModel> GetBooks(int categoryId)
@@ -64,8 +31,18 @@ namespace BookStore.Logic.Repository
             var b = _db.Books.Find(id);
             if (b == null)
                 return null;
-
-            return BookModel.Create(b);
+            var book = BookModel.Create(b);
+            //pobranie kategorii
+            var categoriesIds = _db.BookCategories.Where(arg => arg.BookId == id).Select(arg => arg.CategoryId).ToList();
+            foreach (var categoriesId in categoriesIds)
+            {
+                var category = _db.Categories.Find(categoriesId);
+                if (category != null)
+                    book.Categories.Add(CategoryModel.Create(category));
+            }
+            //pobieranie załączników
+            book.Attachments = GetAttachments(id).ToList();
+            return book;
         }
 
         public bool DeleteBook(int id)
@@ -80,7 +57,41 @@ namespace BookStore.Logic.Repository
 
         public bool AddBook(BookModel book)
         {
-            throw new NotImplementedException();
+            //dodajemy książkę
+            if (_db.Books.Find(book.Id) != null)
+                return false;
+            var bookEntity = new Book
+            {
+                Id = book.Id,
+                Author = book.Author,
+                Title = book.Title,
+                Isbn = book.Isbn,
+                Publisher = book.Publisher,
+                Year = book.Year,
+                Price = book.Price,
+                Description = book.Description,
+            };
+
+            _db.Books.Add(bookEntity);
+            _db.SaveChanges();
+
+            var id = bookEntity.Id;
+            //dodajemy kategorię
+            foreach (var categoryModel in book.Categories)
+            {
+                var category = _db.Categories.Find(categoryModel.Id);
+                if (category != null)
+                {
+                    _db.BookCategories.Add(new BookCategory {BookId = id, CategoryId = categoryModel.Id});
+                }
+            }
+            _db.SaveChanges();
+            //dodajemy załączniki
+            foreach (var attachmentModel in book.Attachments)
+            {
+                AddAttachment(attachmentModel);
+            }
+            return true;
         }
     }
 }

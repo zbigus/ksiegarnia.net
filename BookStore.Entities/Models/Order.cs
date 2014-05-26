@@ -7,7 +7,7 @@
         public int UserId { get; set; }
         public string ShopComment { get; set; }
         public OrderStatus Status { get; set; }
-
+        
         public virtual Book Book { get; set; }
         public virtual User User { get; set; }
     }

@@ -28,6 +28,8 @@ namespace BookStore.Logic.Models
             Publisher = book.Publisher;
             Year = book.Year;
             Description = book.Description;
+            Categories = new List<CategoryModel>();
+            Attachments = new List<AttachmentModel>(); 
         }
 
         public new static BookModel Create(Book book)
