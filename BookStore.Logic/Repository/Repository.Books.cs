@@ -47,9 +47,7 @@ namespace BookStore.Logic.Repository
                 Publisher = b.Publisher,
                 Year = b.Year,
                 Price = b.Price,
-                Description = b.Description,
-                InsertDate = DateTime.Now,
-                ModificationDate = DateTime.Now
+                Description = b.Description
             };
             _db.Books.Add(book);
             _db.SaveChanges();
