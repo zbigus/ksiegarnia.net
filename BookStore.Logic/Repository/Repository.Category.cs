@@ -8,7 +8,7 @@ using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Repository
 {
-    partial class Repository
+    public partial class Repository
     {
         public IQueryable<Category> GetAllCategories()
         {

@@ -69,8 +69,6 @@ namespace BookStore.Logic.Repository
                 Id = order.Id,
                 BookId = order.BookID,
                 UserId = order.UserID,
-                InsertDate = DateTime.Now,
-                ModificationDate = DateTime.Now,
                 ShopComment = order.ShopComment,
                 Status = order.Status
             };
