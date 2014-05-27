@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Repository
 {
@@ -21,13 +22,15 @@ namespace BookStore.Logic.Repository
         {
             return _db.Users.Where(s => s.Login.Equals(login, StringComparison.OrdinalIgnoreCase));
         }
-        public bool AddUser(User user)
+        
+        public bool DeleteUser(int id)
         {
-            if (_db.Users.Find(user.Id) != null)
+            var user = _db.Users.Find(id);
+            if (user == null)
             {
                 return false;
             }
-            _db.Users.Add(user);
+            _db.Users.Remove(user);
             _db.SaveChanges();
             return true;
         }

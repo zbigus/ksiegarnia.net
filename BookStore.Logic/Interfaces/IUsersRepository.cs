@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using BookStore.Entities.Models;
+using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Interfaces
 {
@@ -8,6 +9,6 @@ namespace BookStore.Logic.Interfaces
         IQueryable<User> GetAllUsers();
         IQueryable<User> GetUsersByRole(string role);
         IQueryable<User> GetUsersIDByLogin(string login);
-        bool AddUser(User user);
+        bool DeleteUser(int id);
     }
 }

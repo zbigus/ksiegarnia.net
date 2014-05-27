@@ -8,6 +8,6 @@ namespace BookStore.Entities.Models
         public int Id { get; set; }
         public String Name { get; set; }
         
-        public ICollection<BookCategory> BookCategories { get; set; }
+        public virtual ICollection<BookCategory> BookCategories { get; set; }
     }
 }

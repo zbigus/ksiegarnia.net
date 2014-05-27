@@ -36,7 +36,6 @@ namespace BookStore.SPA.Controllers
             return Conflict();
         }
         [Route("api/Orders/Delete/{id}")]
-        [ResponseType(typeof(Order))]
         public IHttpActionResult Delete(int id)
         {
             if (Repo.DeleteOrder(id))

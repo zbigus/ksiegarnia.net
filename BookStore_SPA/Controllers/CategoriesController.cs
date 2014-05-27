@@ -19,17 +19,28 @@ namespace BookStore.SPA.Controllers
             return Ok(Repo.GetAllCategories().ToList().Select(s=>TheModelFactory.Create(s)));
         }
 
-        public IHttpActionResult Post([FromBody] Category category)
+        public IHttpActionResult Post([FromBody] CategoryModel category)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if (Repo.AddCategory(category.Name))
+            int id;
+            if (Repo.AddCategory(category.Name,out id))
             {
-                return CreatedAtRoute("DefaultApi", new { id = category.Id }, TheModelFactory.Create(category));
+                return CreatedAtRoute("DefaultApi", new { id = id }, category);
             }
             return Conflict();
+        }
+        
+        [Route("api/Categories/Delete/{id}")]
+        public IHttpActionResult Delete(int id)
+        {
+            if (Repo.DeleteCategory(id))
+            {
+                return Ok();
+            }
+            return NotFound();
         }
     }
 }

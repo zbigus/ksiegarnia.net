@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Http;
 using BookStore.Logic.Interfaces;
+using BookStore.Logic.Models;
 
 namespace BookStore.SPA.Controllers
 {
@@ -37,6 +38,16 @@ namespace BookStore.SPA.Controllers
             }
             var result = users.ToList().Select(s => s.Id);
             return Ok(result);
+        }
+        
+        [Route("api/Users/Delete/{id}")]
+        public IHttpActionResult Delete(int id)
+        {
+            if (Repo.DeleteUser(id))
+            {
+                return Ok();
+            }
+            return NotFound();
         }
     }
 }

@@ -36,7 +36,6 @@ namespace BookStore.SPA.Controllers
         }
         //[Authorize]
         [Route("api/Books/Delete/{id}")]
-        [ResponseType(typeof(Book))]
         public IHttpActionResult Delete(int id) {
             if (Repo.DeleteBook(id)) {
                 return Ok();
