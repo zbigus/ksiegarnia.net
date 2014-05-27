@@ -39,7 +39,6 @@ namespace BookStore.SPA.Controllers
             var result = users.ToList().Select(s => s.Id);
             return Ok(result);
         }
-        
         [Route("api/Users/Delete/{id}")]
         public IHttpActionResult Delete(int id)
         {
