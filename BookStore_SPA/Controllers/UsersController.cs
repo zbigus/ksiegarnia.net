@@ -48,5 +48,7 @@ namespace BookStore.SPA.Controllers
             }
             return NotFound();
         }
+        //TODO:Dodac dodawanie uzytkownika - gdzie przeslac haslo? User zamiast UserModel w post
+        //TODO:czy haslo osobno przesylamy?
     }
 }

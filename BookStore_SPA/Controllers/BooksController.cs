@@ -42,6 +42,7 @@ namespace BookStore.SPA.Controllers
             }
             return NotFound();            
         }
+        //TODO:Zmienić żeby metoda nie przyjmowała object[] tylko BookModel
         [HttpPost]
         public IHttpActionResult Post([FromBody] object[] data)
         {
