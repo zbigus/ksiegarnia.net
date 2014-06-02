@@ -1,10 +1,5 @@
 ﻿using BookStore.Entities.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Repository
 {

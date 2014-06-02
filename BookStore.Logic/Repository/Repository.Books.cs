@@ -1,11 +1,6 @@
-﻿using System.Data.Entity;
-using BookStore.Entities.Models;
-using BookStore.Logic.Interfaces;
-using System;
+﻿using BookStore.Entities.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Repository

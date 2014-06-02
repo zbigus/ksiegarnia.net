@@ -1,18 +1,9 @@
-﻿using BookStore.Entities.Dal;
-using BookStore.Entities.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BookStore.Logic.Interfaces;
+﻿using BookStore.Entities.Models;
 
 namespace BookStore.Logic.Repository
 {
-    public partial class Repository : IRepository
+    public partial class Repository
     {
-        private BookStoreContext _db = new BookStoreContext();
-
         public Attachment GetAttachmentById(int id)
         {
             return _db.Attachments.Find(id);

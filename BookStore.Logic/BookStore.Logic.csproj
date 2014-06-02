@@ -62,6 +62,7 @@
     <Compile Include="Repository\Repository.Attachments.cs" />
     <Compile Include="Repository\Repository.Books.cs" />
     <Compile Include="Repository\Repository.Category.cs" />
+    <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\Repository.Orders.cs" />
     <Compile Include="Repository\Repository.Users.cs" />
   </ItemGroup>

@@ -30,6 +30,25 @@ namespace BookStore.Entities.Dal
             //Dodajemy jedna kategorie dla ksiazki
             books.ForEach(b => context.BookCategories.Add(new BookCategory {BookId = b.Id, CategoryId = 1}));
             context.SaveChanges();
+
+            //Dodajemy domyślne zamówienia
+            CreateDefaultOrders().ForEach(order => context.Orders.Add(order));
+            context.SaveChanges();
+        }
+
+        private static List<Order> CreateDefaultOrders()
+        {
+            return new List<Order>
+            {
+                new Order {BookId = 1, UserId = 1, Status = OrderStatus.Ordered},
+                new Order {BookId = 2, UserId = 2, Status = OrderStatus.Canceled, ShopComment = "Brak w magazynie"},
+                new Order {BookId = 3, UserId = 1, Status = OrderStatus.Ready},
+                new Order {BookId = 4, UserId = 2, Status = OrderStatus.Canceled},
+                new Order {BookId = 1, UserId = 2, Status = OrderStatus.Canceled},
+                new Order {BookId = 2, UserId = 1, Status = OrderStatus.Executed},
+                new Order {BookId = 3, UserId = 2, Status = OrderStatus.Ordered},
+                new Order {BookId = 4, UserId = 1, Status = OrderStatus.Ordered}
+            };
         }
 
         private static List<Book> CreateDefaultBooks()
