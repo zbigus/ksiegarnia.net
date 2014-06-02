@@ -1,4 +1,6 @@
-﻿namespace BookStore.Logic.Models
+﻿using BookStore.Entities.Models;
+
+namespace BookStore.Logic.Models
 {
     public class SimpleBookModel
     {
@@ -6,5 +8,13 @@
         public string Title { get; set; }
         public string Author { get; set; }
         public int Price { get; set; }
+
+        public SimpleBookModel(Book book)
+        {
+            Id = book.Id;
+            Title = book.Title;
+            Author = book.Author;
+            Price = book.Price;
+        }
     }
 }

@@ -7,10 +7,15 @@ namespace BookStore.Logic.Interfaces
 {
     public interface IBooksRepository
     {
-
         IQueryable<Book> GetAllBooks();
         Book GetBookById(int id);
+        bool AddBook(BookModel b, List<string> category, out int id);
+
+        BookModel GetBook(int id);
+        List<SimpleBookModel> GetBooks();
+        List<SimpleBookModel> GetBooksByCategory(int categoryId);
+        BookModel AddBook(BookModel book);
+        bool UpdateBook(BookModel book);
         bool DeleteBook(int id);
-        bool AddBook(BookModel b,List<string> category, out int id);
     }
 }

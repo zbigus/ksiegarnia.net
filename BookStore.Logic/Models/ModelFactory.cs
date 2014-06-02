@@ -1,4 +1,5 @@
-﻿using BookStore.Entities.Models;
+﻿using System.Collections.Generic;
+using BookStore.Entities.Models;
 
 namespace BookStore.Logic.Models
 {
@@ -20,36 +21,16 @@ namespace BookStore.Logic.Models
 
         public SimpleBookModel CreateInitial(Book b)
         {
-            return new SimpleBookModel
-            {
-                Id=b.Id,
-                Author = b.Author,
-                Title =  b.Title,
-                Price = b.Price
-            };
+            return new SimpleBookModel(b);
         }
         public BookModel Create(Book b)
         {
-            return new BookModel
-            {
-                Id = b.Id,
-                Author = b.Author,
-                Title = b.Title,
-                Price = b.Price,
-                Isbn = b.Isbn,
-                Publisher = b.Publisher,
-                Year = b.Year,
-                Description = b.Description
-            };
+            return new BookModel(b);
         }
 
         public CategoryModel Create(Category c)
         {
-            return new CategoryModel
-            {
-                Id = c.Id,
-                Name = c.Name
-            };
+            return new CategoryModel(c);
         }
 
         public OrderModel Create(Order o)
