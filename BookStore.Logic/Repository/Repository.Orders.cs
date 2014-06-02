@@ -63,8 +63,8 @@ namespace BookStore.Logic.Repository
             var o = new Order
             {
                 Id = order.Id,
-                BookId = order.BookID,
-                UserId = order.UserID,
+                BookId = order.BookId,
+                UserId = order.UserId,
                 ShopComment = order.ShopComment,
                 Status = order.Status
             };

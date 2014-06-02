@@ -1,5 +1,3 @@
-using BookStore.Entities.Models;
-
 namespace BookStore.Logic.Models
 {
     public class UserModel

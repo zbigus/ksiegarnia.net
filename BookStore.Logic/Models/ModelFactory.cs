@@ -57,8 +57,8 @@ namespace BookStore.Logic.Models
             return new OrderModel
             {
                 Id = o.Id,
-                UserID = o.UserId,
-                BookID = o.BookId,
+                UserId = o.UserId,
+                BookId = o.BookId,
                 ShopComment = o.ShopComment,
                 Status = o.Status
            };
