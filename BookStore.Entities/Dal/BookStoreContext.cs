@@ -3,17 +3,16 @@ using System.Data.Entity;
 using System.Linq;
 using BookStore.Entities.Models;
 using BookStore.Entities.Managers;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BookStore.Entities.Dal
 {
-    public class BookStoreContext : DbContext
+    public class BookStoreContext : IdentityDbContext<User>
     {
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<BookCategory> BookCategories { get; set; }
 
         public BookStoreContext()
@@ -37,6 +36,17 @@ namespace BookStore.Entities.Dal
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<IdentityUserRole>()
+               .HasKey(bc => new { bc.RoleId, bc.UserId });
+
+            modelBuilder.Entity<User>()
+                .HasMany(arg => arg.Roles)
+                .WithRequired()
+                .HasForeignKey(arg => arg.UserId);
+
+            modelBuilder.Entity<IdentityUserLogin>()
+                .HasKey(arg => arg.UserId);
+
             modelBuilder.Entity<BookCategory>()
                .HasKey(bc => new {bc.BookId, bc.CategoryId });
 
@@ -49,6 +59,11 @@ namespace BookStore.Entities.Dal
                         .HasMany(c => c.BookCategories)
                         .WithRequired()
                         .HasForeignKey(bc => bc.CategoryId); 
+        }
+
+        public static BookStoreContext Create()
+        {
+            return new BookStoreContext();
         }
     }
 }

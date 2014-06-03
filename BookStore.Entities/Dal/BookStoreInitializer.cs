@@ -11,12 +11,12 @@ namespace BookStore.Entities.Dal
         protected override void Seed(BookStoreContext context)
         {
             //Dodajemy role
-            CreateDefaultRoles().ForEach(r => context.Roles.Add(r));
-            context.SaveChanges();
+            //CreateDefaultRoles().ForEach(r => context.Roles.Add(r));
+            //context.SaveChanges();
 
             //Dodajemy domyślnych userów tylko dla testów
-            CreateDefaultUsers().ForEach(u => context.Users.Add(u));
-            context.SaveChanges();
+            //CreateDefaultUsers().ForEach(u => context.Users.Add(u));
+            //context.SaveChanges();
 
             //Dodajemy testowe ksiązki
             var books = CreateDefaultBooks();
@@ -40,14 +40,30 @@ namespace BookStore.Entities.Dal
         {
             return new List<Order>
             {
-                new Order {BookId = 1, UserId = 1, Status = OrderStatus.Ordered},
-                new Order {BookId = 2, UserId = 2, Status = OrderStatus.Canceled, ShopComment = "Brak w magazynie"},
-                new Order {BookId = 3, UserId = 1, Status = OrderStatus.Ready},
-                new Order {BookId = 4, UserId = 2, Status = OrderStatus.Canceled},
-                new Order {BookId = 1, UserId = 2, Status = OrderStatus.Canceled},
-                new Order {BookId = 2, UserId = 1, Status = OrderStatus.Executed},
-                new Order {BookId = 3, UserId = 2, Status = OrderStatus.Ordered},
-                new Order {BookId = 4, UserId = 1, Status = OrderStatus.Ordered}
+                new Order {BookId = 1, 
+                    //UserId = 1, 
+                    Status = OrderStatus.Ordered},
+                new Order {BookId = 2, 
+                    //UserId = 2, 
+                    Status = OrderStatus.Canceled, ShopComment = "Brak w magazynie"},
+                new Order {BookId = 3, 
+                    //UserId = 1, 
+                    Status = OrderStatus.Ready},
+                new Order {BookId = 4, 
+                    //UserId = 2, 
+                    Status = OrderStatus.Canceled},
+                new Order {BookId = 1, 
+                    //UserId = 2, 
+                    Status = OrderStatus.Canceled},
+                new Order {BookId = 2, 
+                    //UserId = 1, 
+                    Status = OrderStatus.Executed},
+                new Order {BookId = 3, 
+                    //UserId = 2, 
+                    Status = OrderStatus.Ordered},
+                new Order {BookId = 4, 
+                    //UserId = 1, 
+                    Status = OrderStatus.Ordered}
             };
         }
 
@@ -99,33 +115,6 @@ namespace BookStore.Entities.Dal
                     Publisher = "Ja",
                     Isbn = "4444444444444"
                 },
-            };
-        }
-
-        private static List<User> CreateDefaultUsers()
-        {
-            return new List<User>
-            {
-                new User
-                {
-                    Login = "Admin",
-                    FirstName = "Admin",
-                    LastName = "Admin",
-                    Email = "Admin@Admin.com",
-                    Address = "Ulica świętego Admina",
-                    RoleId = 1,
-                    Password = Md5Helper.CreateMd5Hash("Admin")
-                },
-                new User
-                {
-                    Login = "User",
-                    FirstName = "User",
-                    LastName = "User",
-                    Email = "User@Admin.com",
-                    Address = "Ulica świętego Usera",
-                    RoleId = 2,
-                    Password = Md5Helper.CreateMd5Hash("User")
-                }
             };
         }
 

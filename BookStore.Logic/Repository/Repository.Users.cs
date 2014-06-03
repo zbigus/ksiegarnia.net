@@ -8,15 +8,15 @@ namespace BookStore.Logic.Repository
     {
         public IQueryable<User> GetAllUsers()
         {
-            return _db.Users.AsQueryable();
+            return null; //_db.Users.AsQueryable();
         }
         public IQueryable<User> GetUsersByRole(string role)
         {
-            return _db.Users.Where(s => s.Role.Name.Equals(role, StringComparison.OrdinalIgnoreCase));
+            return null; //_db.Users.Where(s => s.Role.Name.Equals(role, StringComparison.OrdinalIgnoreCase));
         }
         public IQueryable<User> GetUsersIDByLogin(string login)
         {
-            return _db.Users.Where(s => s.Login.Equals(login, StringComparison.OrdinalIgnoreCase));
+            return null; //_db.Users.Where(s => s.Login.Equals(login, StringComparison.OrdinalIgnoreCase));
         }
         public bool DeleteUser(int id)
         {

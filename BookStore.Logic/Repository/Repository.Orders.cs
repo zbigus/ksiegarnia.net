@@ -16,7 +16,7 @@ namespace BookStore.Logic.Repository
         }
         public IQueryable<Order> GetOrdersByUserId(int id)
         {
-            return _db.Orders.Where(s => s.UserId == id);
+            return null;//_db.Orders.Where(s => s.UserId == id);
         }
 
         public bool GetOrderStatus(int id, out string status)
@@ -64,7 +64,7 @@ namespace BookStore.Logic.Repository
             {
                 Id = order.Id,
                 BookId = order.BookId,
-                UserId = order.UserId,
+                //UserId = order.UserId,
                 ShopComment = order.ShopComment,
                 Status = order.Status
             };

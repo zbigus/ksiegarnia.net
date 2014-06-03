@@ -10,12 +10,10 @@ namespace BookStore.Logic.Models
             return new UserModel
             {
                 Id = user.Id,
-                Login = user.Login,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
-                Address = user.Address,
-                //Role = user.Role.Name
+                Address = user.Address
             };
         }
 
@@ -38,7 +36,7 @@ namespace BookStore.Logic.Models
             return new OrderModel
             {
                 Id = o.Id,
-                UserId = o.UserId,
+                //UserId = o.UserId,
                 BookId = o.BookId,
                 ShopComment = o.ShopComment,
                 Status = o.Status
