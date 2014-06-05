@@ -1,26 +1,26 @@
-﻿using System.Threading.Tasks;
-using BookStore.Entities.Dal;
+﻿using BookStore.Entities.Dal;
 using BookStore.Entities.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using BookStore.SinglePageApplication.Models;
 
-namespace BookStore.SinglePageApplication
+namespace BookStore.Entities.Managers
 {
-    // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-
     public class ApplicationUserManager : UserManager<User>
     {
-        public ApplicationUserManager(IUserStore<User> store)
-            : base(store)
+        public ApplicationUserManager(IUserStore<User> store) : base(store)
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
+        public static ApplicationUserManager Create()
         {
-            var manager = new ApplicationUserManager(new UserStore<User>(context.Get<BookStoreContext>()));
+            return Create(new BookStoreContext());
+        }
+
+        public static ApplicationUserManager Create(BookStoreContext context)
+        {
+            var manager = new ApplicationUserManager(new UserStore<User>(context));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<User>(manager)
             {
@@ -36,6 +36,12 @@ namespace BookStore.SinglePageApplication
                 RequireLowercase = true,
                 RequireUppercase = true,
             };
+            return manager;
+        }
+
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
+        {
+            var manager = Create(context.Get<BookStoreContext>());
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {

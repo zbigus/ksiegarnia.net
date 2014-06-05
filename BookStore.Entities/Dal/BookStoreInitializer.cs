@@ -1,8 +1,9 @@
-﻿using BookStore.Entities.Helpers;
+﻿using BookStore.Entities.Managers;
 using BookStore.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 
 namespace BookStore.Entities.Dal
 {
@@ -11,13 +12,12 @@ namespace BookStore.Entities.Dal
         protected override void Seed(BookStoreContext context)
         {
             //Dodajemy role
-            //CreateDefaultRoles().ForEach(r => context.Roles.Add(r));
-            //context.SaveChanges();
-
+            CreateDefaultRoles(context);
+            CreateAdmin(context);
+            
             //Dodajemy domyślnych userów tylko dla testów
-            //CreateDefaultUsers().ForEach(u => context.Users.Add(u));
-            //context.SaveChanges();
-
+            CreateDefaultUsers(5, context);
+            
             //Dodajemy testowe ksiązki
             var books = CreateDefaultBooks();
             books.ForEach(b => context.Books.Add(b));
@@ -34,6 +34,46 @@ namespace BookStore.Entities.Dal
             //Dodajemy domyślne zamówienia
             CreateDefaultOrders().ForEach(order => context.Orders.Add(order));
             context.SaveChanges();
+        }
+
+        private static void CreateDefaultRoles(BookStoreContext context)
+        {
+            var manager = new IdentityManager(context);
+            manager.CreateRole(Role.Admin);
+            manager.CreateRole(Role.User);
+        }
+
+        private static void CreateAdmin(BookStoreContext context)
+        {
+            var manager = new IdentityManager(context);
+            var user = new User
+            {
+                Address = "Kraków ul.Pychowicka 18/55",
+                Email = "admin@bookstore.com",
+                FirstName = "Admin",
+                LastName = "Admin",
+                UserName = "Admin"
+            };
+            manager.CreateUser(user, "Zxasqw!2");
+            manager.AddUserToRole(user.Id, Role.Admin);
+        }
+
+        private static void CreateDefaultUsers(int count, BookStoreContext context)
+        {
+            var manager = new IdentityManager(context);
+            for (var i = 0; i < count; i++)
+            {
+                var user = new User
+                {
+                    Address = "Kraków ul.Pychowicka 18/55",
+                    Email = string.Format("user{0}@bookstore.com", i),
+                    FirstName = string.Format("User{0}FirstName", i),
+                    LastName = string.Format("User{0}LastName", i),
+                    UserName = string.Format("User{0}", i)
+                };
+                manager.CreateUser(user, string.Format("Zxasqw!2{0}", i));
+                manager.AddUserToRole(user.Id, Role.User);
+            }
         }
 
         private static List<Order> CreateDefaultOrders()
@@ -115,15 +155,6 @@ namespace BookStore.Entities.Dal
                     Publisher = "Ja",
                     Isbn = "4444444444444"
                 },
-            };
-        }
-
-        private static List<Role> CreateDefaultRoles()
-        {
-            return new List<Role>
-            {
-                new Role {Id = 1, Name = Role.Admin},
-                new Role {Id = 2, Name = Role.User}
             };
         }
 

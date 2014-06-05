@@ -5,23 +5,6 @@ using System.ComponentModel.DataAnnotations;
 namespace BookStore.SinglePageApplication.Models
 {
     // Models returned by AccountController actions.
-    public class ExternalLoginConfirmationViewModel
-    {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
-        [Display(Name = "Hometown")]
-        public string Hometown { get; set; }
-    }
-
-    public class ExternalLoginListViewModel
-    {
-        public string Action { get; set; }
-        public string ReturnUrl { get; set; }
-    }
-
     public class ManageUserViewModel
     {
         [Required]
@@ -44,9 +27,8 @@ namespace BookStore.SinglePageApplication.Models
     public class LoginViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Display(Name = "User name")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -74,9 +56,6 @@ namespace BookStore.SinglePageApplication.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-
-        [Display(Name = "Hometown")]
-        public string Hometown { get; set; }
     }
 
     public class ResetPasswordViewModel

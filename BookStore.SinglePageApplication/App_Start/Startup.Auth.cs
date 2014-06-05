@@ -1,5 +1,6 @@
 ﻿using System;
 using BookStore.Entities.Dal;
+using BookStore.Entities.Managers;
 using BookStore.Entities.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -41,7 +42,7 @@ namespace BookStore.SinglePageApplication
         {
             // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(BookStoreContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+            app.CreatePerOwinContext<ApplicationUserManager>((options, context) => ApplicationUserManager.Create(options, context));
 
             // Enable the application to use a cookie to store information for the signed in user
             app.UseCookieAuthentication(new CookieAuthenticationOptions
