@@ -10,6 +10,7 @@ namespace BookStore.Entities.Models
         public int BookId { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string Name { get; set; }
 
         [Required]

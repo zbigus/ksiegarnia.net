@@ -9,9 +9,11 @@ namespace BookStore.Entities.Models
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string Title { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string Author { get; set; }
 
         [Required]
@@ -20,6 +22,7 @@ namespace BookStore.Entities.Models
         public string Isbn { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string Publisher { get; set; }
 
         public DateTime Year { get; set; }
