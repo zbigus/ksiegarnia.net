@@ -12,6 +12,6 @@ namespace BookStore.Logic.Interfaces
         bool GetOrderStatus(int id, out string status);
         bool UpdateOrderStatus(int id, OrderStatus newStatus);
         bool DeleteOrder(int id);
-        bool AddOrder(OrderModel order,out int id);
+        bool AddOrder(OrderModel order, out int id);
     }
 }

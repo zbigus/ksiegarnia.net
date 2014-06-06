@@ -7,13 +7,6 @@ namespace BookStore.Logic.Models
     public class BookModel : SimpleBookModel
     {
         //TODO: Dodaæ walidacjê, tylko 13 cyfr
-        public string Isbn { get; set; }
-        public string Publisher { get; set; }
-        public DateTime Year { get; set; }
-        public string Description { get; set; }
-        public List<AttachmentModel> Attachments { get; set; }
-        public List<CategoryModel> Categories { get; set; }
-
         public BookModel(Book book) : base(book)
         {
             Isbn = book.Isbn;
@@ -21,16 +14,23 @@ namespace BookStore.Logic.Models
             Year = book.Year;
             Description = book.Description;
             Categories = new List<CategoryModel>();
-            foreach (var bookCategory in book.BookCategories)
+            foreach (BookCategory bookCategory in book.BookCategories)
             {
                 Categories.Add(new CategoryModel(bookCategory.Category));
             }
             Attachments = new List<AttachmentModel>();
         }
 
+        public string Isbn { get; set; }
+        public string Publisher { get; set; }
+        public DateTime Year { get; set; }
+        public string Description { get; set; }
+        public List<AttachmentModel> Attachments { get; set; }
+        public List<CategoryModel> Categories { get; set; }
+
         public void SetAttachments(IEnumerable<Attachment> attachments)
         {
-            foreach (var attachment in attachments)
+            foreach (Attachment attachment in attachments)
             {
                 Attachments.Add(AttachmentModel.Create(attachment));
             }

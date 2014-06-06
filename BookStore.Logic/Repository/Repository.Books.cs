@@ -1,21 +1,23 @@
-﻿using BookStore.Entities.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using BookStore.Entities.Models;
 using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Repository
 {
-    public partial class Repository 
+    public partial class Repository
     {
         public IQueryable<Book> GetAllBooks()
         {
             return _db.Books.AsQueryable();
         }
+
         public Book GetBookById(int id)
         {
             return _db.Books.FirstOrDefault(s => s.Id == id);
         }
-        public bool AddBook(BookModel b, List<string> category,out int id)
+
+        public bool AddBook(BookModel b, List<string> category, out int id)
         {
             if (_db.Books.Find(b.Id) != null)
             {
@@ -24,7 +26,7 @@ namespace BookStore.Logic.Repository
             }
             var book = new Book
             {
-                Id=b.Id,
+                Id = b.Id,
                 Author = b.Author,
                 Title = b.Title,
                 Isbn = b.Isbn,
@@ -37,10 +39,10 @@ namespace BookStore.Logic.Repository
             _db.SaveChanges();
 
             id = book.Id;
-            foreach (var item in category)
+            foreach (string item in category)
             {
-                var query = from d in _db.Categories where d.Name == item select d.Id;
-                var index = query.ToArray()[0];
+                IQueryable<int> query = from d in _db.Categories where d.Name == item select d.Id;
+                int index = query.ToArray()[0];
                 _db.BookCategories.Add(new BookCategory {BookId = book.Id, CategoryId = index});
                 _db.SaveChanges();
             }
@@ -49,10 +51,9 @@ namespace BookStore.Logic.Repository
         }
 
 
-
         public BookModel GetBook(int id)
         {
-            var book = _db.Books.Find(id);
+            Book book = _db.Books.Find(id);
             if (book == null)
                 return null;
             var result = new BookModel(book);
@@ -67,7 +68,8 @@ namespace BookStore.Logic.Repository
 
         public List<SimpleBookModel> GetBooksByCategory(int categoryId)
         {
-            var bookIds = _db.BookCategories.Where(bc => bc.CategoryId == categoryId).Select(bc => bc.BookId).ToList();
+            List<int> bookIds =
+                _db.BookCategories.Where(bc => bc.CategoryId == categoryId).Select(bc => bc.BookId).ToList();
             return
                 (from bookId in bookIds
                     select _db.Books.Find(bookId)
@@ -90,12 +92,12 @@ namespace BookStore.Logic.Repository
             };
             _db.Books.Add(newBook);
             //zapisujemy powiązane kategorie
-            foreach (var categories in book.Categories)
+            foreach (CategoryModel categories in book.Categories)
             {
                 _db.BookCategories.Add(new BookCategory {BookId = newBook.Id, CategoryId = categories.Id});
             }
             //dodajemy załączniki
-            foreach (var attachment in book.Attachments)
+            foreach (AttachmentModel attachment in book.Attachments)
             {
                 _db.Attachments.Add(new Attachment
                 {
@@ -110,7 +112,7 @@ namespace BookStore.Logic.Repository
 
         public bool UpdateBook(BookModel book)
         {
-            var dalBook = _db.Books.Find(book.Id);
+            Book dalBook = _db.Books.Find(book.Id);
             if (dalBook == null)
                 return false;
             dalBook.Author = book.Author;
@@ -121,16 +123,16 @@ namespace BookStore.Logic.Repository
             dalBook.Title = book.Title;
             dalBook.Year = book.Year;
             //TODO: zoptymalizować dodawanie i usuwanie załączników i kategorii
-            var categoriesIds = book.Categories.Select(cat => cat.Id).Distinct();
-            var currenCategories = _db.BookCategories.Where(bc => bc.BookId == book.Id);
+            IEnumerable<int> categoriesIds = book.Categories.Select(cat => cat.Id).Distinct();
+            IQueryable<BookCategory> currenCategories = _db.BookCategories.Where(bc => bc.BookId == book.Id);
             _db.BookCategories.RemoveRange(currenCategories);
-            foreach (var categoryId in categoriesIds)
+            foreach (int categoryId in categoriesIds)
             {
                 _db.BookCategories.Add(new BookCategory {BookId = book.Id, CategoryId = categoryId});
             }
-            var currentAttachents = _db.Attachments.Where(att => att.BookId == book.Id);
+            IQueryable<Attachment> currentAttachents = _db.Attachments.Where(att => att.BookId == book.Id);
             _db.Attachments.RemoveRange(currentAttachents);
-            foreach (var attachment in book.Attachments)
+            foreach (AttachmentModel attachment in book.Attachments)
             {
                 _db.Attachments.Add(new Attachment
                 {
@@ -145,7 +147,7 @@ namespace BookStore.Logic.Repository
 
         public bool DeleteBook(int id)
         {
-            var book = _db.Books.Find(id);
+            Book book = _db.Books.Find(id);
             if (book == null)
             {
                 return false;

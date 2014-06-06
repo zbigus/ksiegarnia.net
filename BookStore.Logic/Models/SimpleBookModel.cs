@@ -4,11 +4,6 @@ namespace BookStore.Logic.Models
 {
     public class SimpleBookModel
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public int Price { get; set; }
-
         public SimpleBookModel(Book book)
         {
             Id = book.Id;
@@ -16,5 +11,10 @@ namespace BookStore.Logic.Models
             Author = book.Author;
             Price = book.Price;
         }
+
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public int Price { get; set; }
     }
 }

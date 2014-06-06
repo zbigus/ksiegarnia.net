@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using BookStore.Entities.Models;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using BookStore.Entities.Models;
 using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Repository
@@ -14,7 +15,7 @@ namespace BookStore.Logic.Repository
 
         public bool AddCategory(string name, out int id)
         {
-            if (_db.Categories.FirstOrDefault(s=> s.Name == name) != null)
+            if (_db.Categories.FirstOrDefault(s => s.Name == name) != null)
             {
                 id = 0;
                 return false;
@@ -31,22 +32,22 @@ namespace BookStore.Logic.Repository
 
         public CategoryModel GetCategory(int id)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public List<CategoryModel> GetCategories()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool AddCategory(string name)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool DeleteCategory(int id)
         {
-            var category = _db.Categories.Find(id);
+            Category category = _db.Categories.Find(id);
             if (category == null)
             {
                 return false;
@@ -58,7 +59,7 @@ namespace BookStore.Logic.Repository
 
         public bool UpdateCategory(CategoryModel category)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

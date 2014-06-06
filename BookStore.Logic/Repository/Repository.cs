@@ -8,6 +8,12 @@ namespace BookStore.Logic.Repository
     {
         private BookStoreContext _db = new BookStoreContext();
 
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
         protected void Dispose(bool disposing)
         {
             if (disposing)
@@ -18,12 +24,6 @@ namespace BookStore.Logic.Repository
                     _db = null;
                 }
             }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

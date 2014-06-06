@@ -14,10 +14,10 @@ namespace BookStore.Logic.Dal
             //Dodajemy role
             CreateDefaultRoles(context);
             CreateAdmin(context);
-            
+
             //Dodajemy domyślnych userów tylko dla testów
             CreateDefaultUsers(5, context);
-            
+
             //Dodajemy testowe ksiązki
             var books = CreateDefaultBooks();
             books.ForEach(b => context.Books.Add(b));
@@ -80,30 +80,55 @@ namespace BookStore.Logic.Dal
         {
             return new List<Order>
             {
-                new Order {BookId = 1, 
+                new Order
+                {
+                    BookId = 1, 
                     //UserId = 1, 
-                    Status = OrderStatus.Ordered},
-                new Order {BookId = 2, 
+                    Status = OrderStatus.Ordered
+                },
+                new Order
+                {
+                    BookId = 2, 
                     //UserId = 2, 
-                    Status = OrderStatus.Canceled, ShopComment = "Brak w magazynie"},
-                new Order {BookId = 3, 
+                    Status = OrderStatus.Canceled,
+                    ShopComment = "Brak w magazynie"
+                },
+                new Order
+                {
+                    BookId = 3, 
                     //UserId = 1, 
-                    Status = OrderStatus.Ready},
-                new Order {BookId = 4, 
+                    Status = OrderStatus.Ready
+                },
+                new Order
+                {
+                    BookId = 4, 
                     //UserId = 2, 
-                    Status = OrderStatus.Canceled},
-                new Order {BookId = 1, 
+                    Status = OrderStatus.Canceled
+                },
+                new Order
+                {
+                    BookId = 1, 
                     //UserId = 2, 
-                    Status = OrderStatus.Canceled},
-                new Order {BookId = 2, 
+                    Status = OrderStatus.Canceled
+                },
+                new Order
+                {
+                    BookId = 2, 
                     //UserId = 1, 
-                    Status = OrderStatus.Executed},
-                new Order {BookId = 3, 
+                    Status = OrderStatus.Executed
+                },
+                new Order
+                {
+                    BookId = 3, 
                     //UserId = 2, 
-                    Status = OrderStatus.Ordered},
-                new Order {BookId = 4, 
+                    Status = OrderStatus.Ordered
+                },
+                new Order
+                {
+                    BookId = 4, 
                     //UserId = 1, 
-                    Status = OrderStatus.Ordered}
+                    Status = OrderStatus.Ordered
+                }
             };
         }
 
@@ -170,6 +195,6 @@ namespace BookStore.Logic.Dal
                 new Category {Name = "Historyczny"},
                 new Category {Name = "Poemat"}
             };
-        }  
+        }
     }
 }

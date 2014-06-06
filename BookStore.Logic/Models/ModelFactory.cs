@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BookStore.Entities.Models;
+﻿using BookStore.Entities.Models;
 
 namespace BookStore.Logic.Models
 {
@@ -21,6 +20,7 @@ namespace BookStore.Logic.Models
         {
             return new SimpleBookModel(b);
         }
+
         public BookModel Create(Book b)
         {
             return new BookModel(b);
@@ -40,8 +40,7 @@ namespace BookStore.Logic.Models
                 BookId = o.BookId,
                 ShopComment = o.ShopComment,
                 Status = o.Status
-           };
+            };
         }
-
     }
 }

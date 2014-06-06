@@ -4,11 +4,6 @@ namespace BookStore.Logic.Models
 {
     public class AttachmentModel
     {
-        public int Id { get; set; }
-        public int BookId { get; set; }
-        public string Name { get; set; }
-        public byte[] Content { get; set; }
-
         public AttachmentModel(Attachment attachment)
         {
             Id = attachment.Id;
@@ -16,6 +11,11 @@ namespace BookStore.Logic.Models
             Content = attachment.Content;
             Name = attachment.Name;
         }
+
+        public int Id { get; set; }
+        public int BookId { get; set; }
+        public string Name { get; set; }
+        public byte[] Content { get; set; }
 
         public static AttachmentModel Create(Attachment attachment)
         {

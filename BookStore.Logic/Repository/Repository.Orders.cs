@@ -1,27 +1,29 @@
-﻿using BookStore.Entities.Models;
+﻿using System.Linq;
+using BookStore.Entities.Models;
 using BookStore.Logic.Models;
-using System.Linq;
 
 namespace BookStore.Logic.Repository
 {
-    public partial class Repository 
+    public partial class Repository
     {
         public IQueryable<Order> GetAllOrders()
         {
             return _db.Orders.AsQueryable();
         }
+
         public IQueryable<Order> GetOrdersByBookId(int id)
         {
             return _db.Orders.Where(s => s.BookId == id);
         }
+
         public IQueryable<Order> GetOrdersByUserId(int id)
         {
-            return null;//_db.Orders.Where(s => s.UserId == id);
+            return null; //_db.Orders.Where(s => s.UserId == id);
         }
 
         public bool GetOrderStatus(int id, out string status)
         {
-            var order = _db.Orders.Find(id);
+            Order order = _db.Orders.Find(id);
             if (order == null)
             {
                 status = null;
@@ -33,7 +35,7 @@ namespace BookStore.Logic.Repository
 
         public bool UpdateOrderStatus(int id, OrderStatus newStatus)
         {
-            var order = _db.Orders.Find(id);
+            Order order = _db.Orders.Find(id);
             if (order == null)
             {
                 return false;
@@ -42,9 +44,10 @@ namespace BookStore.Logic.Repository
             _db.SaveChanges();
             return true;
         }
+
         public bool DeleteOrder(int id)
         {
-            var order = _db.Orders.Find(id);
+            Order order = _db.Orders.Find(id);
             if (order == null)
             {
                 return false;
@@ -53,6 +56,7 @@ namespace BookStore.Logic.Repository
             _db.SaveChanges();
             return true;
         }
+
         public bool AddOrder(OrderModel order, out int id)
         {
             if (_db.Orders.Find(order.Id) != null)

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using BookStore.Entities.Models;
-using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Interfaces
 {

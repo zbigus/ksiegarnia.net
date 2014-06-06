@@ -9,7 +9,7 @@ namespace BookStore.Logic.Repository
     {
         public AttachmentModel GetAttachment(int id)
         {
-            var att = _db.Attachments.Find(id);
+            Attachment att = _db.Attachments.Find(id);
             return att == null ? null : AttachmentModel.Create(att);
         }
 
@@ -38,7 +38,7 @@ namespace BookStore.Logic.Repository
 
         public bool DeleteAttachment(int id)
         {
-            var attachment = _db.Attachments.Find(id);
+            Attachment attachment = _db.Attachments.Find(id);
             if (attachment == null)
                 return false;
             _db.Attachments.Remove(attachment);
