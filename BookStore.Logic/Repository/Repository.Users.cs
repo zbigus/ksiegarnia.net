@@ -15,7 +15,7 @@ namespace BookStore.Logic.Repository
             return null; //_db.Users.Where(s => s.Role.Name.Equals(role, StringComparison.OrdinalIgnoreCase));
         }
 
-        public IQueryable<User> GetUsersIDByLogin(string login)
+        public IQueryable<User> GetUsersIdByLogin(string login)
         {
             return null; //_db.Users.Where(s => s.Login.Equals(login, StringComparison.OrdinalIgnoreCase));
         }

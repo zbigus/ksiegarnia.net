@@ -29,14 +29,17 @@ namespace BookStore.SinglePageApplication.Models
 
         [Required]
         [StringLength(30, ErrorMessage = "{0} nie może zawierać więcej niż {1} znaków.")]
+        [Display(Name = "Imię")]
         public string FirstName { get; set; }
 
         [Required]
         [StringLength(50, ErrorMessage = "{0} nie może zawierać więcej niż {1} znaków.")]
+        [Display(Name = "Nazwisko")]
         public string LastName { get; set; }
 
         [Required]
         [StringLength(255, ErrorMessage = "{0} nie może zawierać więcej niż {1} znaków.")]
+        [Display(Name = "Adres")]
         public string Address { get; set; }
 
     }

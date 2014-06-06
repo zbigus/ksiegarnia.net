@@ -14,7 +14,7 @@ namespace BookStore.Logic.Repository
             GC.SuppressFinalize(this);
         }
 
-        protected void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {

@@ -1,0 +1,46 @@
+﻿@model BookStore.SinglePageApplication.Models.SelectUserRolesViewModel
+
+@{
+    ViewBag.Title = "Role użytkownika";
+}
+
+<h2>Role użytkownika @Html.DisplayFor(model => model.UserName)</h2>
+
+@using (Html.BeginForm("UserRoles", "Account", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.UserName)
+            </div>
+        </div>
+
+        <h4>Wybierz role</h4>
+        <br />
+        <hr />
+
+        <table>
+            <tr>
+                <th>
+                    Przypisanie
+                </th>
+                <th>
+                    Rola
+                </th>
+            </tr>
+            @Html.EditorFor(model => model.Roles)
+        </table>
+        <br />
+        <hr />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Zapisz" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

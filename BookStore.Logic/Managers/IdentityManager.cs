@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using BookStore.Entities.Dal;
 using BookStore.Entities.Models;
 using Microsoft.AspNet.Identity;
@@ -24,31 +26,50 @@ namespace BookStore.Logic.Managers
 
         public bool CreateRole(string name)
         {
-            IdentityResult idResult = _roleManager.Create(new IdentityRole(name));
+            var idResult = _roleManager.Create(new IdentityRole(name));
             return idResult.Succeeded;
         }
 
         public bool CreateUser(User user, string password)
         {
-            IdentityResult idResult = _userManager.Create(user, password);
+            var idResult = _userManager.Create(user, password);
             return idResult.Succeeded;
         }
 
         public bool AddUserToRole(string userId, string roleName)
         {
-            IdentityResult idResult = _userManager.AddToRole(userId, roleName);
+            var idResult = _userManager.AddToRole(userId, roleName);
             return idResult.Succeeded;
         }
 
         public void ClearUserRoles(string userId)
         {
-            User user = _userManager.FindById(userId);
-            var identityUserRoles = new List<IdentityUserRole>(user.Roles);
-            foreach (IdentityUserRole userRole in identityUserRoles)
+            var user = _userManager.FindById(userId);
+            user.Roles.Select(userRole => _roleManager.FindById(userRole.RoleId))
+                .ToList()
+                .ForEach(role => _userManager.RemoveFromRole(userId, role.Name));
+        }
+
+        public IEnumerable<IdentityRole> GetUserRoles(string userId)
+        {
+            var user = _userManager.FindById(userId);
+            return user.Roles.Select(userRole => _roleManager.FindById(userRole.RoleId)).ToList();
+        }
+
+        public IEnumerable<IdentityRole> GetAllRoles()
+        {
+            return _roleManager.Roles.ToList();
+        }
+
+        public Dictionary<IdentityRole, bool> GetAllRoles(string userId)
+        {
+            var userRoles = GetUserRoles(userId).ToList();
+            var result = new Dictionary<IdentityRole, bool>();
+            foreach (var identityRole in _roleManager.Roles)
             {
-                IdentityRole role = _roleManager.FindById(userRole.RoleId);
-                _userManager.RemoveFromRole(userId, role.Name);
+                result.Add(identityRole, userRoles.Contains(identityRole));
             }
+            return result;
         }
     }
 }

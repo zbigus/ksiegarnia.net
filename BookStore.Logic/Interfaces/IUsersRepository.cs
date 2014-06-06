@@ -7,7 +7,7 @@ namespace BookStore.Logic.Interfaces
     {
         IQueryable<User> GetAllUsers();
         IQueryable<User> GetUsersByRole(string role);
-        IQueryable<User> GetUsersIDByLogin(string login);
+        IQueryable<User> GetUsersIdByLogin(string login);
         bool DeleteUser(int id);
     }
 }

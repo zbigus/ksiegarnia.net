@@ -79,7 +79,7 @@ namespace BookStore.Logic.Dal
             return result;
         }
 
-        private static List<Order> CreateDefaultOrders(List<User> users)
+        private static List<Order> CreateDefaultOrders(IEnumerable<User> users)
         {
             var result = new List<Order>();
             foreach (var user in users)
