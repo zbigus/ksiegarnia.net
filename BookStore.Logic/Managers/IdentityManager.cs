@@ -4,7 +4,7 @@ using BookStore.Entities.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace BookStore.Entities.Managers
+namespace BookStore.Logic.Managers
 {
     public class IdentityManager
     {

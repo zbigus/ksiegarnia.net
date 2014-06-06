@@ -5,7 +5,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 
-namespace BookStore.Entities.Managers
+namespace BookStore.Logic.Managers
 {
     public class ApplicationUserManager : UserManager<User>
     {

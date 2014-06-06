@@ -3,6 +3,7 @@
     public class ConnectionStringManager
     {
         private static string _current;
+
         public static string Current
         {
             get
@@ -19,7 +20,7 @@
         }
 
         /// <summary>
-        /// Ustawia connection string do bazy z logowaniem zintegrowanym
+        ///     Ustawia connection string do bazy z logowaniem zintegrowanym
         /// </summary>
         /// <param name="dataSource">Adres bazy</param>
         /// <param name="dbName">Nazwa bazy</param>
@@ -32,7 +33,7 @@ MultipleActiveResultSets=True", dataSource, dbName);
         }
 
         /// <summary>
-        /// Ustawia connection string do bazy z podanymi danymi użytkownika
+        ///     Ustawia connection string do bazy z podanymi danymi użytkownika
         /// </summary>
         /// <param name="dataSource">Adres bazy</param>
         /// <param name="dbName">Nazwa bazy</param>

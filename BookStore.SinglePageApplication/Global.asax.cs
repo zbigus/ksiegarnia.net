@@ -4,7 +4,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using BookStore.Entities.Dal;
+using BookStore.Logic.Dal;
 
 namespace BookStore.SinglePageApplication
 {

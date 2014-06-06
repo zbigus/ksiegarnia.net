@@ -1,11 +1,11 @@
-﻿using BookStore.Entities.Managers;
-using BookStore.Entities.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using Microsoft.AspNet.Identity;
+using BookStore.Entities.Dal;
+using BookStore.Entities.Models;
+using BookStore.Logic.Managers;
 
-namespace BookStore.Entities.Dal
+namespace BookStore.Logic.Dal
 {
     public class BookStoreInitializer : DropCreateDatabaseIfModelChanges<BookStoreContext>
     {

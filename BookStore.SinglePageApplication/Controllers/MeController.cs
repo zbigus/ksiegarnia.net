@@ -1,6 +1,6 @@
 ﻿using System.Web;
 using System.Web.Http;
-using BookStore.Entities.Managers;
+using BookStore.Logic.Managers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using BookStore.SinglePageApplication.Models;

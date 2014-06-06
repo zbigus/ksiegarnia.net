@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace BookStore.Entities.Managers
+namespace BookStore.Logic.Managers
 {
     public class ApplicationRoleManager : RoleManager<IdentityRole>
     {

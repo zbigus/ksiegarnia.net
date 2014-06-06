@@ -309,6 +309,10 @@
       <Project>{72D26DD4-02D7-4811-B417-3906D653C098}</Project>
       <Name>BookStore.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BookStore.Logic\BookStore.Logic.csproj">
+      <Project>{BAA76848-BFFD-43B2-9E9C-B3C552C786C8}</Project>
+      <Name>BookStore.Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

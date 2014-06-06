@@ -1,7 +1,7 @@
 ﻿using System;
 using BookStore.Entities.Dal;
-using BookStore.Entities.Managers;
 using BookStore.Entities.Models;
+using BookStore.Logic.Managers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
