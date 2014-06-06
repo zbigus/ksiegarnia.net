@@ -16,7 +16,7 @@ namespace BookStore.Logic.Dal
             CreateAdmin(context);
 
             //Dodajemy domyślnych userów tylko dla testów
-            CreateDefaultUsers(5, context);
+            var  users = CreateDefaultUsers(5, context);
 
             //Dodajemy testowe ksiązki
             var books = CreateDefaultBooks();
@@ -32,7 +32,7 @@ namespace BookStore.Logic.Dal
             context.SaveChanges();
 
             //Dodajemy domyślne zamówienia
-            CreateDefaultOrders().ForEach(order => context.Orders.Add(order));
+            CreateDefaultOrders(users).ForEach(order => context.Orders.Add(order));
             context.SaveChanges();
         }
 
@@ -58,8 +58,9 @@ namespace BookStore.Logic.Dal
             manager.AddUserToRole(user.Id, Role.Admin);
         }
 
-        private static void CreateDefaultUsers(int count, BookStoreContext context)
+        private static List<User> CreateDefaultUsers(int count, BookStoreContext context)
         {
+            var result = new List<User>();
             var manager = new IdentityManager(context);
             for (var i = 0; i < count; i++)
             {
@@ -71,65 +72,69 @@ namespace BookStore.Logic.Dal
                     LastName = string.Format("User{0}LastName", i),
                     UserName = string.Format("User{0}", i)
                 };
+                result.Add(user);
                 manager.CreateUser(user, string.Format("Zxasqw!2{0}", i));
                 manager.AddUserToRole(user.Id, Role.User);
             }
+            return result;
         }
 
-        private static List<Order> CreateDefaultOrders()
+        private static List<Order> CreateDefaultOrders(List<User> users)
         {
-            return new List<Order>
+            var result = new List<Order>();
+            foreach (var user in users)
             {
-                new Order
+                result.Add(new Order
                 {
                     BookId = 1, 
-                    //UserId = 1, 
+                    UserId = user.Id, 
                     Status = OrderStatus.Ordered
-                },
-                new Order
+                });
+                result.Add(new Order
                 {
-                    BookId = 2, 
-                    //UserId = 2, 
+                    BookId = 2,
+                    UserId = user.Id, 
                     Status = OrderStatus.Canceled,
                     ShopComment = "Brak w magazynie"
-                },
-                new Order
+                });
+                result.Add(new Order
                 {
-                    BookId = 3, 
-                    //UserId = 1, 
+                    BookId = 3,
+                    UserId = user.Id, 
                     Status = OrderStatus.Ready
-                },
-                new Order
+                });
+                result.Add(new Order
                 {
-                    BookId = 4, 
-                    //UserId = 2, 
+                    BookId = 4,
+                    UserId = user.Id, 
                     Status = OrderStatus.Canceled
-                },
-                new Order
+                });
+                result.Add(new Order
                 {
-                    BookId = 1, 
-                    //UserId = 2, 
+                    BookId = 1,
+                    UserId = user.Id, 
                     Status = OrderStatus.Canceled
-                },
-                new Order
+                });
+                result.Add(new Order
                 {
-                    BookId = 2, 
-                    //UserId = 1, 
+                    BookId = 2,
+                    UserId = user.Id, 
                     Status = OrderStatus.Executed
-                },
-                new Order
+                });
+                result.Add(new Order
                 {
-                    BookId = 3, 
-                    //UserId = 2, 
+                    BookId = 3,
+                    UserId = user.Id, 
                     Status = OrderStatus.Ordered
-                },
-                new Order
+                });
+                result.Add(new Order
                 {
-                    BookId = 4, 
-                    //UserId = 1, 
+                    BookId = 4,
+                    UserId = user.Id, 
                     Status = OrderStatus.Ordered
-                }
-            };
+                });
+            }
+            return result;
         }
 
         private static List<Book> CreateDefaultBooks()
