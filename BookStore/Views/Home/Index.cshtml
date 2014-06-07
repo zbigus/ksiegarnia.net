@@ -1,16 +1,7 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@section SPAViews {
+    @Html.Partial("_Home")
 }
-
-<div class="jumbotron">
-    <h1>Księgarnia internetowa</h1>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Strona startowa</h2>
-        <p>
-            
-        </p>
-    </div>
-</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/app")
+}
