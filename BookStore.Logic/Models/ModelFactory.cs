@@ -1,4 +1,6 @@
-﻿using BookStore.Entities.Models;
+﻿using BookStore.Entities.Helpers;
+using BookStore.Entities.Models;
+using BookStore.Logic.Extensions;
 
 namespace BookStore.Logic.Models
 {
@@ -36,10 +38,8 @@ namespace BookStore.Logic.Models
             return new OrderModel
             {
                 Id = o.Id,
-                //UserId = o.UserId,
-                BookId = o.BookId,
-                ShopComment = o.ShopComment,
-                Status = o.Status
+                BookTitle = o.Book.Title,
+                Status = o.Status.GetAttribute<ResxAttribute>().Name
             };
         }
     }

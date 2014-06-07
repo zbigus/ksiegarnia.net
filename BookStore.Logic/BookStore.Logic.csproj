@@ -66,6 +66,7 @@
     <Compile Include="Models\ManageUserViewModel.cs" />
     <Compile Include="Models\MeViewModels.cs" />
     <Compile Include="Models\ModelFactory.cs" />
+    <Compile Include="Models\OrderDetailModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\SelectRoleEditorViewModel.cs" />
@@ -78,13 +79,11 @@
     <Compile Include="Interfaces\ICategoryRepository.cs" />
     <Compile Include="Interfaces\IOrdersRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Interfaces\IUsersRepository.cs" />
     <Compile Include="Repository\Repository.Attachments.cs" />
     <Compile Include="Repository\Repository.Books.cs" />
     <Compile Include="Repository\Repository.Category.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\Repository.Orders.cs" />
-    <Compile Include="Repository\Repository.Users.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookStore.Entities\BookStore.Entities.csproj">

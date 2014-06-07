@@ -57,6 +57,7 @@ namespace BookStore.Logic.Repository
             return true;
         }
 
+        //To nie ma sensu
         public bool AddOrder(OrderModel order, out int id)
         {
             if (_db.Orders.Find(order.Id) != null)
@@ -67,10 +68,8 @@ namespace BookStore.Logic.Repository
             var o = new Order
             {
                 Id = order.Id,
-                BookId = order.BookId,
-                //UserId = order.UserId,
-                ShopComment = order.ShopComment,
-                Status = order.Status
+                //BookId = order.BookId,
+                Status = OrderStatus.Ordered
             };
             _db.Orders.Add(o);
             _db.SaveChanges();
