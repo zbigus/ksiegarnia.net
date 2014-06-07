@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dal\BookStoreContext.cs" />
+    <Compile Include="Helpers\ResxAttribute.cs" />
     <Compile Include="Managers\ConnectionStringManager.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Attachment.cs" />

@@ -50,8 +50,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="ExtensionsTest.cs" />
+    <Compile Include="Moc\ResxAttExample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookStore.Entities\BookStore.Entities.csproj">
+      <Project>{72D26DD4-02D7-4811-B417-3906D653C098}</Project>
+      <Name>BookStore.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookStore.Logic\BookStore.Logic.csproj">
+      <Project>{baa76848-bffd-43b2-9e9c-b3c552c786c8}</Project>
+      <Name>BookStore.Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

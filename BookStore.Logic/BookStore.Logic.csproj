@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dal\BookStoreInitializer.cs" />
+    <Compile Include="Extensions\AttributeExtension.cs" />
     <Compile Include="Managers\RoleManager.cs" />
     <Compile Include="Managers\UserManager.cs" />
     <Compile Include="Managers\IdentityManager.cs" />
