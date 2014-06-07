@@ -110,6 +110,7 @@
     <Compile Include="Controllers\BaseTestControllersClass.cs" />
     <Compile Include="Controllers\BookControllerTest.cs" />
     <Compile Include="Controllers\OrdersControllerTest.cs" />
+    <Compile Include="ExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\OrdersRepositoryTest.cs" />
   </ItemGroup>
