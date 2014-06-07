@@ -9,7 +9,7 @@ namespace BookStore.Logic.Interfaces
     {
         IQueryable<Book> GetAllBooks();
         Book GetBookById(int id);
-        bool AddBook(BookModel b, List<string> category, out int id);
+        bool AddBook(BookModel b, out int id);
 
         BookModel GetBook(int id);
         List<SimpleBookModel> GetBooks();

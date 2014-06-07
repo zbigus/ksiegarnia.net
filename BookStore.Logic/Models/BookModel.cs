@@ -8,7 +8,7 @@ namespace BookStore.Logic.Models
     {
         //TODO: Dodaæ walidacjê, tylko 13 cyfr
 
-        private BookModel()
+        protected BookModel()
         {
         }
 

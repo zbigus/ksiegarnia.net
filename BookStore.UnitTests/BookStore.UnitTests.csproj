@@ -102,7 +102,6 @@
     <Compile Include="Controllers\BaseTestControllersClass.cs" />
     <Compile Include="Controllers\BookControllerTest.cs" />
     <Compile Include="Controllers\OrdersControllerTest.cs" />
-    <Compile Include="Controllers\UsersControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -121,9 +120,9 @@
       <Project>{baa76848-bffd-43b2-9e9c-b3c552c786c8}</Project>
       <Name>BookStore.Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BookStore_SPA\BookStore.SPA.csproj">
-      <Project>{de7dad04-2525-4e50-b642-f178eeac26ba}</Project>
-      <Name>BookStore.SPA</Name>
+    <ProjectReference Include="..\BookStore\BookStore.csproj">
+      <Project>{49da5f80-c766-4147-b85c-9554557857b1}</Project>
+      <Name>BookStore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

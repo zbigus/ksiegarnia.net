@@ -17,7 +17,7 @@ namespace BookStore.Logic.Repository
             return _db.Books.FirstOrDefault(s => s.Id == id);
         }
 
-        public bool AddBook(BookModel b, List<string> category, out int id)
+        public bool AddBook(BookModel b, out int id)
         {
             if (_db.Books.Find(b.Id) != null)
             {
@@ -39,11 +39,9 @@ namespace BookStore.Logic.Repository
             _db.SaveChanges();
 
             id = book.Id;
-            foreach (string item in category)
+            foreach (var item in b.Categories)
             {
-                IQueryable<int> query = from d in _db.Categories where d.Name == item select d.Id;
-                int index = query.ToArray()[0];
-                _db.BookCategories.Add(new BookCategory {BookId = book.Id, CategoryId = index});
+                _db.BookCategories.Add(new BookCategory {BookId = id, CategoryId = item.Id});
                 _db.SaveChanges();
             }
 

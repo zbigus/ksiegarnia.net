@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using System.Web.Http.Results;
-using BookStore.SPA.Controllers;
+using BookStore.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using BookStore.Logic.Interfaces;
