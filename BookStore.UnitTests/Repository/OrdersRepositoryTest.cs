@@ -12,11 +12,13 @@ namespace BookStore.UnitTests.Repository
     {
         private readonly Logic.Repository.Repository _repository;
         private readonly User _user;
+        private readonly Book _book;
 
         public OrdersRepositoryTest()
         {
             var context = new BookStoreContext();
             _user = context.Users.First(arg => arg.UserName.StartsWith("User"));
+            _book = context.Books.First();
             _repository = new Logic.Repository.Repository();
         }
 
@@ -81,5 +83,54 @@ namespace BookStore.UnitTests.Repository
             Assert.AreEqual(_user.UserName, order.UserName);
         }
 
+        [TestMethod]
+        public void GetIncorectOrder()
+        {
+            var order = _repository.GetOrder(0);
+            Assert.IsNull(order);
+            var orderId = _repository.GetOrders().OrderBy(arg => arg.Id).Last().Id;
+            order = _repository.GetOrder(orderId + 1);
+            Assert.IsNull(order);
+        }
+
+        [TestMethod]
+        public void AddOrder()
+        {
+            var status = _repository.AddOrder(_book.Id, _user.Id);
+            Assert.IsTrue(status);
+            var orderId = _repository.GetOrders().OrderBy(arg => arg.Id).Last().Id;
+            var newOrder = _repository.GetOrder(orderId);
+            Assert.AreEqual(OrderStatus.Ordered, newOrder.Status);
+            Assert.AreEqual(_user.UserName, newOrder.UserName);
+            Assert.AreEqual(_book.Description, newOrder.BookDescription);
+            Assert.AreEqual(_book.Title, newOrder.BookTitle);
+            Assert.IsTrue(string.IsNullOrEmpty(newOrder.ShopComment));
+        }
+
+        [TestMethod]
+        public void UpdateOrderStatus()
+        {
+            const OrderStatus status = OrderStatus.Ordered;
+            const OrderStatus newStatus = OrderStatus.Canceled;
+            const string comment = "Brak na magazynie";
+            var order = _repository.GetOrders(_user.Id, status).First();
+            var result = _repository.UpdateOrderStatus(order.Id, newStatus, comment);
+            Assert.IsTrue(result);
+            var modOrder = _repository.GetOrder(order.Id);
+            Assert.AreEqual(comment, modOrder.ShopComment);
+            Assert.AreEqual(newStatus, modOrder.Status);
+        }
+
+        [TestMethod]
+        public void UpdateIncorectOrderStatus()
+        {
+            const OrderStatus status = OrderStatus.Ready;
+            var order = _repository.GetOrders(_user.Id, status).First();
+            var result = _repository.UpdateOrderStatus(order.Id, OrderStatus.Ordered);
+            Assert.IsFalse(result);
+            var orderId = _repository.GetOrders().OrderBy(arg => arg.Id).Last().Id;
+            result = _repository.UpdateOrderStatus(orderId + 1, OrderStatus.Executed);
+            Assert.IsFalse(result);
+        }
     }
 }
