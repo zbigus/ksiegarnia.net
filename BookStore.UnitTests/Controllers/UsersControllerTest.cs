@@ -37,12 +37,12 @@ namespace BookStore.UnitTests.Controllers
             Assert.IsTrue(result.GetType() == typeof(NotFoundResult));
         }
         
-        [TestMethod]
+        /*[TestMethod]
         public void GetUsersIDByLogin_ShouldReturnTypeNotFound()
         {
             _mockUserRepo.Setup(m => m.GetUsersIDByLogin(It.IsAny<string>())).Returns(default(IQueryable<User>));
             var result = usersController.Get(It.IsAny<string>());
             Assert.IsTrue(result.GetType() == typeof(NotFoundResult));
-        }
+        }*/
     }
 }

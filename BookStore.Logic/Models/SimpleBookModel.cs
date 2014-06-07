@@ -4,7 +4,7 @@ namespace BookStore.Logic.Models
 {
     public class SimpleBookModel
     {
-        public SimpleBookModel()
+        protected SimpleBookModel()
         {
         }
 
