@@ -1,8 +1,11 @@
 ﻿using System;
+using BookStore.Entities.Helpers;
+using BookStore.Entities.Models;
+using BookStore.Logic.Extensions;
 
 namespace BookStore.Logic.Models
 {
-    class OrderDetailModel : OrderModel
+    public class OrderDetailModel : OrderModel
     {
         public string ShopComment { get; set; }
         public string BookDescription { get; set; }
@@ -10,5 +13,21 @@ namespace BookStore.Logic.Models
         public DateTime? ModificationDate { get; set; }
         //To ma być dostepne tylko dla Admina
         public string UserName { get; set; }
+
+        public static OrderDetailModel Create(Order order)
+        {
+            return new OrderDetailModel
+            {
+                Id = order.Id,
+                BookDescription = order.Book.Description,
+                BookTitle = order.Book.Description,
+                ModificationDate = order.ModificationDate,
+                OrderDate = order.InsertDate,
+                ShopComment = order.ShopComment,
+                Status = order.Status,
+                StatusName = order.Status.GetAttribute<ResxAttribute>().Name,
+                UserName = order.User.UserName
+            };
+        }
     }
 }
