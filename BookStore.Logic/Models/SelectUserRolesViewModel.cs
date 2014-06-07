@@ -4,7 +4,7 @@ using BookStore.Entities.Dal;
 using BookStore.Entities.Models;
 using BookStore.Logic.Managers;
 
-namespace BookStore.SinglePageApplication.Models
+namespace BookStore.Logic.Models
 {
     public class SelectUserRolesViewModel
     {

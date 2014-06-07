@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace BookStore.SinglePageApplication.Models
+namespace BookStore.Logic.Models
 {
     public class SelectRoleEditorViewModel
     {

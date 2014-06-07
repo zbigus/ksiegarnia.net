@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using BookStore.Entities.Models;
 
-namespace BookStore.SinglePageApplication.Models
+namespace BookStore.Logic.Models
 {
     public class EditUserViewModel
     {

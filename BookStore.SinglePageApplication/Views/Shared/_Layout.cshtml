@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using BookStore.Entities.Models
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -21,7 +22,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Admin", "Index", "Account")</li>
+                    @if (User.IsInRole(Role.Admin))
+                    {
+                        <li>@Html.ActionLink("Admin", "Index", "Account")</li>
+                    }
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

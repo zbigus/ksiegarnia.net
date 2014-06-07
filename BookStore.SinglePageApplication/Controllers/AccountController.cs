@@ -6,10 +6,10 @@ using System.Web.Mvc;
 using BookStore.Entities.Dal;
 using BookStore.Entities.Models;
 using BookStore.Logic.Managers;
+using BookStore.Logic.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using BookStore.SinglePageApplication.Models;
 
 namespace BookStore.SinglePageApplication.Controllers
 {
