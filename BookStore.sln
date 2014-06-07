@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.UnitTests", "BookStore.UnitTests\BookStore.UnitTests.csproj", "{67F20A18-EB5E-475C-B5E2-0E799BB4543F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Entities", "BookStore.Entities\BookStore.Entities.csproj", "{72D26DD4-02D7-4811-B417-3906D653C098}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Logic", "BookStore.Logic\BookStore.Logic.csproj", "{BAA76848-BFFD-43B2-9E9C-B3C552C786C8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Logic.UniyTests", "BookStore.Logic.UniyTests\BookStore.Logic.UniyTests.csproj", "{F88EA846-9A89-4CCD-A4A3-AF68547EEE27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore", "BookStore\BookStore.csproj", "{49DA5F80-C766-4147-B85C-9554557857B1}"
 EndProject
@@ -31,10 +29,6 @@ Global
 		{BAA76848-BFFD-43B2-9E9C-B3C552C786C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAA76848-BFFD-43B2-9E9C-B3C552C786C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAA76848-BFFD-43B2-9E9C-B3C552C786C8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F88EA846-9A89-4CCD-A4A3-AF68547EEE27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F88EA846-9A89-4CCD-A4A3-AF68547EEE27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F88EA846-9A89-4CCD-A4A3-AF68547EEE27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F88EA846-9A89-4CCD-A4A3-AF68547EEE27}.Release|Any CPU.Build.0 = Release|Any CPU
 		{49DA5F80-C766-4147-B85C-9554557857B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{49DA5F80-C766-4147-B85C-9554557857B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49DA5F80-C766-4147-B85C-9554557857B1}.Release|Any CPU.ActiveCfg = Release|Any CPU

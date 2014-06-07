@@ -76,6 +76,7 @@ namespace BookStore.Logic.Repository
         {
             return _db.Orders
                 .OrderByDescending(arg => arg.InsertDate)
+                .AsEnumerable()
                 .Select(arg => new OrderModel
                 {
                     Id = arg.Id,
@@ -95,6 +96,7 @@ namespace BookStore.Logic.Repository
             return _db.Orders
                 .Where(arg => arg.Status == status)
                 .OrderByDescending(arg => arg.InsertDate)
+                .AsEnumerable()
                 .Select(arg => new OrderModel
                 {
                     Id = arg.Id,
@@ -114,6 +116,7 @@ namespace BookStore.Logic.Repository
             return _db.Orders
                 .Where(arg => arg.UserId == userId)
                 .OrderByDescending(arg => arg.InsertDate)
+                .AsEnumerable()
                 .Select(arg => new OrderModel
                 {
                     Id = arg.Id,
@@ -134,6 +137,7 @@ namespace BookStore.Logic.Repository
             return _db.Orders
                 .Where(arg => arg.UserId == userId && arg.Status == status)
                 .OrderByDescending(arg => arg.InsertDate)
+                .AsEnumerable()
                 .Select(arg => new OrderModel
                 {
                     Id = arg.Id,

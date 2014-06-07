@@ -39,7 +39,7 @@ namespace BookStore.Logic.Models
             {
                 Id = o.Id,
                 BookTitle = o.Book.Title,
-                Status = o.Status.GetAttribute<ResxAttribute>().Name
+                Status = o.Status
             };
         }
     }
