@@ -102,10 +102,18 @@ namespace BookStore.SinglePageApplication.Controllers
             var result = await UserManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await SignInAsync(user, false);
-                return RedirectToAction("Index", "Home");
+                //dodanie roli
+                var roleResult = await UserManager.AddToRoleAsync(user.Id, Role.User);
+                if (roleResult.Succeeded)
+                {
+                    await SignInAsync(user, false);
+                    return RedirectToAction("Index", "Home");    
+                }
+                AddErrors(roleResult);    
             }
-            AddErrors(result);
+            else
+                AddErrors(result);
+            
 
             return View(model);
         }
