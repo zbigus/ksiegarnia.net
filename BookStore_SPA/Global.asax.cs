@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using BookStore.Entities.Dal;
+using BookStore.Logic.Dal;
 
 namespace BookStore.SPA
 {
@@ -17,7 +18,7 @@ namespace BookStore.SPA
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Database.SetInitializer<BookStoreContext>(new BookStoreInitializer());
+            Database.SetInitializer(new BookStoreInitializer());
             }
     }
 }

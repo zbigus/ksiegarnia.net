@@ -31,7 +31,7 @@ namespace BookStore.SPA.Controllers
         [Route("api/Users/GetID/{login}")]
         public IHttpActionResult GetIDByLogin(string login)
         {
-            var users = Repo.GetUsersIDByLogin(login);
+            var users = Repo.GetUsersIdByLogin(login);
             if (users == null)
             {
                 return NotFound();
