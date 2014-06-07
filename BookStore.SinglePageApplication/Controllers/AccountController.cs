@@ -254,10 +254,7 @@ namespace BookStore.SinglePageApplication.Controllers
                         await SignInAsync(user, false);
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
-                    else
-                    {
-                        AddErrors(result);
-                    }
+                    AddErrors(result);
                 }
             }
             else
@@ -276,10 +273,7 @@ namespace BookStore.SinglePageApplication.Controllers
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
-                    else
-                    {
-                        AddErrors(result);
-                    }
+                    AddErrors(result);
                 }
             }
 
@@ -318,7 +312,7 @@ namespace BookStore.SinglePageApplication.Controllers
         private async Task SignInAsync(User user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
+            AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
         }
 
         private void AddErrors(IdentityResult result)
@@ -353,10 +347,7 @@ namespace BookStore.SinglePageApplication.Controllers
             {
                 return Redirect(returnUrl);
             }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }
