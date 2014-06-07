@@ -69,7 +69,7 @@ namespace BookStore.Logic.Repository
 
 
         /// <summary>
-        /// Pobiera wszystkie zamówienia z bazy (Admin)
+        /// Pobiera wszystkie zamówienia z bazy posortowane po dacie wstawienia desc (Admin)
         /// </summary>
         /// <returns>Lista zamówień</returns>
         public List<OrderModel> GetOrders()
@@ -87,7 +87,7 @@ namespace BookStore.Logic.Repository
         }
 
         /// <summary>
-        /// Pobiera wszystkie zamówienia z bazy (Admin)
+        /// Pobiera wszystkie zamówienia z bazy posortowane po dacie wstawienia desc (Admin)
         /// </summary>
         /// <param name="status">Status zamówienia</param>
         /// <returns>Lista zamówień</returns>
@@ -107,7 +107,7 @@ namespace BookStore.Logic.Repository
         }
 
         /// <summary>
-        /// Pobiera wszystkie zamówienia z bazy (Użytkownik)
+        /// Pobiera wszystkie zamówienia z bazy posortowane po dacie wstawienia desc (Użytkownik)
         /// </summary>
         /// <param name="userId">Id użytkownika</param>
         /// <returns>Lista zamówień</returns>
@@ -127,7 +127,7 @@ namespace BookStore.Logic.Repository
         }
 
         /// <summary>
-        /// Pobiera wszystkie zamówienia z bazy (Użytkownik)
+        /// Pobiera wszystkie zamówienia z bazy posortowane po dacie wstawienia desc (Użytkownik)
         /// </summary>
         /// <param name="userId">Id użytkownika</param>
         /// <param name="status">Status zamówienia</param>

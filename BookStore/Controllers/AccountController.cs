@@ -122,7 +122,7 @@ namespace BookStore.Controllers
         public ActionResult Index()
         {
             var context = new BookStoreContext();
-            var users = context.Users;
+            var users = context.Users.OrderBy(user => user.UserName);
             var model = users.Select(user => new EditUserViewModel
             {
                 UserName = user.UserName,

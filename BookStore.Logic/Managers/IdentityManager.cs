@@ -68,7 +68,9 @@ namespace BookStore.Logic.Managers
         public Dictionary<Role, bool> GetAllRoles(string userId)
         {
             var userRoles = GetUserRoles(userId).ToList();
-            return _roleManager.Roles.ToDictionary(identityRole => identityRole,
+            return _roleManager.Roles
+                .OrderBy(role => role.Name)
+                .ToDictionary(identityRole => identityRole,
                 userRoles.Contains);
         }
     }

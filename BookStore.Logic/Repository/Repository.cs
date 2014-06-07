@@ -16,14 +16,9 @@ namespace BookStore.Logic.Repository
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                if (_db != null)
-                {
-                    _db.Dispose();
-                    _db = null;
-                }
-            }
+            if (!disposing || _db == null) return;
+            _db.Dispose();
+            _db = null;
         }
     }
 }

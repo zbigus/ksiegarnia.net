@@ -32,26 +32,37 @@ namespace BookStore.Logic.Repository
 
         public CategoryModel GetCategory(int id)
         {
-            throw new NotImplementedException();
+            var category = _db.Categories.Find(id);
+            return category == null ? null : CategoryModel.Create(category);
         }
 
         public List<CategoryModel> GetCategories()
         {
-            throw new NotImplementedException();
+            return _db.Categories
+                .OrderBy(category => category.Name)
+                .AsEnumerable()
+                .Select(CategoryModel.Create)
+                .ToList();
         }
 
         public bool AddCategory(string name)
         {
-            throw new NotImplementedException();
+            if (_db.Categories.FirstOrDefault(s => s.Name == name) != null)
+                return false;
+            var category = new Category
+            {
+                Name = name
+            };
+            _db.Categories.Add(category);
+            _db.SaveChanges();
+            return true;
         }
 
         public bool DeleteCategory(int id)
         {
-            Category category = _db.Categories.Find(id);
+            var category = _db.Categories.Find(id);
             if (category == null)
-            {
                 return false;
-            }
             _db.Categories.Remove(category);
             _db.SaveChanges();
             return true;
@@ -59,7 +70,12 @@ namespace BookStore.Logic.Repository
 
         public bool UpdateCategory(CategoryModel category)
         {
-            throw new NotImplementedException();
+            var cat = _db.Categories.Find(category.Id);
+            if (cat == null)
+                return false;
+            cat.Name = category.Name;
+            _db.SaveChanges();
+            return true;
         }
     }
 }

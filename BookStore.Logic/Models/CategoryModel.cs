@@ -1,11 +1,12 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using BookStore.Entities.Models;
 
 namespace BookStore.Logic.Models
 {
     public class CategoryModel
     {
-        protected CategoryModel()
+        public CategoryModel()
         {
         }
 
@@ -16,7 +17,9 @@ namespace BookStore.Logic.Models
         }
 
         public int Id { get; set; }
-        public String Name { get; set; }
+        [Required]
+        [StringLength(100, ErrorMessage = "{0} nie mo¿e zawieraæ wiêcej ni¿ {1} znaków.")]
+        public string Name { get; set; }
 
         public static CategoryModel Create(Category category)
         {
