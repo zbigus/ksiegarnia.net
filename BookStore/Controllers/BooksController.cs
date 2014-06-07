@@ -14,7 +14,8 @@ namespace BookStore.Controllers
     public class BooksController : BaseApiController
     {
         public BooksController(IRepository repo) : base(repo) { }
-        public IHttpActionResult Get() {
+        public IHttpActionResult Get()
+        {
             return Ok(Repo.GetAllBooks().ToList().Select(s=> TheModelFactory.Create(s)));
         }
         //[HttpGet]
@@ -42,18 +43,15 @@ namespace BookStore.Controllers
             }
             return NotFound();            
         }
-        //TODO:Zmienić żeby metoda nie przyjmowała object[] tylko BookModel
         [HttpPost]
-        public IHttpActionResult Post([FromBody] object[] data)
+        public IHttpActionResult Post([FromBody] BookModel book)
         {
-            /*if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }*/
-            var book = JsonConvert.DeserializeObject<BookModel>(data[0].ToString());
-            var categories = JsonConvert.DeserializeObject<List<string>>(data[1].ToString());
+            }
             int id;
-            if (Repo.AddBook(book,categories,out id))
+            if (Repo.AddBook(book,out id))
             {
                 return CreatedAtRoute("DefaultApi", new { id = id }, book);
             }

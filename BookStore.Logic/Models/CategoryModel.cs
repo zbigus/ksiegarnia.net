@@ -5,7 +5,7 @@ namespace BookStore.Logic.Models
 {
     public class CategoryModel
     {
-        private CategoryModel()
+        protected CategoryModel()
         {
         }
 

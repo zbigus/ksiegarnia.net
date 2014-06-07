@@ -7,7 +7,7 @@ using BookStore.Logic.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BookStore.Logic.Interfaces;
 using Moq;
-using BookStore.SPA.Controllers;
+using BookStore.Controllers;
 using System.Web.Http.Results;
 
 namespace BookStore.UnitTests.Controllers
