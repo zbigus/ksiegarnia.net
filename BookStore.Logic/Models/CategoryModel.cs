@@ -5,6 +5,10 @@ namespace BookStore.Logic.Models
 {
     public class CategoryModel
     {
+        private CategoryModel()
+        {
+        }
+
         public CategoryModel(Category category)
         {
             Id = category.Id;

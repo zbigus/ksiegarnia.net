@@ -4,6 +4,10 @@ namespace BookStore.Logic.Models
 {
     public class AttachmentModel
     {
+        public AttachmentModel()
+        {
+        }
+
         public AttachmentModel(Attachment attachment)
         {
             Id = attachment.Id;

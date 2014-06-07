@@ -4,6 +4,10 @@ namespace BookStore.Logic.Models
 {
     public class SimpleBookModel
     {
+        public SimpleBookModel()
+        {
+        }
+
         public SimpleBookModel(Book book)
         {
             Id = book.Id;

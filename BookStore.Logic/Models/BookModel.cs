@@ -7,6 +7,11 @@ namespace BookStore.Logic.Models
     public class BookModel : SimpleBookModel
     {
         //TODO: Dodaæ walidacjê, tylko 13 cyfr
+
+        private BookModel()
+        {
+        }
+
         public BookModel(Book book) : base(book)
         {
             Isbn = book.Isbn;

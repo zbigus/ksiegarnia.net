@@ -5,6 +5,10 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using Microsoft.Practices.Unity;
+using BookStore.Logic.Interfaces;
+using BookStore.Logic.Repository;
+using BookStore.Controllers;
 
 namespace BookStore
 {
@@ -19,6 +23,11 @@ namespace BookStore
 
             // Use camel case for JSON data.
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            //Our API DI resolver config
+            var container = new UnityContainer();
+            container.RegisterType<IRepository, Repository>(new HierarchicalLifetimeManager());
+            config.DependencyResolver = new UnityResolver(container);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
