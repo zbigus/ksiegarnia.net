@@ -4,24 +4,23 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using Microsoft.Owin.Security.DataProtection;
 
 namespace BookStore.Logic.Managers
 {
-    public class ApplicationUserManager : UserManager<User>
+    public class UserManager : UserManager<User>
     {
-        public ApplicationUserManager(IUserStore<User> store) : base(store)
+        public UserManager(IUserStore<User> store) : base(store)
         {
         }
 
-        public static ApplicationUserManager Create()
+        public static UserManager Create()
         {
             return Create(new BookStoreContext());
         }
 
-        public static ApplicationUserManager Create(BookStoreContext context)
+        public static UserManager Create(BookStoreContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<User>(context));
+            var manager = new UserManager(new UserStore<User>(context));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<User>(manager)
             {
@@ -40,11 +39,11 @@ namespace BookStore.Logic.Managers
             return manager;
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
+        public static UserManager Create(IdentityFactoryOptions<UserManager> options,
             IOwinContext context)
         {
-            ApplicationUserManager manager = Create(context.Get<BookStoreContext>());
-            IDataProtectionProvider dataProtectionProvider = options.DataProtectionProvider;
+            var manager = Create(context.Get<BookStoreContext>());
+            var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
                 manager.UserTokenProvider =

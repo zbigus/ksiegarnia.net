@@ -38,8 +38,8 @@ namespace BookStore
         {
             // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(BookStoreContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(
-                (options, context) => ApplicationUserManager.Create(options, context));
+            app.CreatePerOwinContext<UserManager>(
+                (options, context) => UserManager.Create(options, context));
 
             // Enable the application to use a cookie to store information for the signed in user
             app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -48,7 +48,7 @@ namespace BookStore
                 LoginPath = new PathString("/Account/Login"),
                 Provider = new CookieAuthenticationProvider
                 {
-                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, User>(
+                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<UserManager, User>(
                         validateInterval: TimeSpan.FromMinutes(20),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }

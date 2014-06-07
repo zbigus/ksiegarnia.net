@@ -1,11 +1,18 @@
-﻿namespace BookStore.Entities.Models
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+
+namespace BookStore.Entities.Models
 {
-    public class Role
+    public class Role : IdentityRole
     {
         public const string Admin = "Admin";
         public const string User = "User";
 
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public Role()
+        {
+        }
+
+        public Role(string name) : base(name)
+        {
+        }
     }
 }

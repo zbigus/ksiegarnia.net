@@ -35,16 +35,37 @@ namespace BookStore.Entities.Dal
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<IdentityUserRole>()
-                .HasKey(bc => new {bc.RoleId, bc.UserId});
+            if (modelBuilder == null)
+                throw new ArgumentNullException("modelBuilder");
 
             modelBuilder.Entity<User>()
                 .HasMany(arg => arg.Roles)
                 .WithRequired()
                 .HasForeignKey(arg => arg.UserId);
 
+            modelBuilder.Entity<User>()
+                .Property(arg => arg.UserName)
+                .IsRequired();
+
+            modelBuilder.Entity<IdentityUserRole>()
+                .HasKey(bc => new {bc.UserId, bc.RoleId})
+                .ToTable("UserRoles");
+
             modelBuilder.Entity<IdentityUserLogin>()
-                .HasKey(arg => arg.UserId);
+                .HasKey(arg => new
+                {
+                    arg.UserId,
+                    arg.LoginProvider,
+                    arg.ProviderKey
+                })
+                .ToTable("UserLogins");
+
+            modelBuilder.Entity<IdentityRole>()
+                .ToTable("Roles");
+            
+            modelBuilder.Entity<Role>()
+                .ToTable("Roles")
+                .Property(arg => arg.Name).IsRequired();
 
             modelBuilder.Entity<BookCategory>()
                 .HasKey(bc => new {bc.BookId, bc.CategoryId});

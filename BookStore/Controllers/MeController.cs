@@ -10,22 +10,22 @@ namespace BookStore.Controllers
     [Authorize]
     public class MeController : ApiController
     {
-        private ApplicationUserManager _userManager;
+        private UserManager _userManager;
 
         public MeController()
         {
         }
 
-        public MeController(ApplicationUserManager userManager)
+        public MeController(UserManager userManager)
         {
             UserManager = userManager;
         }
 
-        public ApplicationUserManager UserManager
+        public UserManager UserManager
         {
             get
             {
-                return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<UserManager>();
             }
             private set
             {
