@@ -132,5 +132,15 @@ namespace BookStore.UnitTests.Repository
             result = _repository.UpdateOrderStatus(orderId + 1, OrderStatus.Executed);
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void OrerExists()
+        {
+            var orderId = _repository.GetOrders().OrderBy(arg => arg.Id).Last().Id;
+            var result = _repository.OrderExists(orderId);
+            Assert.IsTrue(result);
+            result = _repository.OrderExists(orderId + 1);
+            Assert.IsFalse(result);
+        }
     }
 }
