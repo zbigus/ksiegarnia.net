@@ -23,9 +23,9 @@ namespace BookStore.Entities.Dal
         public override int SaveChanges()
         {
             foreach (var entry in ChangeTracker.Entries<ChangeBase>()
-                .Where(e => e.State == EntityState.Added && e.State == EntityState.Modified))
+                .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified))
             {
-                DateTime now = DateTime.Now;
+                var now = DateTime.Now;
                 if (entry.State == EntityState.Added)
                     entry.Entity.InsertDate = now;
                 entry.Entity.ModificationDate = now;

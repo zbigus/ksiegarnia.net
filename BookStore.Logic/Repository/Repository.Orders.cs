@@ -73,7 +73,7 @@ namespace BookStore.Logic.Repository
         public bool AddOrder(int bookId, string userId)
         {
             //Sprawdzamy czy książka istnieje
-            if (_db.Books.Find(bookId) == null)
+            if (!BookExists(bookId))
                 return false;
             //Sprawdzamy czy użytkownik istnieje
             if (_db.Users.Find(userId) == null)
