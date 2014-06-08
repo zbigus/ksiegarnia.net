@@ -36,7 +36,7 @@ namespace BookStore.UnitTests.Controllers
             Assert.IsTrue(result.GetType() == typeof(OkNegotiatedContentResult<IEnumerable<SimpleBookModel>>));
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void GetBookByIDWithExistingID_ShouldReturnTypeOkResult()
         {
             _mockUserRepo.Setup(m => m.GetBookById(It.IsAny<int>())).Returns(new Book());
@@ -50,9 +50,9 @@ namespace BookStore.UnitTests.Controllers
             _mockUserRepo.Setup(m => m.GetBookById(It.IsAny<int>())).Returns(default(Book));
             var result = booksController.Get(It.IsAny<int>());
             Assert.IsTrue(result.GetType() == typeof(NotFoundResult));
-        }
+        }*/
 
-       [TestMethod]
+        [TestMethod]
         public void DeleteWithNonExistingId_ShouldReturnTypeNotFound()
         {
             _mockUserRepo.Setup(m => m.DeleteBook(It.IsAny<int>())).Returns(false);
