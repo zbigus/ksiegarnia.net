@@ -68,10 +68,6 @@ namespace BookStore.Logic.Repository
         }
 
 
-        /// <summary>
-        /// Pobiera wszystkie zamówienia z bazy posortowane po dacie wstawienia desc (Admin)
-        /// </summary>
-        /// <returns>Lista zamówień</returns>
         public List<OrderModel> GetOrders()
         {
             return GetOrdersImpl()
@@ -85,11 +81,6 @@ namespace BookStore.Logic.Repository
                 }).ToList();
         }
 
-        /// <summary>
-        /// Pobiera wszystkie zamówienia z bazy posortowane po dacie wstawienia desc (Admin)
-        /// </summary>
-        /// <param name="status">Status zamówienia</param>
-        /// <returns>Lista zamówień</returns>
         public List<OrderModel> GetOrders(OrderStatus status)
         {
             return GetOrdersImpl()
@@ -104,11 +95,6 @@ namespace BookStore.Logic.Repository
                 }).ToList();
         }
 
-        /// <summary>
-        /// Pobiera wszystkie zamówienia z bazy posortowane po dacie wstawienia desc (Użytkownik)
-        /// </summary>
-        /// <param name="userId">Id użytkownika</param>
-        /// <returns>Lista zamówień</returns>
         public List<OrderModel> GetOrders(string userId)
         {
             return GetOrdersImpl()
@@ -123,12 +109,6 @@ namespace BookStore.Logic.Repository
                 }).ToList();
         }
 
-        /// <summary>
-        /// Pobiera wszystkie zamówienia z bazy posortowane po dacie wstawienia desc (Użytkownik)
-        /// </summary>
-        /// <param name="userId">Id użytkownika</param>
-        /// <param name="status">Status zamówienia</param>
-        /// <returns>Lista zamówień</returns>
         public List<OrderModel> GetOrders(string userId, OrderStatus status)
         {
             return GetOrdersImpl()
@@ -143,23 +123,12 @@ namespace BookStore.Logic.Repository
                 }).ToList();
         }
 
-        /// <summary>
-        /// Pobiera zamówienie z bazy
-        /// </summary>
-        /// <param name="id">Id zamówienia</param>
-        /// <returns>Zamówienie</returns>
         public OrderDetailModel GetOrder(int id)
         {
             var order = GetOrderImpl(id);
             return order == null ? null : OrderDetailModel.Create(order);
         }
 
-        /// <summary>
-        /// Dodawanie zamówienia
-        /// </summary>
-        /// <param name="bookId">Id zamawianej książki</param>
-        /// <param name="userId">Id zamawiającego</param>
-        /// <returns>Potwierdzenie zamówienia</returns>
         public bool AddOrder(int bookId, string userId)
         {
             //Sprawdzamy czy książka istnieje
@@ -174,13 +143,6 @@ namespace BookStore.Logic.Repository
             return true;
         }
 
-        /// <summary>
-        /// Zmiana statusu zamówienia
-        /// </summary>
-        /// <param name="id">Id zamówienia</param>
-        /// <param name="newStatus">Nowy status zamówienia</param>
-        /// <param name="shopComment">Komentarz sklepu</param>
-        /// <returns>Potwierdzenie zmiany statusu</returns>
         public bool UpdateOrderStatus(int id, OrderStatus newStatus, string shopComment = "")
         {
             //Nie można zmienić statusu na zamówiony, do tego służy metoda AddOrder
@@ -196,11 +158,6 @@ namespace BookStore.Logic.Repository
             return true;
         }
 
-        /// <summary>
-        /// Sprawdza czy dane zamówienie znajduje się w bazie
-        /// </summary>
-        /// <param name="id">Id zamówienia</param>
-        /// <returns>Wynik sprawdzenia</returns>
         public bool OrderExists(int id)
         {
             return GetOrderImpl(id) != null;
