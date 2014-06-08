@@ -7,13 +7,6 @@ namespace BookStore.Logic.Interfaces
 {
     public interface IOrdersRepository
     {
-        IQueryable<Order> GetAllOrders();
-        IQueryable<Order> GetOrdersByBookId(int id);
-        IQueryable<Order> GetOrdersByUserId(int id);
-        bool GetOrderStatus(int id, out string status);
-        bool DeleteOrder(int id);
-        bool AddOrder(OrderModel order, out int id);
-
         //Motody do wyświetlania zamówień
         /// <summary>
         /// Pobiera wszystkie zamówienia z bazy posortowane po dacie wstawienia desc (Admin)

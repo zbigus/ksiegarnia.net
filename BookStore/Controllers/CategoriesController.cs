@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http.Results;
+using BookStore.Entities.Models;
 using BookStore.Logic.Interfaces;
 using System.Web.Http;
+using BookStore.Logic.Models;
+using Newtonsoft.Json;
 
 namespace BookStore.Controllers
 {
@@ -22,9 +25,9 @@ namespace BookStore.Controllers
 
         [HttpPost]
         [Route("api/Categories/Add")]
-        public IHttpActionResult PostCategory([FromBody]string name)
+        public IHttpActionResult PostCategory([FromBody]CategoryModel category)
         {
-            if (!Repo.AddCategory(name))
+            if (!Repo.AddCategory(category.Name))
             {
                 return Conflict();
             }
@@ -33,13 +36,25 @@ namespace BookStore.Controllers
 
 
         [HttpPost]
-        [Route("api/BookCategories/Add")]
-        public IHttpActionResult PostBookCategories([FromBody]int bookId, [FromBody] List<int> categories)
+        [Route("api/BookCategories/{bookId}/Add")]
+        public IHttpActionResult PostBookCategories([FromBody] List<CategoryModel> categories,int bookId)
         {
-            Repo.AddBookCategories(bookId,categories);
+            var categoriesIds = new List<int>();
+            foreach (var item in categories)
+            {
+                categoriesIds.Add(item.Id);
+            }
+            Repo.AddBookCategories(bookId,categoriesIds);
             return Ok();
         }
 
+        [HttpDelete]
+        [Route("api/BookCategories/{bookId}/Delete/{category}")]
+        public IHttpActionResult Delete(int category, int bookId)
+        {
+            Repo.DeleteBookCategory( category,bookId);
+            return Ok();
+        }
 
         [Route("api/Categories/Delete/{id}")]
         public IHttpActionResult Delete(int id)

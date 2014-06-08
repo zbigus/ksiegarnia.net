@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Configuration;
-using System.Web.Http;
+﻿using System.Web.Http;
 using BookStore.Logic.Interfaces;
-using BookStore.Logic.Models;
 using BookStore.Entities.Models;
-using System.Web.Http.Description;
 using Microsoft.AspNet.Identity;
 using BookStore.Logic.Managers;
 
@@ -27,7 +19,7 @@ namespace BookStore.Controllers
             return Ok(Repo.GetOrders());
         }
 
-        //[Authorize(Roles = Role.Admin)]
+        [Authorize(Roles = Role.Admin)]
 
         public IHttpActionResult Get(int id)
         {
@@ -35,7 +27,7 @@ namespace BookStore.Controllers
         }
 
         //get all orders with OrderStatus = status
-        //[Authorize(Roles = Role.Admin)]
+        [Authorize(Roles = Role.Admin)]
         [Route("api/Orders/status/{status}")]
 
         public IHttpActionResult GetOrdersWithStatus(OrderStatus status)
@@ -43,18 +35,18 @@ namespace BookStore.Controllers
             return Ok(Repo.GetOrders(status));
         }
 
-        /*[Route("api/Orders/user")]
+        [Route("api/Orders/user")]
         public IHttpActionResult GetOrdersForUser()
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
+            var id = UserManager.FindById(User.Identity.GetUserId()).Id;
             return Ok(Repo.GetOrders(id));
-        }*/
+        }
 
         [Route("api/Orders/user/{status}")]
         public IHttpActionResult GetOrdersForUserWithStatus(OrderStatus status)
         {
             
-            var id = User.Identity.GetUserId();
+            var id = UserManager.FindById(User.Identity.GetUserId()).Id;
             return Ok(Repo.GetOrders(id,status));
         }
 
@@ -62,36 +54,12 @@ namespace BookStore.Controllers
         [Route("api/orders/orderbook/{id}")]
         public IHttpActionResult Post(int bookId)
         {
-            int id;
-            var userId = User.Identity.GetUserId();
+            var userId = UserManager.FindById(User.Identity.GetUserId()).Id;
             if (Repo.AddOrder(bookId, userId))
             {
                 return Ok();
             }
             return Conflict();
-        }
-        //[Authorize(Roles = Role.Admin)]
-        [Route("api/Orders/Delete/{id}")]
-        public IHttpActionResult Delete(int id)
-        {
-            if (Repo.DeleteOrder(id))
-            {
-                return Ok();
-            }
-            return NotFound();
-        }
-
-        //get status for order with orderId == id
-
-        [Route("api/Orders/{id}/status")]
-        public IHttpActionResult GetOrderStatus(int id)
-        {
-            string stats;
-            if (Repo.GetOrderStatus(id,out stats))
-            {
-                return Ok(stats);
-            }
-            return NotFound();
         }
     }
 }

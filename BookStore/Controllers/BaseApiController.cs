@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Dependencies;
 using BookStore.Logic.Interfaces;
+using BookStore.Logic.Managers;
 using BookStore.Logic.Models;
 using Microsoft.Practices.Unity;
 
@@ -11,6 +12,7 @@ namespace BookStore.Controllers
     public class BaseApiController : ApiController
     {
         private static IRepository _repo ;
+        public UserManager UserManager = UserManager.Create();
         
         protected static IRepository Repo {
             get {
