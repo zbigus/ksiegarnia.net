@@ -22,7 +22,7 @@ namespace BookStore.Controllers
 
         [HttpPost]
         [Route("api/Categories/Add")]
-        public IHttpActionResult PostCategory([FromBody]CategoryModel category)
+        public IHttpActionResult AddCategory([FromBody]CategoryModel category)
         {
             if (!Repo.AddCategory(category.Name))
             {
@@ -31,11 +31,21 @@ namespace BookStore.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        [Route("api/Categories/Update")]
+        public IHttpActionResult UpdateCategory([FromBody]CategoryModel category)
+        {
+            if (!Repo.UpdateCategory(category))
+            {
+                return Conflict();
+            }
+            return Ok();
+        }
         //do przeniesienia
 
         [HttpPost]
         [Route("api/BookCategories/{bookId}/Add")]
-        public IHttpActionResult PostBookCategories([FromBody] List<CategoryModel> categories,int bookId)
+        public IHttpActionResult AddBookCategories([FromBody] List<CategoryModel> categories,int bookId)
         {
             var categoriesIds = new List<int>();
             foreach (var item in categories)
@@ -43,6 +53,19 @@ namespace BookStore.Controllers
                 categoriesIds.Add(item.Id);
             }
             Repo.AddBookCategories(bookId,categoriesIds);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("api/BookCategories/{bookId}/Update")]
+        public IHttpActionResult UpdateBookCategories([FromBody] List<CategoryModel> categories, int bookId)
+        {
+            var categoriesIds = new List<int>();
+            foreach (var item in categories)
+            {
+                categoriesIds.Add(item.Id);
+            }
+            Repo.AddDeleteBookCatedories(bookId, categoriesIds);
             return Ok();
         }
 
