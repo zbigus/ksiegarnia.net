@@ -4,7 +4,7 @@ namespace BookStore.Logic.Models
 {
     public class SimpleBookModel
     {
-        protected SimpleBookModel()
+        public SimpleBookModel()
         {
         }
 
@@ -14,12 +14,15 @@ namespace BookStore.Logic.Models
             Title = book.Title;
             Author = book.Author;
             Price = book.Price;
+            Description = book.Description;
         }
 
         public int Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
+        public string Description { get; set; }
         public int Price { get; set; }
+        public AttachmentModel Attachment { get; set; }
 
         public static SimpleBookModel Create(Book book)
         {

@@ -7,7 +7,7 @@ namespace BookStore.Logic.Interfaces
 {
     public interface IBooksRepository
     {
-        List<BookModel> GetAllBooks();
+        List<SimpleBookModel> GetAllBooks();
         List<SimpleBookModel> GetInitialBooks();
         BookModel GetBookById(int id);
         bool AddBook(BookModel b, out int id);

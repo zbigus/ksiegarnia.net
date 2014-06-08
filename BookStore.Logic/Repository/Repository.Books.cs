@@ -7,14 +7,34 @@ namespace BookStore.Logic.Repository
 {
     public partial class Repository
     {
-        public List<BookModel> GetAllBooks()
+        public List<SimpleBookModel> GetAllBooks()
         {
-            return _db.Books.AsEnumerable().Select(BookModel.Create).ToList();
+            var books = _db.Books.AsEnumerable()
+                .Select(SimpleBookModel.Create)
+                .ToList();
+            books.ForEach(model =>
+            {
+                var att = _db.Attachments.OrderBy(attachment => attachment.Id)
+                    .FirstOrDefault(attachment => attachment.BookId == model.Id);
+                if (att != null)
+                    model.Attachment = AttachmentModel.Create(att);
+            });
+            return books;
         }
 
         public List<SimpleBookModel> GetInitialBooks()
         {
-            return _db.Books.AsEnumerable().Select(SimpleBookModel.Create).ToList();
+            var books = _db.Books.AsEnumerable()
+                .Select(SimpleBookModel.Create)
+                .ToList();
+            books.ForEach(model =>
+            {
+                var att = _db.Attachments.OrderBy(attachment => attachment.Id)
+                    .FirstOrDefault(attachment => attachment.BookId == model.Id);
+                if (att != null)
+                    model.Attachment = AttachmentModel.Create(att);
+            });
+            return books;
         }
 
         public BookModel GetBookById(int id)
@@ -67,19 +87,39 @@ namespace BookStore.Logic.Repository
 
         public List<SimpleBookModel> GetBooks()
         {
-            return _db.Books.Select(book => new SimpleBookModel(book)).ToList();
+            var books = _db.Books.AsEnumerable()
+                .Select(SimpleBookModel.Create)
+                .ToList();
+            books.ForEach(model =>
+            {
+                var att = _db.Attachments.OrderBy(attachment => attachment.Id)
+                    .FirstOrDefault(attachment => attachment.BookId == model.Id);
+                if (att != null)
+                    model.Attachment = AttachmentModel.Create(att);
+            });
+            return books;
         }
 
         public List<SimpleBookModel> GetBooksByCategory(int categoryId)
         {
-            List<int> bookIds =
-                _db.BookCategories.Where(bc => bc.CategoryId == categoryId).Select(bc => bc.BookId).ToList();
-            return
-                (from bookId in bookIds
-                    select _db.Books.Find(bookId)
-                    into book
-                    where book != null
-                    select new SimpleBookModel(book)).ToList();
+            var bookIds = _db.BookCategories
+                .Where(bc => bc.CategoryId == categoryId)
+                .Select(bc => bc.BookId).ToArray();
+            var result = new List<SimpleBookModel>();
+            foreach (var bookId in bookIds)
+            {
+                var book = _db.Books.Find(bookId);
+                if (book != null)
+                {
+                    var bookModel = SimpleBookModel.Create(book);
+                    var att = _db.Attachments.OrderBy(attachment => attachment.Id)
+                    .FirstOrDefault(attachment => attachment.BookId == book.Id);
+                    if (att != null)
+                        bookModel.Attachment = AttachmentModel.Create(att);
+                    result.Add(bookModel);
+                }
+            }
+            return result;
         }
 
         public BookModel AddBook(BookModel book)

@@ -14,7 +14,7 @@ namespace BookStore.Controllers
     public class BooksController : BaseApiController
     {
         public BooksController(IRepository repo) : base(repo) { }
-        public List<BookModel> Get()
+        public List<SimpleBookModel> Get()
         {
             return Repo.GetAllBooks();
         }

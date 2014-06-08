@@ -4,20 +4,24 @@ using BookStore.Entities.Models;
 
 namespace BookStore.Logic.Models
 {
-    public class BookModel : SimpleBookModel
+    public class BookModel
     {
         //TODO: Dodaæ walidacjê, tylko 13 cyfr
 
-        protected BookModel()
+        public BookModel()
         {
         }
 
-        public BookModel(Book book) : base(book)
+        public BookModel(Book book)
         {
+            Id = book.Id;
+            Title = book.Title;
+            Author = book.Author;
+            Description = book.Description;
+            Price = book.Price;
             Isbn = book.Isbn;
             Publisher = book.Publisher;
             Year = book.Year;
-            Description = book.Description;
             Categories = new List<CategoryModel>();
             foreach (BookCategory bookCategory in book.BookCategories)
             {
@@ -26,6 +30,10 @@ namespace BookStore.Logic.Models
             Attachments = new List<AttachmentModel>();
         }
 
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public int Price { get; set; }
         public string Isbn { get; set; }
         public string Publisher { get; set; }
         public DateTime Year { get; set; }
