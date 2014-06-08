@@ -20,5 +20,10 @@ namespace BookStore.Logic.Models
         public string Title { get; set; }
         public string Author { get; set; }
         public int Price { get; set; }
+
+        public static SimpleBookModel Create(Book book)
+        {
+            return new SimpleBookModel(book);
+        }
     }
 }

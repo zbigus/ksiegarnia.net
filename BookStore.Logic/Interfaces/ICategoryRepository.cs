@@ -8,7 +8,7 @@ namespace BookStore.Logic.Interfaces
         /// <summary>
         /// Pobieranie kategorii z bazy
         /// </summary>
-        /// <param name="id">Id </param>
+        /// <param name="id">Id kategorii</param>
         /// <returns>Model kategorii</returns>
         CategoryModel GetCategory(int id);
 
@@ -93,8 +93,8 @@ namespace BookStore.Logic.Interfaces
         /// <summary>
         /// Sprawdzenie czy kategoria istnieje
         /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
+        /// <param name="name">Nazwa kategorii</param>
+        /// <returns>Rezultat sprawdzenia</returns>
         bool CategoryExists(string name);
     }
 }
