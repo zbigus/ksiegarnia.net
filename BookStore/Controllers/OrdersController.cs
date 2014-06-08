@@ -10,45 +10,50 @@ using BookStore.Logic.Models;
 using BookStore.Entities.Models;
 using System.Web.Http.Description;
 using Microsoft.AspNet.Identity;
+using BookStore.Logic.Managers;
 
 namespace BookStore.Controllers
 {
-
     public class OrdersController : BaseApiController
     {
         public OrdersController(IRepository repo) : base(repo)
         {
         }
-        [Authorize(Users="Admin")]
+
+        //[Authorize(Roles = Role.Admin)]
+
         public IHttpActionResult Get()
         {
             return Ok(Repo.GetOrders());
         }
 
-        [Authorize(Users = "Admin")]
+        //[Authorize(Roles = Role.Admin)]
+
         public IHttpActionResult Get(int id)
         {
             return Ok(Repo.GetOrder(id));
         }
 
         //get all orders with OrderStatus = status
-        [Authorize(Users = "Admin")]
+        //[Authorize(Roles = Role.Admin)]
         [Route("api/Orders/status/{status}")]
+
         public IHttpActionResult GetOrdersWithStatus(OrderStatus status)
         {
             return Ok(Repo.GetOrders(status));
         }
 
-        [Route("api/Orders/user")]
+        /*[Route("api/Orders/user")]
         public IHttpActionResult GetOrdersForUser()
         {
-            var id = User.Identity.GetUserId();
+            var user = UserManager.FindById(User.Identity.GetUserId());
             return Ok(Repo.GetOrders(id));
-        }
+        }*/
 
         [Route("api/Orders/user/{status}")]
         public IHttpActionResult GetOrdersForUserWithStatus(OrderStatus status)
         {
+            
             var id = User.Identity.GetUserId();
             return Ok(Repo.GetOrders(id,status));
         }
@@ -65,7 +70,7 @@ namespace BookStore.Controllers
             }
             return Conflict();
         }
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = Role.Admin)]
         [Route("api/Orders/Delete/{id}")]
         public IHttpActionResult Delete(int id)
         {
