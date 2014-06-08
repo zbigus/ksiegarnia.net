@@ -9,7 +9,7 @@ namespace BookStore.Logic.Interfaces
         /// Pobiera załącznik z bazy
         /// </summary>
         /// <param name="id">Id załącznika</param>
-        /// <returns></returns>
+        /// <returns>Model załącznika</returns>
         AttachmentModel GetAttachment(int id);
 
         /// <summary>

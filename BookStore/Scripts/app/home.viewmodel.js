@@ -13,8 +13,9 @@
                 headers: {
                     'Authorization': 'Bearer ' + app.dataModel.getAccessToken()
                 },
+                //Tak się to robi Joł
                 success: function (data) {
-                    self.myName('Zamówienie z id 1 jest przypisane do : ' + data.userName);
+                    self.myName(data.userName);
                 }
             });
         });
