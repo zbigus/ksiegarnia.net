@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Web.Http.Results;
-using BookStore.Entities.Models;
 using BookStore.Logic.Interfaces;
 using System.Web.Http;
 using BookStore.Logic.Models;
-using Newtonsoft.Json;
 
 namespace BookStore.Controllers
 {
@@ -12,15 +9,15 @@ namespace BookStore.Controllers
     {
         public CategoriesController(IRepository repo) : base(repo) { }
 
-        public IHttpActionResult Get()
+        public List<CategoryModel> Get()
         {
-            return Ok(Repo.GetCategories());
+            return Repo.GetCategories();
         }
 
         [Route("api/Categories/{id}")]
-        public IHttpActionResult Get(int id)
+        public CategoryModel Get(int id)
         {
-            return Ok(Repo.GetCategory(id));
+            return Repo.GetCategory(id);
         }
 
         [HttpPost]

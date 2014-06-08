@@ -1,8 +1,9 @@
-﻿using System.Web.Http;
+﻿using System.Collections.Generic;
+using System.Web.Http;
 using BookStore.Logic.Interfaces;
 using BookStore.Entities.Models;
+using BookStore.Logic.Models;
 using Microsoft.AspNet.Identity;
-using BookStore.Logic.Managers;
 
 namespace BookStore.Controllers
 {
@@ -13,40 +14,40 @@ namespace BookStore.Controllers
         }
 
         [Authorize(Roles = Role.Admin)]
-        public IHttpActionResult Get()
+        public List<OrderModel> Get()
         {
-            return Ok(Repo.GetOrders());
+            return Repo.GetOrders();
         }
 
         [Authorize]
-        public IHttpActionResult Get(int id)
+        public OrderDetailModel Get(int id)
         {
-            return Ok(Repo.GetOrder(id));
+            return Repo.GetOrder(id);
         }
 
         //get all orders with OrderStatus = status
         [Authorize(Roles = Role.Admin)]
         [Route("api/Orders/status/{status}")]
-        public IHttpActionResult GetOrdersWithStatus(OrderStatus status)
+        public List<OrderModel> GetOrdersWithStatus(OrderStatus status)
         {
-            return Ok(Repo.GetOrders(status));
+            return Repo.GetOrders(status);
         }
 
         [Route("api/Orders/user")]
         [Authorize]
-        public IHttpActionResult GetOrdersForUser()
+        public List<OrderModel> GetOrdersForUser()
         {
             var id = UserManager.FindById(User.Identity.GetUserId()).Id;
-            return Ok(Repo.GetOrders(id));
+            return Repo.GetOrders(id);
         }
 
         [Route("api/Orders/user/{status}")]
         [Authorize]
-        public IHttpActionResult GetOrdersForUserWithStatus(OrderStatus status)
+        public List<OrderModel> GetOrdersForUserWithStatus(OrderStatus status)
         {
             
             var id = UserManager.FindById(User.Identity.GetUserId()).Id;
-            return Ok(Repo.GetOrders(id,status));
+            return Repo.GetOrders(id,status);
         }
 
         [HttpPost]
