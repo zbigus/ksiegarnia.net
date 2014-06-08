@@ -23,6 +23,6 @@ namespace BookStore.Logic.Interfaces
         //Metody do dodawania zmiany statusu
         bool AddOrder(int bookId, string userId);
         bool UpdateOrderStatus(int id, OrderStatus newStatus, string shopComment = "");
-
+        bool OrderExists(int id);
     }
 }

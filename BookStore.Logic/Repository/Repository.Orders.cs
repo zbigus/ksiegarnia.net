@@ -74,8 +74,7 @@ namespace BookStore.Logic.Repository
         /// <returns>Lista zamówień</returns>
         public List<OrderModel> GetOrders()
         {
-            return _db.Orders
-                .OrderByDescending(arg => arg.InsertDate)
+            return GetOrdersImpl()
                 .AsEnumerable()
                 .Select(arg => new OrderModel
                 {
@@ -93,9 +92,8 @@ namespace BookStore.Logic.Repository
         /// <returns>Lista zamówień</returns>
         public List<OrderModel> GetOrders(OrderStatus status)
         {
-            return _db.Orders
+            return GetOrdersImpl()
                 .Where(arg => arg.Status == status)
-                .OrderByDescending(arg => arg.InsertDate)
                 .AsEnumerable()
                 .Select(arg => new OrderModel
                 {
@@ -113,9 +111,8 @@ namespace BookStore.Logic.Repository
         /// <returns>Lista zamówień</returns>
         public List<OrderModel> GetOrders(string userId)
         {
-            return _db.Orders
+            return GetOrdersImpl()
                 .Where(arg => arg.UserId == userId)
-                .OrderByDescending(arg => arg.InsertDate)
                 .AsEnumerable()
                 .Select(arg => new OrderModel
                 {
@@ -134,9 +131,8 @@ namespace BookStore.Logic.Repository
         /// <returns>Lista zamówień</returns>
         public List<OrderModel> GetOrders(string userId, OrderStatus status)
         {
-            return _db.Orders
+            return GetOrdersImpl()
                 .Where(arg => arg.UserId == userId && arg.Status == status)
-                .OrderByDescending(arg => arg.InsertDate)
                 .AsEnumerable()
                 .Select(arg => new OrderModel
                 {
@@ -154,7 +150,7 @@ namespace BookStore.Logic.Repository
         /// <returns>Zamówienie</returns>
         public OrderDetailModel GetOrder(int id)
         {
-            var order = _db.Orders.Find(id);
+            var order = GetOrderImpl(id);
             return order == null ? null : OrderDetailModel.Create(order);
         }
 
@@ -191,13 +187,34 @@ namespace BookStore.Logic.Repository
             if (newStatus == OrderStatus.Ordered)
                 return false;
             //Sprawdzamy czy zamówienie istnieje
-            var order = _db.Orders.Find(id);
+            var order = GetOrderImpl(id);
             if (order == null)
                 return false;
             order.Status = newStatus;
             order.ShopComment = shopComment;
             _db.SaveChanges();
             return true;
+        }
+
+        /// <summary>
+        /// Sprawdza czy dane zamówienie znajduje się w bazie
+        /// </summary>
+        /// <param name="id">Id zamówienia</param>
+        /// <returns>Wynik sprawdzenia</returns>
+        public bool OrderExists(int id)
+        {
+            return GetOrderImpl(id) == null;
+        }
+
+        private Order GetOrderImpl(int id)
+        {
+            return _db.Orders.Find(id);
+        }
+
+        private IOrderedQueryable<Order> GetOrdersImpl()
+        {
+            return _db.Orders
+                .OrderByDescending(arg => arg.InsertDate);
         }
     }
 }
