@@ -26,17 +26,17 @@ namespace BookStore.UnitTests.Controllers
         public void GetAllBooks_ShouldReturnTypeOkNegotiatedContentResult()
         {
             var result = booksController.Get();
-            Assert.IsTrue(result.GetType() == typeof(OkNegotiatedContentResult<IEnumerable<BookModel>>));
-        }
-
-        [TestMethod]
-        public void GetInitialData_ShouldReturnTypeSimpleBookModel()
-        {
-            var result = booksController.GetInitialData();
-            Assert.IsTrue(result.GetType() == typeof(OkNegotiatedContentResult<IEnumerable<SimpleBookModel>>));
+            Assert.IsTrue(result.GetType() == typeof(List<BookModel>));
         }
 
         /*[TestMethod]
+        public void GetInitialData_ShouldReturnTypeSimpleBookModel()
+        {
+            var result = booksController.GetInitialData();
+            Assert.IsTrue(result.GetType() == typeof(List<SimpleBookModel>));
+        }
+
+        [TestMethod]
         public void GetBookByIDWithExistingID_ShouldReturnTypeOkResult()
         {
             _mockUserRepo.Setup(m => m.GetBookById(It.IsAny<int>())).Returns(new Book());

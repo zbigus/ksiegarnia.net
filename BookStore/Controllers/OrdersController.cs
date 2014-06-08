@@ -51,7 +51,7 @@ namespace BookStore.Controllers
         }
 
         [HttpPost]
-        [Route("api/orders/orderbook/{id}")]
+        [Route("api/orders/orderbook/{bookId}")]
         [Authorize]
         public IHttpActionResult Post(int bookId)
         {

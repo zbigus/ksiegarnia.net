@@ -20,6 +20,12 @@ namespace BookStore.Controllers
             return Repo.GetBook(id);
         }
 
+        [Route("api/Books/category/{id}")]
+        public List<SimpleBookModel> GetBooksByCategory(int id)
+        {
+            return Repo.GetBooksByCategory(id);
+        }
+
         //[Route("api/Books/Initial")]
         //public List<SimpleBookModel> GetInitialData()
         //{
@@ -33,6 +39,7 @@ namespace BookStore.Controllers
             }
             return NotFound();            
         }
+
         [HttpPost]
         public IHttpActionResult Post([FromBody] BookModel book)
         {
