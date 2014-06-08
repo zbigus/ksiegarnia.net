@@ -50,14 +50,14 @@ namespace BookStore.Controllers
 
         [HttpDelete]
         [Route("api/BookCategories/{bookId}/Delete/{category}")]
-        public IHttpActionResult Delete(int category, int bookId)
+        public IHttpActionResult DeleteBookCategories(int category, int bookId)
         {
             Repo.DeleteBookCategory( category,bookId);
             return Ok();
         }
 
         [Route("api/Categories/Delete/{id}")]
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult DeleteCategory(int id)
         {
             if (Repo.DeleteCategory(id))
             {
