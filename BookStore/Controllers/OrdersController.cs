@@ -64,8 +64,9 @@ namespace BookStore.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles=Role.Admin)]
         [Route("api/orders/drop/{id}")]
-        public IHttpActionResult DropOrder(int id)
+        public IHttpActionResult DropOrderAsAdmin(int id)
         {
             if (Repo.UpdateOrderStatus(id, OrderStatus.Canceled,"dropped by admin"))
             {
@@ -75,6 +76,19 @@ namespace BookStore.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Role.User)]
+        [Route("api/orders/drop/{id}")]
+        public IHttpActionResult DropOrderAsUser(int id)
+        {
+            if (Repo.UpdateOrderStatus(id, OrderStatus.Canceled, "dropped by user"))
+            {
+                return Ok();
+            }
+            return Conflict();
+        }
+
+        [HttpPost]
+        [Authorize(Roles=Role.Admin)]
         [Route("api/orders/update")]
         public IHttpActionResult UpdateOrderStatus([FromBody] OrderModel order)
         {
