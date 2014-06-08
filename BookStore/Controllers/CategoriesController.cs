@@ -34,6 +34,7 @@ namespace BookStore.Controllers
             return Ok();
         }
 
+        //do przeniesienia
 
         [HttpPost]
         [Route("api/BookCategories/{bookId}/Add")]
@@ -47,6 +48,8 @@ namespace BookStore.Controllers
             Repo.AddBookCategories(bookId,categoriesIds);
             return Ok();
         }
+
+        //do przeniesienia
 
         [HttpDelete]
         [Route("api/BookCategories/{bookId}/Delete/{category}")]
