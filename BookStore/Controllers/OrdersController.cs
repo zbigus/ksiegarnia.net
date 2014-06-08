@@ -13,7 +13,7 @@ namespace BookStore.Controllers
         {
         }
 
-        [Authorize(Roles = Role.Admin)]
+        //[Authorize(Roles = Role.Admin)]
         public List<OrderModel> Get()
         {
             return Repo.GetOrders();
@@ -62,5 +62,28 @@ namespace BookStore.Controllers
             }
             return Conflict();
         }
+
+        [HttpPost]
+        [Route("api/orders/drop/{id}")]
+        public IHttpActionResult DropOrder(int id)
+        {
+            if (Repo.UpdateOrderStatus(id, OrderStatus.Canceled,"dropped by admin"))
+            {
+                return Ok();
+            }
+            return Conflict();
+        }
+
+        [HttpPost]
+        [Route("api/orders/update")]
+        public IHttpActionResult UpdateOrderStatus([FromBody] OrderModel order)
+        {
+            if (Repo.UpdateOrderStatus(order.Id, order.Status))
+            {
+                return Ok();
+            }
+            return Conflict();
+        }
+
     }
 }
