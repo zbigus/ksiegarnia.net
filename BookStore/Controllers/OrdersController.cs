@@ -13,7 +13,7 @@ namespace BookStore.Controllers
         {
         }
 
-        //[Authorize(Roles = Role.Admin)]
+        [Authorize(Roles = Role.Admin)]
         public List<OrderModel> Get()
         {
             return Repo.GetOrders();
