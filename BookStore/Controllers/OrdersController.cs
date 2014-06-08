@@ -20,7 +20,7 @@ namespace BookStore.Controllers
         {
         }
 
-        //[Authorize(Roles = Role.Admin)]
+        [Authorize(Roles = Role.Admin)]
 
         public IHttpActionResult Get()
         {

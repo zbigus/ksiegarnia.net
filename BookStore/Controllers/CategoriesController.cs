@@ -1,4 +1,5 @@
-﻿using System.Web.Http.Results;
+﻿using System.Collections.Generic;
+using System.Web.Http.Results;
 using BookStore.Logic.Interfaces;
 using System.Web.Http;
 
@@ -21,7 +22,7 @@ namespace BookStore.Controllers
 
         [HttpPost]
         [Route("api/Categories/Add")]
-        public IHttpActionResult Post([FromBody]string name)
+        public IHttpActionResult PostCategory([FromBody]string name)
         {
             if (!Repo.AddCategory(name))
             {
@@ -29,6 +30,16 @@ namespace BookStore.Controllers
             }
             return Ok();
         }
+
+
+        [HttpPost]
+        [Route("api/BookCategories/Add")]
+        public IHttpActionResult PostBookCategories([FromBody]int bookId, [FromBody] List<int> categories)
+        {
+            Repo.AddBookCategories(bookId,categories);
+            return Ok();
+        }
+
 
         [Route("api/Categories/Delete/{id}")]
         public IHttpActionResult Delete(int id)

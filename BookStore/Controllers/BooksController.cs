@@ -19,6 +19,7 @@ namespace BookStore.Controllers
             return Ok(Repo.GetAllBooks().ToList().Select(s=> TheModelFactory.Create(s)));
         }
         //[HttpGet]
+        [Authorize]
         public IHttpActionResult Get(int id) {
             var book = Repo.GetBookById(id);
             if (book != null)
