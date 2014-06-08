@@ -64,6 +64,18 @@ namespace BookStore.Logic.Repository
             return true;
         }
 
+        public void AddBookCategories(int bookId, IEnumerable<int> categories)
+        {
+            foreach (var categoryId in categories)
+            {
+                //Nie dodajemy kategorii, które już są w bazie
+                var bookCategory = _db.BookCategories
+                    .FirstOrDefault(arg => arg.BookId == bookId && arg.CategoryId == categoryId);
+                if (bookCategory == null)
+                    _db.BookCategories.Add(new BookCategory { BookId = bookId, CategoryId = categoryId });
+            }
+        }
+
         public bool DeleteCategory(int id)
         {
             var category = GetCategoryImpl(id);
@@ -86,6 +98,17 @@ namespace BookStore.Logic.Repository
             return true;
         }
 
+        public void DeleteBookCategories(int bookId, IEnumerable<int> categories)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ClearBookCategories(int bookId)
+        {
+            var currenCategories = _db.BookCategories.Where(bc => bc.BookId == bookId);
+            _db.BookCategories.RemoveRange(currenCategories);
+        }
+
         public bool UpdateCategory(CategoryModel category)
         {
             var cat = GetCategoryImpl(category.Id);
@@ -104,24 +127,6 @@ namespace BookStore.Logic.Repository
         public bool CategoryExists(string name)
         {
             return _db.Categories.FirstOrDefault(s => s.Name == name) != null;
-        }
-
-        public void ClearBookCategories(int bookId)
-        {
-            var currenCategories = _db.BookCategories.Where(bc => bc.BookId == bookId);
-            _db.BookCategories.RemoveRange(currenCategories);
-        }
-
-        public void AddBookCategories(int bookId, IEnumerable<int> categories)
-        {
-            foreach (var categoryId in categories)
-            {
-                //Nie dodajemy kategorii, które już są w bazie
-                var bookCategory = _db.BookCategories
-                    .FirstOrDefault(arg => arg.BookId == bookId && arg.CategoryId == categoryId);
-                if (bookCategory == null)
-                    _db.BookCategories.Add(new BookCategory { BookId = bookId, CategoryId = categoryId });
-            }
         }
 
         private Category GetCategoryImpl(int id)
