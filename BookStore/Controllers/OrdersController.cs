@@ -13,14 +13,12 @@ namespace BookStore.Controllers
         }
 
         [Authorize(Roles = Role.Admin)]
-
         public IHttpActionResult Get()
         {
             return Ok(Repo.GetOrders());
         }
 
-        [Authorize(Roles = Role.Admin)]
-
+        [Authorize]
         public IHttpActionResult Get(int id)
         {
             return Ok(Repo.GetOrder(id));
@@ -29,13 +27,13 @@ namespace BookStore.Controllers
         //get all orders with OrderStatus = status
         [Authorize(Roles = Role.Admin)]
         [Route("api/Orders/status/{status}")]
-
         public IHttpActionResult GetOrdersWithStatus(OrderStatus status)
         {
             return Ok(Repo.GetOrders(status));
         }
 
         [Route("api/Orders/user")]
+        [Authorize]
         public IHttpActionResult GetOrdersForUser()
         {
             var id = UserManager.FindById(User.Identity.GetUserId()).Id;
@@ -43,6 +41,7 @@ namespace BookStore.Controllers
         }
 
         [Route("api/Orders/user/{status}")]
+        [Authorize]
         public IHttpActionResult GetOrdersForUserWithStatus(OrderStatus status)
         {
 
@@ -52,6 +51,7 @@ namespace BookStore.Controllers
 
         [HttpPost]
         [Route("api/orders/orderbook/{id}")]
+        [Authorize]
         public IHttpActionResult Post(int bookId)
         {
             var userId = UserManager.FindById(User.Identity.GetUserId()).Id;
