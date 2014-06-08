@@ -37,6 +37,11 @@ namespace BookStore.Logic.Repository
         {
             if (!CategoryExists(categoryId))
                 return false;
+            //Nie dodajemy kategorii, które już są w bazie
+            var bookCategory = _db.BookCategories
+                .FirstOrDefault(arg => arg.BookId == bookId && arg.CategoryId == categoryId);
+            if (bookCategory != null)
+                return false;
             _db.BookCategories.Add(new BookCategory {BookId = bookId, CategoryId = categoryId});
             _db.SaveChanges();
             return true;
@@ -49,7 +54,7 @@ namespace BookStore.Logic.Repository
                 //Nie dodajemy kategorii, które już są w bazie
                 var bookCategory = _db.BookCategories
                     .FirstOrDefault(arg => arg.BookId == bookId && arg.CategoryId == categoryId);
-                if (bookCategory == null)
+                if (bookCategory == null && CategoryExists(categoryId))
                     _db.BookCategories.Add(new BookCategory { BookId = bookId, CategoryId = categoryId });
             }
             _db.SaveChanges();
