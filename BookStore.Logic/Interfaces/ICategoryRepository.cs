@@ -15,5 +15,7 @@ namespace BookStore.Logic.Interfaces
         bool AddCategory(string name);
         bool DeleteCategory(int id);
         bool UpdateCategory(CategoryModel category);
+        bool CategoryExists(int id);
+        bool CategoryExists(string name);
     }
 }

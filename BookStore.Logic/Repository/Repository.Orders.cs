@@ -203,7 +203,7 @@ namespace BookStore.Logic.Repository
         /// <returns>Wynik sprawdzenia</returns>
         public bool OrderExists(int id)
         {
-            return GetOrderImpl(id) == null;
+            return GetOrderImpl(id) != null;
         }
 
         private Order GetOrderImpl(int id)

@@ -32,22 +32,20 @@ namespace BookStore.Logic.Repository
 
         public CategoryModel GetCategory(int id)
         {
-            var category = _db.Categories.Find(id);
+            var category = GetCategoryImpl(id);
             return category == null ? null : CategoryModel.Create(category);
         }
 
         public List<CategoryModel> GetCategories()
         {
-            return _db.Categories
-                .OrderBy(category => category.Name)
-                .AsEnumerable()
+            return GetCategoriesImpl()
                 .Select(CategoryModel.Create)
                 .ToList();
         }
 
         public bool AddCategory(string name)
         {
-            if (_db.Categories.FirstOrDefault(s => s.Name == name) != null)
+            if (CategoryExists(name))
                 return false;
             var category = new Category
             {
@@ -60,7 +58,7 @@ namespace BookStore.Logic.Repository
 
         public bool DeleteCategory(int id)
         {
-            var category = _db.Categories.Find(id);
+            var category = GetCategoryImpl(id);
             if (category == null)
                 return false;
             _db.Categories.Remove(category);
@@ -70,12 +68,34 @@ namespace BookStore.Logic.Repository
 
         public bool UpdateCategory(CategoryModel category)
         {
-            var cat = _db.Categories.Find(category.Id);
+            var cat = GetCategoryImpl(category.Id);
             if (cat == null)
                 return false;
             cat.Name = category.Name;
             _db.SaveChanges();
             return true;
+        }
+
+        public bool CategoryExists(int id)
+        {
+            return GetCategoryImpl(id) != null;
+        }
+
+        public bool CategoryExists(string name)
+        {
+            return _db.Categories.FirstOrDefault(s => s.Name == name) != null;
+        }
+
+        private Category GetCategoryImpl(int id)
+        {
+            return _db.Categories.Find(id);
+        }
+
+        private IEnumerable<Category> GetCategoriesImpl()
+        {
+            return _db.Categories
+                .OrderBy(category => category.Name)
+                .AsEnumerable();
         }
     }
 }
