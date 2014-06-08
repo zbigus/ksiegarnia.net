@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Configuration;
-using System.Web.Http;
+﻿using System.Web.Http;
 using BookStore.Logic.Interfaces;
-using BookStore.Logic.Models;
 using BookStore.Entities.Models;
-using System.Web.Http.Description;
 using Microsoft.AspNet.Identity;
 
 namespace BookStore.Controllers
@@ -64,29 +56,6 @@ namespace BookStore.Controllers
                 return Ok();
             }
             return Conflict();
-        }
-        [Authorize(Roles = "Admin")]
-        [Route("api/Orders/Delete/{id}")]
-        public IHttpActionResult Delete(int id)
-        {
-            if (Repo.DeleteOrder(id))
-            {
-                return Ok();
-            }
-            return NotFound();
-        }
-
-        //get status for order with orderId == id
-
-        [Route("api/Orders/{id}/status")]
-        public IHttpActionResult GetOrderStatus(int id)
-        {
-            string stats;
-            if (Repo.GetOrderStatus(id,out stats))
-            {
-                return Ok(stats);
-            }
-            return NotFound();
         }
     }
 }
