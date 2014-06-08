@@ -56,6 +56,14 @@ namespace BookStore.Logic.Repository
             return true;
         }
 
+        public bool AddBookCategory(int categoryId, int bookId)
+        {
+            if (!CategoryExists(categoryId))
+                return false;
+            _db.BookCategories.Add(new BookCategory {BookId = bookId, CategoryId = categoryId});
+            return true;
+        }
+
         public bool DeleteCategory(int id)
         {
             var category = GetCategoryImpl(id);
@@ -63,6 +71,18 @@ namespace BookStore.Logic.Repository
                 return false;
             _db.Categories.Remove(category);
             _db.SaveChanges();
+            return true;
+        }
+
+        public bool DeleteBookCategory(int categoryId, int bookId)
+        {
+            if (!CategoryExists(categoryId))
+                return false;
+            var bookCategory =
+                _db.BookCategories.FirstOrDefault(arg => arg.BookId == bookId && arg.CategoryId == categoryId);
+            if (bookCategory == null)
+                return false;
+            _db.BookCategories.Remove(bookCategory);
             return true;
         }
 
@@ -84,6 +104,24 @@ namespace BookStore.Logic.Repository
         public bool CategoryExists(string name)
         {
             return _db.Categories.FirstOrDefault(s => s.Name == name) != null;
+        }
+
+        public void ClearBookCategories(int bookId)
+        {
+            var currenCategories = _db.BookCategories.Where(bc => bc.BookId == bookId);
+            _db.BookCategories.RemoveRange(currenCategories);
+        }
+
+        public void AddBookCategories(int bookId, IEnumerable<int> categories)
+        {
+            foreach (var categoryId in categories)
+            {
+                //Nie dodajemy kategorii, które już są w bazie
+                var bookCategory = _db.BookCategories
+                    .FirstOrDefault(arg => arg.BookId == bookId && arg.CategoryId == categoryId);
+                if (bookCategory == null)
+                    _db.BookCategories.Add(new BookCategory { BookId = bookId, CategoryId = categoryId });
+            }
         }
 
         private Category GetCategoryImpl(int id)

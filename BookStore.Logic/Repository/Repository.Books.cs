@@ -121,13 +121,9 @@ namespace BookStore.Logic.Repository
             dalBook.Title = book.Title;
             dalBook.Year = book.Year;
             //TODO: zoptymalizować dodawanie i usuwanie załączników i kategorii
-            IEnumerable<int> categoriesIds = book.Categories.Select(cat => cat.Id).Distinct();
-            IQueryable<BookCategory> currenCategories = _db.BookCategories.Where(bc => bc.BookId == book.Id);
-            _db.BookCategories.RemoveRange(currenCategories);
-            foreach (int categoryId in categoriesIds)
-            {
-                _db.BookCategories.Add(new BookCategory {BookId = book.Id, CategoryId = categoryId});
-            }
+            ClearBookCategories(book.Id);
+            AddBookCategories(book.Id, book.Categories.Select(cat => cat.Id).Distinct());
+
             IQueryable<Attachment> currentAttachents = _db.Attachments.Where(att => att.BookId == book.Id);
             _db.Attachments.RemoveRange(currentAttachents);
             foreach (AttachmentModel attachment in book.Attachments)
