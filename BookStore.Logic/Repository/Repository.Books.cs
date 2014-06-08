@@ -65,6 +65,11 @@ namespace BookStore.Logic.Repository
             throw new System.NotImplementedException();
         }
 
+        public List<SimpleBookModel> SearchBooks(string searchPhrase)
+        {
+            throw new System.NotImplementedException();
+        }
+
         bool IBooksRepository.AddBook(BookModel book)
         {
             throw new System.NotImplementedException();
