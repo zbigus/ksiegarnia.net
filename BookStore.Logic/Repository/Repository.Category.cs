@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BookStore.Entities.Models;
 using BookStore.Logic.Models;
@@ -39,6 +38,7 @@ namespace BookStore.Logic.Repository
             if (!CategoryExists(categoryId))
                 return false;
             _db.BookCategories.Add(new BookCategory {BookId = bookId, CategoryId = categoryId});
+            _db.SaveChanges();
             return true;
         }
 
@@ -52,6 +52,7 @@ namespace BookStore.Logic.Repository
                 if (bookCategory == null)
                     _db.BookCategories.Add(new BookCategory { BookId = bookId, CategoryId = categoryId });
             }
+            _db.SaveChanges();
         }
 
         public bool DeleteCategory(int id)
@@ -68,23 +69,32 @@ namespace BookStore.Logic.Repository
         {
             if (!CategoryExists(categoryId))
                 return false;
-            var bookCategory =
-                _db.BookCategories.FirstOrDefault(arg => arg.BookId == bookId && arg.CategoryId == categoryId);
+            var bookCategory = _db.BookCategories
+                .FirstOrDefault(arg => arg.BookId == bookId && arg.CategoryId == categoryId);
             if (bookCategory == null)
                 return false;
             _db.BookCategories.Remove(bookCategory);
+            _db.SaveChanges();
             return true;
         }
 
         public void DeleteBookCategories(int bookId, IEnumerable<int> categories)
         {
-            throw new NotImplementedException();
+            foreach (var category in categories)
+            {
+                var bookCategory = _db.BookCategories
+                    .FirstOrDefault(arg => arg.BookId == bookId && arg.CategoryId == category);
+                if (bookCategory != null)
+                    _db.BookCategories.Remove(bookCategory);
+            }
+            _db.SaveChanges();
         }
 
         public void ClearBookCategories(int bookId)
         {
             var currenCategories = _db.BookCategories.Where(bc => bc.BookId == bookId);
             _db.BookCategories.RemoveRange(currenCategories);
+            _db.SaveChanges();
         }
 
         public bool UpdateCategory(CategoryModel category)
