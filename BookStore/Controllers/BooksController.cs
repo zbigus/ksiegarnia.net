@@ -14,27 +14,22 @@ namespace BookStore.Controllers
     public class BooksController : BaseApiController
     {
         public BooksController(IRepository repo) : base(repo) { }
-        public IHttpActionResult Get()
+        public List<BookModel> Get()
         {
-            return Ok(Repo.GetAllBooks().ToList().Select(s=> TheModelFactory.Create(s)));
+            return Repo.GetAllBooks();
         }
         //[HttpGet]
-        [Authorize]
-        public IHttpActionResult Get(int id) {
-            var book = Repo.GetBookById(id);
-            if (book != null)
-            {
-                var result = TheModelFactory.Create(book);
-                return Ok(result);
-            }
-            return NotFound();
+        //[Authorize]
+        [Route("api/Books/{id}")]
+        public BookModel Get(int id)
+        {
+            return Repo.GetBook(id);
         }
 
         [Route("api/Books/Initial")]
-        public IHttpActionResult GetInitialData()
+        public List<SimpleBookModel> GetInitialData()
         {
-            var initialData = Repo.GetAllBooks().ToList().Select(s=>TheModelFactory.CreateInitial(s));
-            return Ok(initialData);
+            return Repo.GetInitialBooks();
         }
         //[Authorize]
         [Route("api/Books/Delete/{id}")]

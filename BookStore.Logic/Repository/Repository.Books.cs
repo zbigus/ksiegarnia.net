@@ -7,14 +7,20 @@ namespace BookStore.Logic.Repository
 {
     public partial class Repository
     {
-        public IQueryable<Book> GetAllBooks()
+        public List<BookModel> GetAllBooks()
         {
-            return _db.Books.AsQueryable();
+            return _db.Books.AsEnumerable().Select(BookModel.Create).ToList();
         }
 
-        public Book GetBookById(int id)
+        public List<SimpleBookModel> GetInitialBooks()
         {
-            return _db.Books.FirstOrDefault(s => s.Id == id);
+            return _db.Books.AsEnumerable().Select(SimpleBookModel.Create).ToList();
+        }
+
+        public BookModel GetBookById(int id)
+        {
+            var result = GetBooksImpl(id);
+            return result == null ? null : BookModel.Create(result);
         }
 
         public bool AddBook(BookModel b, out int id)
@@ -148,6 +154,11 @@ namespace BookStore.Logic.Repository
             _db.Books.Remove(book);
             _db.SaveChanges();
             return true;
+        }
+
+        private Book GetBooksImpl(int id)
+        {
+            return _db.Books.Find(id);
         }
     }
 }
