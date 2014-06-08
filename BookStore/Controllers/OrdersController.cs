@@ -88,6 +88,18 @@ namespace BookStore.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Role.Admin)]
+        [Route("api/orders/execute/{id}")]
+        public IHttpActionResult ExecuteOrder(int id)
+        {
+            if (Repo.UpdateOrderStatus(id, OrderStatus.Executed, "executed"))
+            {
+                return Ok();
+            }
+            return Conflict();
+        }
+
+        [HttpPost]
         [Authorize(Roles=Role.Admin)]
         [Route("api/orders/update")]
         public IHttpActionResult UpdateOrderStatus([FromBody] OrderModel order)
