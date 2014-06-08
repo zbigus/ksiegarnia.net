@@ -10,7 +10,7 @@ namespace BookStore.Logic.Repository
     {
         public BookModel GetBook(int id)
         {
-            Book book = _db.Books.Find(id);
+            Book book = GetBookImpl(id);
             if (book == null)
                 return null;
             var result = new BookModel(book);
@@ -41,7 +41,7 @@ namespace BookStore.Logic.Repository
             var result = new List<SimpleBookModel>();
             foreach (var bookId in bookIds)
             {
-                var book = _db.Books.Find(bookId);
+                var book = GetBookImpl(bookId);
                 if (book != null)
                 {
                     var bookModel = SimpleBookModel.Create(book);
@@ -109,7 +109,7 @@ namespace BookStore.Logic.Repository
 
         public bool UpdateBook(BookModel book)
         {
-            var dalBook = _db.Books.Find(book.Id);
+            var dalBook = GetBookImpl(book.Id);
             if (dalBook == null)
                 return false;
             dalBook.Author = book.Author;
@@ -139,11 +139,9 @@ namespace BookStore.Logic.Repository
 
         public bool DeleteBook(int id)
         {
-            Book book = _db.Books.Find(id);
+            var book = GetBookImpl(id);
             if (book == null)
-            {
                 return false;
-            }
             _db.Books.Remove(book);
             _db.SaveChanges();
             return true;
@@ -151,10 +149,10 @@ namespace BookStore.Logic.Repository
 
         public bool BookExists(int id)
         {
-            throw new System.NotImplementedException();
+            return GetBookImpl(id) != null;
         }
 
-        private Book GetBooksImpl(int id)
+        private Book GetBookImpl(int id)
         {
             return _db.Books.Find(id);
         }

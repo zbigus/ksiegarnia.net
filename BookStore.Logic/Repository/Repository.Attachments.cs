@@ -43,7 +43,7 @@ namespace BookStore.Logic.Repository
             if (AttachmentExists(attachment.Id))
                 return false;
             //Nie dodajemy załączników bez istniejącej książki
-            if (_db.Books.Find(attachment.BookId) == null)
+            if (!BookExists(attachment.BookId))
                 return false;
             _db.Attachments.Add(new Attachment
             {
@@ -60,7 +60,7 @@ namespace BookStore.Logic.Repository
             foreach (var attachment in attachments)
             {
                 //Sprawdzamy czy książka istnieje i czy nie ma takiego załącznika w bazie
-                if (_db.Books.Find(attachment.BookId) != null && !AttachmentExists(attachment.Id))
+                if (BookExists(attachment.BookId) && !AttachmentExists(attachment.Id))
                     _db.Attachments.Add(new Attachment
                     {
                         BookId = attachment.BookId,
