@@ -8,28 +8,6 @@ namespace BookStore.Logic.Repository
 {
     public partial class Repository
     {
-        public IQueryable<Category> GetAllCategories()
-        {
-            return _db.Categories.AsQueryable();
-        }
-
-        public bool AddCategory(string name, out int id)
-        {
-            if (_db.Categories.FirstOrDefault(s => s.Name == name) != null)
-            {
-                id = 0;
-                return false;
-            }
-            var category = new Category
-            {
-                Name = name
-            };
-            _db.Categories.Add(category);
-            _db.SaveChanges();
-            id = category.Id;
-            return true;
-        }
-
         public CategoryModel GetCategory(int id)
         {
             var category = GetCategoryImpl(id);

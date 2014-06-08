@@ -7,9 +7,6 @@ namespace BookStore.Logic.Interfaces
 {
     public interface ICategoryRepository
     {
-        IQueryable<Category> GetAllCategories();
-        bool AddCategory(string name, out int id);
-
         CategoryModel GetCategory(int id);
         List<CategoryModel> GetCategories();
         bool AddCategory(string name);
