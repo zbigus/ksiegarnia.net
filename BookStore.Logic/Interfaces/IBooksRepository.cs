@@ -13,8 +13,10 @@ namespace BookStore.Logic.Interfaces
         
         List<SimpleBookModel> GetTopNewBooks();
 
-        List<SimpleBookModel> GetTopSaleBooks(); 
-            
+        List<SimpleBookModel> GetTopSaleBooks();
+
+        List<SimpleBookModel> SearchBooks(string searchPhrase); 
+    
         bool AddBook(BookModel book);
         
         bool UpdateBook(BookModel book);
