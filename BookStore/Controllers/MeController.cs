@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Http;
+using BookStore.Entities.Models;
 using BookStore.Logic.Managers;
 using BookStore.Logic.Models;
 using Microsoft.AspNet.Identity;
@@ -34,10 +35,11 @@ namespace BookStore.Controllers
         }
 
         // GET api/Me
+        [Authorize(Roles = Role.Admin)]
         public GetViewModel Get()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
-            return new GetViewModel() {  };
+            return new GetViewModel { UserName = user.UserName};
         }
     }
 }
