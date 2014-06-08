@@ -12,6 +12,7 @@ namespace BookStore.Logic.Interfaces
         bool AddCategory(string name);
         bool AddBookCategory(int categoryId, int bookId);
         void AddBookCategories(int bookId, IEnumerable<int> categories);
+        void AddDeleteBookCatedories(int bookId, IEnumerable<int> categories);
         bool DeleteCategory(int id);
         bool DeleteBookCategory(int categoryId, int bookId);
         void DeleteBookCategories(int bookId, IEnumerable<int> categories);
@@ -19,7 +20,5 @@ namespace BookStore.Logic.Interfaces
         bool UpdateCategory(CategoryModel category);
         bool CategoryExists(int id);
         bool CategoryExists(string name);
-        
-        
     }
 }

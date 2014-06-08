@@ -55,6 +55,20 @@ namespace BookStore.Logic.Repository
             _db.SaveChanges();
         }
 
+        public void AddDeleteBookCatedories(int bookId, IEnumerable<int> categories)
+        {
+            var catList = categories.ToList();
+            var current = _db.BookCategories
+                .Where(arg => arg.BookId == bookId)
+                .Select(arg => arg.CategoryId)
+                .Distinct();
+            var toDelete = current.Except(catList);
+            //usuwamy te których nie ma w kolekcji
+            DeleteBookCategories(bookId, toDelete);
+            //dodajemy kategorie z kolekcji. Ta metoda nie dodaje tych, które już są
+            AddBookCategories(bookId, catList);
+        }
+
         public bool DeleteCategory(int id)
         {
             var category = GetCategoryImpl(id);

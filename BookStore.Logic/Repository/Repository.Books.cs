@@ -90,12 +90,12 @@ namespace BookStore.Logic.Repository
             };
             _db.Books.Add(newBook);
             //zapisujemy powiązane kategorie
-            foreach (CategoryModel categories in book.Categories)
+            foreach (var categories in book.Categories)
             {
                 _db.BookCategories.Add(new BookCategory {BookId = newBook.Id, CategoryId = categories.Id});
             }
             //dodajemy załączniki
-            foreach (AttachmentModel attachment in book.Attachments)
+            foreach (var attachment in book.Attachments)
             {
                 _db.Attachments.Add(new Attachment
                 {
@@ -110,7 +110,7 @@ namespace BookStore.Logic.Repository
 
         public bool UpdateBook(BookModel book)
         {
-            Book dalBook = _db.Books.Find(book.Id);
+            var dalBook = _db.Books.Find(book.Id);
             if (dalBook == null)
                 return false;
             dalBook.Author = book.Author;
@@ -120,13 +120,12 @@ namespace BookStore.Logic.Repository
             dalBook.Publisher = book.Publisher;
             dalBook.Title = book.Title;
             dalBook.Year = book.Year;
-            //TODO: zoptymalizować dodawanie i usuwanie załączników i kategorii
-            ClearBookCategories(book.Id);
-            AddBookCategories(book.Id, book.Categories.Select(cat => cat.Id).Distinct());
+            AddDeleteBookCatedories(book.Id, book.Categories.Select(cat => cat.Id));
 
-            IQueryable<Attachment> currentAttachents = _db.Attachments.Where(att => att.BookId == book.Id);
+            //TODO: zoptymalizować dodawanie i usuwanie załączników i kategorii
+            var currentAttachents = _db.Attachments.Where(att => att.BookId == book.Id);
             _db.Attachments.RemoveRange(currentAttachents);
-            foreach (AttachmentModel attachment in book.Attachments)
+            foreach (var attachment in book.Attachments)
             {
                 _db.Attachments.Add(new Attachment
                 {
