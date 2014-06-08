@@ -62,12 +62,12 @@ namespace BookStore.Logic.Repository
 
         public void AddDeleteBookCatedories(int bookId, IEnumerable<int> categories)
         {
-            var catList = categories.ToList();
-            var current = _db.BookCategories
+            var catList = categories.ToArray();
+            var toDelete = _db.BookCategories
                 .Where(arg => arg.BookId == bookId)
                 .Select(arg => arg.CategoryId)
+                .Except(catList)
                 .Distinct();
-            var toDelete = current.Except(catList);
             //usuwamy te których nie ma w kolekcji
             DeleteBookCategories(bookId, toDelete);
             //dodajemy kategorie z kolekcji. Ta metoda nie dodaje tych, które już są
@@ -96,7 +96,7 @@ namespace BookStore.Logic.Repository
             _db.SaveChanges();
             return true;
         }
-
+        
         public void DeleteBookCategories(int bookId, IEnumerable<int> categories)
         {
             foreach (var category in categories)

@@ -1,4 +1,5 @@
-﻿using BookStore.Entities.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using BookStore.Entities.Models;
 
 namespace BookStore.Logic.Models
 {
@@ -18,7 +19,9 @@ namespace BookStore.Logic.Models
 
         public int Id { get; set; }
         public int BookId { get; set; }
+        [StringLength(255, ErrorMessage = "{0} nie może zawierać więcej niż {1} znaków.")]
         public string Name { get; set; }
+        [Required]
         public byte[] Content { get; set; }
 
         public static AttachmentModel Create(Attachment attachment)
