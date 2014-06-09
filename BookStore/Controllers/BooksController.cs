@@ -11,7 +11,6 @@ namespace BookStore.Controllers
         /// <summary>
         /// Gets all the books from the bookstore
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
         public List<SimpleBookModel> Get()
         {
@@ -20,30 +19,52 @@ namespace BookStore.Controllers
         //[HttpGet]
         //[Authorize]
         
+        /// <summary>
+        /// Get book with specific id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Route("api/Books/{id}")]
         public BookModel Get(int id)
         {
             return Repo.GetBook(id);
         }
-
+        /// <summary>
+        /// Get books from given category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Route("api/Books/category/{id}")]
         public List<SimpleBookModel> GetBooksByCategory(int id)
         {
             return Repo.GetBooksByCategory(id);
         }
 
+        /// <summary>
+        /// Get top 10 books from bookstore
+        /// </summary>
+        /// <returns></returns>
         [Route("api/Books/top")]
         public List<SimpleBookModel> GetTopBooks()
         {
             return Repo.GetTopNewBooks();
         }
 
+        /// <summary>
+        /// Get 5 bestselling books
+        /// </summary>
+        /// <returns></returns>
         [Route("api/Books/bestsellers")]
         public List<SimpleBookModel> GetBestsellers()
         {
             return Repo.GetTopSaleBooks();
         }
 
+        /// <summary>
+        /// Search for books with given phrase
+        /// </summary>
+        /// <param name="phrase"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Books/search/{phrase}")]
         public List<SimpleBookModel> Search(string phrase)
@@ -57,6 +78,11 @@ namespace BookStore.Controllers
         //    return Repo.GetInitialBooks();
         //}
         //[Authorize]
+        /// <summary>
+        /// Delete book with given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Route("api/Books/Delete/{id}")]
         public IHttpActionResult Delete(int id) {
             if (Repo.DeleteBook(id)) {
@@ -65,6 +91,11 @@ namespace BookStore.Controllers
             return NotFound();            
         }
 
+        /// <summary>
+        /// Add new book to database
+        /// </summary>
+        /// <param name="book"></param>
+        /// <returns></returns>
         [HttpPost]
         public IHttpActionResult Post([FromBody] BookModel book)
         {
@@ -79,6 +110,11 @@ namespace BookStore.Controllers
             return Conflict();
         }
 
+        /// <summary>
+        /// Update existing book in database
+        /// </summary>
+        /// <param name="book"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/Books/update")]
         public IHttpActionResult UpdateBook([FromBody] BookModel book)
