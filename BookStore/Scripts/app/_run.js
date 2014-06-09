@@ -45,11 +45,12 @@
 
        
         _call('get', '/api/me', {}, function (data) {
+            console.log(data);
             $('#userWelcome').html('Witaj ' + data.userName);
         });
 
         _call('get', '/api/Categories', {}, function (data) {
-            console.log(data);
+            
             $.each(data, function (k, v) {
                 $('.catygory-list').append('<li><a href="3" id="' + v.id + '">' + v.name + '</a></li>')
             });
