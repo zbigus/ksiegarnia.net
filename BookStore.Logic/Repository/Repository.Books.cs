@@ -7,6 +7,9 @@ namespace BookStore.Logic.Repository
 {
     public partial class Repository
     {
+        private const int TopBooksCount = 10;
+        private const int TopSaleCount = 5;
+
         public BookModel GetBook(int id)
         {
             var book = GetBookImpl(id);
@@ -55,7 +58,7 @@ namespace BookStore.Logic.Repository
         {
             var books = _db.Books
                 .OrderByDescending(book => book.InsertDate)
-                .Take(10)
+                .Take(TopBooksCount)
                 .AsEnumerable()
                 .Select(SimpleBookModel.Create)
                 .ToList();
@@ -82,7 +85,7 @@ namespace BookStore.Logic.Repository
                 .GroupBy(order => order.BookId)
                 .Select(orders => new {Id = orders.Key, Count = orders.Count()})
                 .OrderByDescending(arg => arg.Count)
-                .Take(5)
+                .Take(TopSaleCount)
                 .Select(arg => arg.Id);
             return GetBooksImpl(bookIds);
         }
