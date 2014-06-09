@@ -331,7 +331,7 @@
                         
                         location.reload();
                         _data = {};
-                    });
+                    }, function () { location.reload(); });
                     
                 }
 
