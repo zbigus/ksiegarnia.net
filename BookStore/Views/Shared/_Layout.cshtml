@@ -21,23 +21,23 @@
                 @Html.ActionLink("BookStore Project", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
- 
-                    <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">
+                        @if (Request.IsAuthenticated)
+                        {
                             <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategoria</a>
-                            <ul class="dropdown-menu catygory-list-js" style="padding:12px;">
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Szukaj</a>
-                            <ul class="dropdown-menu" style="padding:12px;">
-                                <form class="form-inline">
-                                    <button type="submit" id="search-by-string-top" class="btn btn-default pull-left"><i class="glyphicon glyphicon-search"></i></button><input type="text" id="search-string-top" class="form-control pull-left" placeholder="Wyszukaj">
-                                </form>
-                            </ul>
-                        </li>
-                    }
-
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategoria</a>
+                                <ul class="dropdown-menu catygory-list-js" style="padding: 12px;"></ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Szukaj</a>
+                                <ul class="dropdown-menu" style="padding: 12px;">
+                                    <form class="form-inline">
+                                        <button type="submit" id="search-by-string-top" class="btn btn-default pull-left"><i class="glyphicon glyphicon-search"></i></button><input type="text" id="search-string-top" class="form-control pull-left" placeholder="Wyszukaj">
+                                    </form>
+                                </ul>
+                            </li>
+                        }
+                        
                     @if (User.IsInRole(Role.Admin))
                     {
                         <li>@Html.ActionLink("Admin", "Index", "Account")</li>
