@@ -112,6 +112,9 @@
     <Compile Include="Controllers\OrdersControllerTest.cs" />
     <Compile Include="ExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AtachmentsRepositoryTest.cs" />
+    <Compile Include="Repository\BooksRepositoryTest.cs" />
+    <Compile Include="Repository\CategoriesRepositoryTest.cs" />
     <Compile Include="Repository\OrdersRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>

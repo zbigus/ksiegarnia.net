@@ -13,8 +13,8 @@ namespace BookStore.Logic.Models
         /// </summary>
         public string ShopCommentEdit { get; set; }
         public string BookDescription { get; set; }
-        public DateTime? OrderDate { get; set; }
-        public DateTime? ModificationDate { get; set; }
+        public DateTime OrderDate { get; set; }
+        public DateTime ModificationDate { get; set; }
         /// <summary>
         /// Atrybut dostępny tylko dla admina
         /// </summary>

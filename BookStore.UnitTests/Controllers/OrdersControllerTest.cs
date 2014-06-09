@@ -21,7 +21,7 @@ namespace BookStore.UnitTests.Controllers
         public void GetAllOrders_ShouldReturnTypeOkNegotiatedContentResult()
         {
             var result = ordersController.Get();
-            Assert.IsTrue(result.GetType() == typeof(OkNegotiatedContentResult<IEnumerable<OrderModel>>));
+            Assert.IsTrue(result.GetType() == typeof(List<OrderModel>));
         }
         /*[TestMethod]
         public void AddOrderWithNonexistingId_ShouldReturnTypeCreatedAtRoute()

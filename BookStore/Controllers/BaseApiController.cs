@@ -1,41 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Dependencies;
 using BookStore.Logic.Interfaces;
 using BookStore.Logic.Managers;
-using BookStore.Logic.Models;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Practices.Unity;
 
 namespace BookStore.Controllers
 {
     public class BaseApiController : ApiController
     {
-        private static IRepository _repo ;
-        public UserManager UserManager = UserManager.Create();
-        
-        protected static IRepository Repo {
-            get {
-                return _repo;
-            }
-        }
+        public IRepository Repo { get; private set; }
 
-        protected ModelFactory ModelFactory;
-
-        protected ModelFactory TheModelFactory
+        private UserManager _userManager;
+        public UserManager UserManager
         {
             get
             {
-                if (ModelFactory == null)
-                {
-                    ModelFactory = new ModelFactory();
-                }
-                return ModelFactory;
+                return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<UserManager>();
+            }
+            private set
+            {
+                _userManager = value;
             }
         }
-        
-        public BaseApiController(IRepository repo) {
-            _repo = repo;
+
+        public BaseApiController(IRepository repo)
+        {
+            Repo = repo;
+            UserManager = UserManager.Create();
         }
 
     }
