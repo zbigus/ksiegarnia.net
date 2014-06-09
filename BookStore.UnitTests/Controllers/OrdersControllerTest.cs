@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookStore.Entities.Models;
 using BookStore.Logic.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BookStore.Logic.Interfaces;
@@ -18,27 +19,69 @@ namespace BookStore.UnitTests.Controllers
         OrdersController ordersController = new OrdersController(_mockUserRepo.Object);
 
         [TestMethod]
-        public void GetAllOrders_ShouldReturnTypeOkNegotiatedContentResult()
+        public void GetAllOrders_ShouldReturnTypeListOrderModel()
         {
+            _mockUserRepo.Setup(m => m.GetOrders()).Returns(new List<OrderModel>());
             var result = ordersController.Get();
             Assert.IsTrue(result.GetType() == typeof(List<OrderModel>));
         }
+
+        [TestMethod]
+        public void GetOrder_ShouldReturnTypeOrderDetailModel()
+        {
+            _mockUserRepo.Setup(m => m.GetOrder(It.IsAny<int>())).Returns(new OrderDetailModel());
+            var result = ordersController.Get(It.IsAny<int>());
+            Assert.IsTrue(result.GetType() == typeof(OrderDetailModel));
+        }
+
+        [TestMethod]
+        public void GetOrdersWithStatus_ShouldReturnTypeListOrderModel()
+        {
+            _mockUserRepo.Setup(m => m.GetOrders(It.IsAny<OrderStatus>())).Returns(new List<OrderModel>());
+            var result = ordersController.GetOrdersWithStatus(It.IsAny<OrderStatus>());
+            Assert.IsTrue(result.GetType() == typeof(List<OrderModel>));
+        }
+
         /*[TestMethod]
+        public void GetOrdersForUser_ShouldReturnTypeListOrderModel()
+        {
+            _mockUserRepo.Setup(m => m.GetOrders(It.IsAny<string>())).Returns(new List<OrderModel>());
+            var result = ordersController.GetOrdersForUser();
+            Assert.IsTrue(result.GetType() == typeof(List<OrderModel>));
+        }
+        [TestMethod]
         public void AddOrderWithNonexistingId_ShouldReturnTypeCreatedAtRoute()
         {
-            int i;
-            _mockUserRepo.Setup(m => m.AddOrder(It.IsAny<OrderModel>(), out i)).Returns(true);
-            var result = ordersController.Post(It.IsAny<OrderModel>());
-            Assert.IsTrue(result.GetType() == typeof(CreatedAtRouteNegotiatedContentResult<OrderModel>));
+            _mockUserRepo.Setup(m => m.AddOrder(It.IsAny<int>(), It.IsAny<string>())).Returns(true);
+            var result = ordersController.Post(It.IsAny<int>());
+            Assert.IsTrue(result.GetType() == typeof(OkResult));
         }
         [TestMethod]
         public void AddOrderWithExistingId_ShouldReturnTypeConflict()
         {
-            int i;
-            _mockUserRepo.Setup(m => m.AddOrder(It.IsAny<OrderModel>(), out i)).Returns(false);
-            var result = ordersController.Post(It.IsAny<OrderModel>());
+            _mockUserRepo.Setup(m => m.AddOrder(It.IsAny<int>(), It.IsAny<string>())).Returns(false);
+            var result = ordersController.Post(It.IsAny<int>());
             Assert.IsTrue(result.GetType() == typeof(ConflictResult));
         }*/
+
+        [TestMethod]
+        public void DropOrderAsAdmin_ShouldReturnTypeOk()
+        {
+            int i;
+            _mockUserRepo.Setup(m => m.UpdateOrderStatus(It.IsAny<int>(), It.IsAny<OrderStatus>(),It.IsAny<string>())).Returns(true);
+            var result = ordersController.DropOrderAsAdmin(It.IsAny<int>());
+            Assert.IsTrue(result.GetType() == typeof(OkResult));
+        }
+
+        [TestMethod]
+        public void DropOrderAsAdmin_ShouldReturnTypeConflict()
+        {
+            int i;
+            _mockUserRepo.Setup(m => m.UpdateOrderStatus(It.IsAny<int>(), It.IsAny<OrderStatus>(), It.IsAny<string>())).Returns(false);
+            var result = ordersController.DropOrderAsAdmin(It.IsAny<int>());
+            Assert.IsTrue(result.GetType() == typeof(ConflictResult));
+        }
+
         //[TestMethod]
         //public void GetOrderStatus_ShouldReturnTypeOkNegotiatedContext()
         //{

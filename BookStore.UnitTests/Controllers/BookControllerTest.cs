@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Helpers;
+using System.Web.Http;
 using System.Web.Http.Results;
 using BookStore.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -23,33 +24,27 @@ namespace BookStore.UnitTests.Controllers
         BooksController booksController = new BooksController(_mockUserRepo.Object);
 
         [TestMethod]
-        public void GetAllBooks_ShouldReturnTypeOkNegotiatedContentResult()
+        public void GetAllBooks_ShouldReturnTypeListBookModel()
         {
+            _mockUserRepo.Setup(m => m.GetBooks()).Returns(new List<SimpleBookModel>());
             var result = booksController.Get();
-            Assert.IsTrue(result.GetType() == typeof(List<BookModel>));
-        }
-
-        /*[TestMethod]
-        public void GetInitialData_ShouldReturnTypeSimpleBookModel()
-        {
-            var result = booksController.GetInitialData();
             Assert.IsTrue(result.GetType() == typeof(List<SimpleBookModel>));
         }
-
+        
         [TestMethod]
-        public void GetBookByIDWithExistingID_ShouldReturnTypeOkResult()
+        public void GetBookByIDWithExistingID_ShouldReturnTypeBookModel()
         {
-            _mockUserRepo.Setup(m => m.GetBookById(It.IsAny<int>())).Returns(new Book());
+            _mockUserRepo.Setup(m => m.GetBook(It.IsAny<int>())).Returns(new BookModel());
             var result = booksController.Get(It.IsAny<int>());
-            Assert.IsTrue(result.GetType() == typeof(OkNegotiatedContentResult<BookModel>));
+            Assert.IsTrue(result.GetType() == typeof(BookModel));
         }
-
-        [TestMethod]
+        
+        /*[TestMethod]
         public void GetBookByIDWithNonExistingID_ShouldReturnTypeOkResult()
         {
-            _mockUserRepo.Setup(m => m.GetBookById(It.IsAny<int>())).Returns(default(Book));
+            _mockUserRepo.Setup(m => m.GetBook(It.IsAny<int>())).Returns(null);
             var result = booksController.Get(It.IsAny<int>());
-            Assert.IsTrue(result.GetType() == typeof(NotFoundResult));
+            Assert.IsTrue(result.GetType() == null);
         }*/
 
         [TestMethod]
@@ -68,13 +63,13 @@ namespace BookStore.UnitTests.Controllers
             Assert.IsTrue(result.GetType() == typeof(OkResult));
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void PostWithExistingId_ShouldReturnConflict()
         {
             int i;
-            _mockUserRepo.Setup(m => m.AddBook(It.IsAny<BookModel>(),It.IsAny<List<string>>(),out i)).Returns(true);
-            var result = booksController.Post(It.IsAny<object[]>());
+            _mockUserRepo.Setup(m => m.AddBook(It.IsAny<BookModel>())).Returns(true);
+            var result = booksController.Post(It.IsAny<BookModel>());
             Assert.IsTrue(result.GetType() == typeof(CreatedAtRouteNegotiatedContentResult<BookModel>));
-        }*/
+        }
     }
 }
