@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="Ksiegarnia" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://localhost:49979" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="CreateWadlDocumentationAction@report-directory">C:\Users\KT\Desktop</con:setting></con:settings><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>${#Project#endpoint}</con:endpoint></con:endpoints><con:resource name="Books" path="/Api/books/{id}"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value/><con:style>TEMPLATE</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Books" method="GET"><con:settings><con:setting id="RecordResponseRepresentations">true</con:setting></con:settings><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>400</con:status><con:params/><con:element xmlns:book="http://localhost/Api/books">book:Fault</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:book="http://schemas.datacontract.org/2004/07/BookStore.Logic.Models">book:ArrayOfBookModel</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml; charset=utf-8</con:mediaType><con:status>400</con:status><con:params/><con:element>Error</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=utf-8</con:mediaType><con:status>400</con:status><con:params/><con:element>html</con:element></con:representation><con:request name="GetBooks" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="Categories" path="/Api/Categories/{id}"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value/><con:style>TEMPLATE</con:style><con:default/></con:parameter></con:parameters><con:method name="Categories" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:book="http://schemas.datacontract.org/2004/07/BookStore.Logic.Models">book:ArrayOfCategoryModel</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml; charset=utf-8</con:mediaType><con:status>400</con:status><con:params/><con:element>Error</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=utf-8</con:mediaType><con:status>400</con:status><con:params/><con:element>html</con:element></con:representation><con:request name="GetCategories" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry/></con:parameterOrder></con:request></con:method></con:resource><con:resource name="Orders" path="/Api/Orders/{id}"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value/><con:style>TEMPLATE</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>status</con:name><con:style>QUERY</con:style></con:parameter></con:parameters><con:method name="OrdersById" method="GET"><con:settings/><con:parameters><con:parameter><con:name>status</con:name><con:style>QUERY</con:style></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:book="http://schemas.datacontract.org/2004/07/BookStore.Logic.Models">book:ArrayOfOrderModel</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>401</con:status><con:params/><con:element xmlns:stat="http://localhost/Api/Orders/status">stat:Fault</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml; charset=utf-8</con:mediaType><con:status>400 401</con:status><con:params/><con:element>Error</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="GetOrders" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/Orders/Status</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>id</con:entry><con:entry>status</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="OrdersByStatus" path="/Api/Orders/status/{status}"><con:settings/><con:parameters><con:parameter><con:name>status</con:name><con:value>1</con:value><con:style>TEMPLATE</con:style><con:default>1</con:default><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="OrdersByStatus" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:book="http://schemas.datacontract.org/2004/07/BookStore.Logic.Models">book:ArrayOfOrderModel</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>401</con:status><con:params/><con:element xmlns:stat="http://localhost/Api/Orders/status">stat:Fault</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml; charset=utf-8</con:mediaType><con:status>400 401</con:status><con:params/><con:element>Error</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=utf-8</con:mediaType><con:status>400</con:status><con:params/><con:element>html</con:element></con:representation><con:request name="GetOrdersByStatus" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/Orders/Status</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="status" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>status</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="OrderBook" path="/Api/Orders/orderbook/{bookId}"><con:settings/><con:parameters><con:parameter><con:name>bookId</con:name><con:style>TEMPLATE</con:style></con:parameter></con:parameters><con:method name="OrderBook" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:book="http://schemas.datacontract.org/2004/07/BookStore.Logic.Models">book:ArrayOfOrderModel</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>401 500</con:status><con:params/><con:element xmlns:stat="http://localhost/Api/Orders/status">stat:Fault</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml; charset=utf-8</con:mediaType><con:status>400 405 500</con:status><con:params/><con:element>Error</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/xml</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Order" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/Orders/Status</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>bookId</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="Me" path="/Api/Me"><con:settings/><con:parameters/><con:method name="Me" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml; charset=utf-8</con:mediaType><con:status>401</con:status><con:params/><con:element>Error</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="GetMe" mediaType="application/json"><con:settings/><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:testSuite name="Library" disabled="true"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Parser" searchProperties="true"><con:settings/><con:testStep type="groovy" name="ClobParser"><con:settings/><con:config><script>class ClobPaser{
+
+	def log
+   def context
+   def testRunner
+
+   def ClobPaser(logIn,contextIn,testRunnerIn)
+   {
+      this.log = logIn
+      this.context = contextIn
+      this.testRunner = testRunnerIn
+   }
+
+	def clobToString(Object data) {
+    StringBuilder sb = new StringBuilder();
+     try {
+        Reader reader = data.getCharacterStream();
+        BufferedReader br = new BufferedReader(reader);
+
+        String line;
+ 
+	    while(null != (line = br.readLine())) {
+	         sb.append(line);
+       	}
+        br.close();
+    } catch (Exception e) {
+   	return "";
+    }
+    return sb.toString();
+}
+
+
+}
+
+context.setProperty( "clobParser", new ClobPaser( log, context, testRunner) )
+log.info "Library Context:"+context
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite name="BookTest"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="DisplayBooks" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" id="637a43d9-c27c-46d5-865e-9dc2e91cd691"><con:settings/><con:testStep type="groovy" name="GetDataFromDB"><con:settings/><con:config><script>import groovy.sql.Sql
+
+library = testRunner.testCase.testSuite.project.testSuites["Library"]
+module = library.testCases["Parser"].testSteps["ClobParser"]
+module.run(testRunner, context)
+def clobParser = context.clobParser
+
+def db = testRunner.getTestCase().getTestSuite().project.getPropertyValue("db")
+def dbUser = testRunner.getTestCase().getTestSuite().project.getPropertyValue("dbUser")
+def dbPassword = testRunner.getTestCase().getTestSuite().project.getPropertyValue("dbPassword")
+
+def rows, dbConn = null
+
+	try {
+		dbConn = Sql.newInstance('jdbc:jtds:sqlserver://'+db, dbUser, dbPassword, "net.sourceforge.jtds.jdbc.Driver")	
+		log.info "Connected"
+ 		rows = dbConn.rows("select * from Books;")
+
+		if(rows.size()>0){
+	 		def row = rows.get(new Random().nextInt(rows.size()))
+
+			testRunner.getTestCase().getTestSuite().setPropertyValue("booksCount", rows.size().toString())
+			testRunner.getTestCase().getTestSuite().setPropertyValue("id", row.Id.toString())
+			testRunner.getTestCase().getTestSuite().setPropertyValue("title",row.Title.toString())
+			testRunner.getTestCase().getTestSuite().setPropertyValue("author", row.Author.toString())
+			testRunner.getTestCase().getTestSuite().setPropertyValue("isbn", row.Isbn.toString())
+			testRunner.getTestCase().getTestSuite().setPropertyValue("publisher", row.Publisher.toString())
+			testRunner.getTestCase().getTestSuite().setPropertyValue("year", row.Year.toString().replace(" ", "T"))
+			testRunner.getTestCase().getTestSuite().setPropertyValue("price", row.Price.toString())
+			testRunner.getTestCase().getTestSuite().setPropertyValue("description", clobParser.clobToString(row.Description))
+		}
+		else
+			log.info "No data in DB"
+
+		dbConn.close()
+		
+	} catch (Exception e) {
+	    log.error "Failed to get data from the database."
+	}
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="GetBookCategories"><con:settings/><con:config><script>import groovy.sql.Sql
+
+library = testRunner.testCase.testSuite.project.testSuites["Library"]
+module = library.testCases["Parser"].testSteps["ClobParser"]
+module.run(testRunner, context)
+def clobParser = context.clobParser
+
+def db = testRunner.getTestCase().getTestSuite().project.getPropertyValue("db")
+def dbUser = testRunner.getTestCase().getTestSuite().project.getPropertyValue("dbUser")
+def dbPassword = testRunner.getTestCase().getTestSuite().project.getPropertyValue("dbPassword")
+
+def id = testRunner.getTestCase().getTestSuite().getPropertyValue("id")
+
+def rows, dbConn = null
+
+	try {
+		dbConn = Sql.newInstance('jdbc:jtds:sqlserver://'+db, dbUser, dbPassword, "net.sourceforge.jtds.jdbc.Driver")	
+		log.info "Connected"
+ 		rows = dbConn.rows("select c.Id, c.Name from BookCategories bc join Categories c on (bc.CategoryId = c.Id) where bc.BookId = $id;")
+
+		def categories = [:]
+	
+		if(rows.size()>0){
+	 		rows.each{
+	 			categories[it.Id.toString()] = "'"+it.Name.toString()+"'"
+	 		}
+		}
+
+		testRunner.getTestCase().getTestSuite().setPropertyValue("categories", categories.sort().toString())
+
+		dbConn.close()
+		
+	} catch (Exception e) {
+	    log.error "Failed to get data from the database."
+	}
+
+</script></con:config></con:testStep><con:testStep type="restrequest" name="DisplayBooksList"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/books/{id}" methodName="Books" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayBooksList" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="IsCorrectNumberOfBooks"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+count(ns1:ArrayOfSimpleBookModel/ns1:SimpleBookModel)</path><content>${#TestSuite#booksCount}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" name="ContainsCorrectBook"><con:configuration><scriptText>def id = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("id")
+def author = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("author")
+def description = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("description")
+def isbn = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("isbn")
+def price = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("price")
+def publisher = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("publisher")
+def title = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("title")
+def year = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("year")
+
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def holder = groovyUtils.getXmlHolder(messageExchange.responseContentAsXml.toString())
+
+
+use(groovy.xml.dom.DOMCategory){
+ 	for (book in holder.getDomNodes("//Response/e")){
+
+ 		if(book.'id'.text() == id){
+ 			assert book.'title'.text() == title
+ 			assert book.'author'.text() == author
+ 			assert book.'description'.text() == description
+ 			assert book.'isbn'.text() == isbn
+ 			assert book.'price'.text() == price
+ 			assert book.'publisher'.text() == publisher
+ 			assert book.'year'.text() == year
+ 		}
+ 	}
+
+ 	}</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry/></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayBookById"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/books/{id}" methodName="Books" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayBookById" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="GroovyScriptAssertion" name="ContainsCorrectBook"><con:configuration><scriptText>def id = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("id")
+def author = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("author")
+def description = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("description")
+def isbn = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("isbn")
+def price = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("price")
+def publisher = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("publisher")
+def title = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("title")
+def year = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("year")
+//def attachment = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("attachment")
+def categories = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("categories")
+categories=evaluate(categories)
+
+
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def holder = groovyUtils.getXmlHolder(messageExchange.responseContentAsXml.toString())
+
+holder.namespaces["ns1"] = 'http://schemas.datacontract.org/2004/07/BookStore.Logic.Models'
+holder.namespaces["i"] = 'http://www.w3.org/2001/XMLSchema-instance'
+
+
+use(groovy.xml.dom.DOMCategory){
+ 	  book = holder.getDomNode("ns1:BookModel")
+
+ 			assert book.'Id'.text() == id
+ 			assert book.'Title'.text() == title
+ 			assert book.'Author'.text() == author
+ 			assert book.'Description'.text() == description
+ 			assert book.'Isbn'.text() == isbn
+ 			assert book.'Price'.text() == price
+ 			assert book.'Publisher'.text() == publisher
+ 			assert book.'Year'.text() == year
+			//assert book.'Attachment'.text() == attachment
+
+			def categoriesFromResponse = [:]
+		 	for (category in holder.getDomNodes("ns1:BookModel/ns1:Categories/ns1:CategoryModel")){
+				def catId = category.'Id'.text().toInteger()
+ 				def catName = category.'Name'.text()
+ 				categoriesFromResponse[catId] = catName
+			 }
+			
+			assert categoriesFromResponse == categories
+ 	}
+
+
+
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="${#TestSuite#id}" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry/></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ErrorCheck" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" id="ee96dc17-0a51-45a1-b152-92e84db8114b"><con:settings/><con:testStep type="restrequest" name="DisplayBookByIncorrectId"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/books/{id}" methodName="Books" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Copy of DisplayBookById" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>The request is invalid.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="CorrectErrorMessageDetail"><con:configuration><path>Error/MessageDetail</path><content>The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'BookStore.Logic.Models.BookModel Get(Int32)' in 'BookStore.Controllers.BooksController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="a" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry/></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayBookByIncorrectId_SpecialChar"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/books/{id}" methodName="Books" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayBookByIncorrectId_SpecialChar" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>The request is invalid.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="CorrectErrorMessageDetail"><con:configuration><path>Error/MessageDetail</path><content>The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'BookStore.Logic.Models.BookModel Get(Int32)' in 'BookStore.Controllers.BooksController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="^" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry/></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayBookByIncorrectId_SpecialCharDangerous"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/books/{id}" methodName="Books" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayBookByIncorrectId_SpecialCharDangerous" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="Simple Contains" name="ContainsCorrectErrorMessage"><con:configuration><token>Wykryto potencjalnie niebezpieczną wartość</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="&amp;" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry/></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties><con:property><con:name>booksCount</con:name><con:value>4</con:value></con:property><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>title</con:name><con:value>Zmierzch</con:value></con:property><con:property><con:name>author</con:name><con:value>Stephenie Meyer</con:value></con:property><con:property><con:name>isbn</con:name><con:value>1111111111111</con:value></con:property><con:property><con:name>publisher</con:name><con:value>Ja</con:value></con:property><con:property><con:name>year</con:name><con:value>2014-06-09T01:03:46.707</con:value></con:property><con:property><con:name>price</con:name><con:value>40</con:value></con:property><con:property><con:name>description</con:name><con:value>Zmierzch</con:value></con:property><con:property><con:name>attachment</con:name><con:value/></con:property><con:property><con:name>categories</con:name><con:value>[1:'Dramat']</con:value></con:property></con:properties></con:testSuite><con:testSuite name="CategoryTest"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="DisplayCategories" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" id="14f5f736-5009-4d93-bbcf-a7dd65f5972c"><con:settings/><con:testStep type="groovy" name="GetDataFromDB"><con:settings/><con:config><script>import groovy.sql.Sql
+
+library = testRunner.testCase.testSuite.project.testSuites["Library"]
+module = library.testCases["Parser"].testSteps["ClobParser"]
+module.run(testRunner, context)
+def clobParser = context.clobParser
+
+def db = testRunner.getTestCase().getTestSuite().project.getPropertyValue("db")
+def dbUser = testRunner.getTestCase().getTestSuite().project.getPropertyValue("dbUser")
+def dbPassword = testRunner.getTestCase().getTestSuite().project.getPropertyValue("dbPassword")
+
+def rows, dbConn = null
+
+	try {
+		dbConn = Sql.newInstance('jdbc:jtds:sqlserver://'+db, dbUser, dbPassword, "net.sourceforge.jtds.jdbc.Driver")	
+		log.info "Connected"
+ 		rows = dbConn.rows("select * from Categories;")
+
+		testRunner.getTestCase().getTestSuite().setPropertyValue("categoriesCount", rows.size().toString())
+		testRunner.getTestCase().getTestSuite().setPropertyValue("categoryId", new Random().nextInt(rows.size()).toString())
+
+		def categories = [:]
+	
+		if(rows.size()>0){
+	 		rows.each{
+	 			categories[it.Id.toString()] = "'"+it.Name.toString()+"'"
+	 		}
+
+			testRunner.getTestCase().getTestSuite().setPropertyValue("categories", categories.toString())
+
+		}
+		else
+			log.info "No data in DB"
+
+		dbConn.close()
+		
+	} catch (Exception e) {
+	    log.error "Failed to get data from the database."
+	}
+
+</script></con:config></con:testStep><con:testStep type="restrequest" name="DisplayCategoriesList"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Categories/{id}" methodName="Categories" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayCategoriesList" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="GroovyScriptAssertion" name="ContainsCorrectCategories"><con:configuration><scriptText>def categories = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("categories")
+categories = evaluate(categories)
+
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def holder = groovyUtils.getXmlHolder(messageExchange.responseContentAsXml.toString())
+
+holder.namespaces["ns1"] = 'http://schemas.datacontract.org/2004/07/BookStore.Logic.Models'
+holder.namespaces["i"] = 'http://www.w3.org/2001/XMLSchema-instance'
+
+use(groovy.xml.dom.DOMCategory){
+ 	for (category in holder.getDomNodes("ns1:ArrayOfCategoryModel/ns1:CategoryModel")){
+		def id = category.'Id'.text().toInteger()
+ 		assert category.'Name'.text() == categories[id]
+
+ 	}
+
+ 	}</scriptText></con:configuration></con:assertion><con:assertion type="XPath Match" name="IsCorrectNumberOfCategories"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+count(ns1:ArrayOfCategoryModel/ns1:CategoryModel)</path><content>${#TestSuite#categoriesCount}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayCategoryById"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Categories/{id}" methodName="Categories" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayCategoryById" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="GroovyScriptAssertion" name="ContainsCorrectCategory"><con:configuration><scriptText>def categories = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("categories")
+categories = evaluate(categories)
+
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def holder = groovyUtils.getXmlHolder(messageExchange.responseContentAsXml.toString())
+
+holder.namespaces["ns1"] = 'http://schemas.datacontract.org/2004/07/BookStore.Logic.Models'
+holder.namespaces["i"] = 'http://www.w3.org/2001/XMLSchema-instance'
+
+use(groovy.xml.dom.DOMCategory){
+ 	for (category in holder.getDomNodes("ns1:ArrayOfCategoryModel/ns1:CategoryModel")){
+		def id = category.'Id'.text().toInteger()
+ 		assert category.'Name'.text() == categories[id]
+
+ 	}
+
+ 	}</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="${#TestSuite#categoryId}" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ErrorCheck" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword=""><con:settings/><con:testStep type="restrequest" name="DisplayCategoryByIncorrectId_Alpha"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Categories/{id}" methodName="Categories" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayCategoryById" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>The request is invalid.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="CorrectErrorMessageDetail"><con:configuration><path>Error/MessageDetail</path><content>The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'BookStore.Logic.Models.CategoryModel Get(Int32)' in 'BookStore.Controllers.CategoriesController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="a" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayCategoryByIncorrectId_SpecialChar"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Categories/{id}" methodName="Categories" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Copy of DisplayCategoryByIncorrectId_SpecialChar" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>The request is invalid.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="CorrectErrorMessageDetail"><con:configuration><path>Error/MessageDetail</path><content>The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'BookStore.Logic.Models.CategoryModel Get(Int32)' in 'BookStore.Controllers.CategoriesController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="#" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayCategoryByIncorrectId_SpecialCharDangerous"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Categories/{id}" methodName="Categories" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayCategoryByIncorrectId_SpecialCharDangerous" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="Simple Contains" name="ContainsCorrectErrorMessage"><con:configuration><token>Wykryto potencjalnie niebezpieczną wartość</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="*" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayCategoryByIncorrectId_OutOfRangePositive"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Categories/{id}" methodName="Categories" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Copy of DisplayCategoryByIncorrectId_OutOfRangePositive" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>The request is invalid.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="CorrectErrorMessageDetail"><con:configuration><path>Error/MessageDetail</path><content>The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'BookStore.Logic.Models.CategoryModel Get(Int32)' in 'BookStore.Controllers.CategoriesController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="2147483648" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayCategoryByIncorrectId_OutOfRangeNegative"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Categories/{id}" methodName="Categories" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayCategoryByIncorrectId_OutOfRangeNegative" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>The request is invalid.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="CorrectErrorMessageDetail"><con:configuration><path>Error/MessageDetail</path><content>The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'BookStore.Logic.Models.CategoryModel Get(Int32)' in 'BookStore.Controllers.CategoriesController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="-2147483649" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayCategoryById_Zero"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Categories/{id}" methodName="Categories" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Copy of DisplayCategoryByIncorrectId_Alpha" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="NoResultsReturned"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+ns1:CategoryModel/@i:nil</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="0" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayCategoryById_Negative"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Categories/{id}" methodName="Categories" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayCategoryById_Negative" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="NoResultsReturned"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+ns1:CategoryModel/@i:nil</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="-1" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayCategoryById_Negative_MaxValue"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Categories/{id}" methodName="Categories" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayCategoryById_Negative_MaxValue" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="NoResultsReturned"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+ns1:CategoryModel/@i:nil</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="-2147483648" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayCategoryById_Positive_MaxValue"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Categories/{id}" methodName="Categories" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayCategoryById_Positive_MaxValue" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="NoResultsReturned"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+ns1:CategoryModel/@i:nil</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="2147483647" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties><con:property><con:name>categoriesCount</con:name><con:value>7</con:value></con:property><con:property><con:name>categories</con:name><con:value>[1:'Dramat', 2:'Akcja', 3:'Science Fiction', 4:'Fantastyka', 5:'Horror', 6:'Historyczny', 7:'Poemat']</con:value></con:property><con:property><con:name>categoryId</con:name><con:value>4</con:value></con:property></con:properties></con:testSuite><con:testSuite name="OrdersTest"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="DisplayOrdersById" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" id="f6ecbb5a-604e-4b60-a3b8-7fb26425b079"><con:settings/><con:testStep type="groovy" name="GetDataFromDb"><con:settings/><con:config><script>import groovy.sql.Sql
+
+library = testRunner.testCase.testSuite.project.testSuites["Library"]
+module = library.testCases["Parser"].testSteps["ClobParser"]
+module.run(testRunner, context)
+def clobParser = context.clobParser
+
+def db = testRunner.getTestCase().getTestSuite().project.getPropertyValue("db")
+def dbUser = testRunner.getTestCase().getTestSuite().project.getPropertyValue("dbUser")
+def dbPassword = testRunner.getTestCase().getTestSuite().project.getPropertyValue("dbPassword")
+
+def rows, dbConn = null
+
+	try {
+		dbConn = Sql.newInstance('jdbc:jtds:sqlserver://'+db, dbUser, dbPassword, "net.sourceforge.jtds.jdbc.Driver")	
+		log.info "Connected"
+		
+ 		rows = dbConn.rows("select o.UserId, o.Id, o.Status, o.ShopComment, b.Title, b.Description, u.UserName from Orders o join Books b on(o.BookId = b.Id) join Users u on (o.UserId = u.Id);")
+
+		testRunner.getTestCase().setPropertyValue("ordersCount", rows.size().toString())
+
+		if(rows.size()>0){
+	 		def row = rows.get(new Random().nextInt(rows.size()))
+
+			testRunner.getTestCase().setPropertyValue("userId", row.UserID.toString())
+			testRunner.getTestCase().setPropertyValue("bookTitle", row.Title.toString())
+			testRunner.getTestCase().setPropertyValue("id", row.Id.toString())
+			testRunner.getTestCase().setPropertyValue("status", row.Status.toString())
+			testRunner.getTestCase().setPropertyValue("shopComment", clobParser.clobToString(row.ShopComment))
+			testRunner.getTestCase().setPropertyValue("description", clobParser.clobToString(row.Description))
+			testRunner.getTestCase().setPropertyValue("userName", clobParser.clobToString(row.UserName))
+			
+		}
+		
+		else
+			log.info "No data in DB"
+
+		dbConn.close()
+		
+	} catch (Exception e) {
+	    log.error "Failed to get data from the database."
+	}</script></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrdersList"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/{id}" methodName="OrdersById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrdersList" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="GroovyScriptAssertion" name="ContainsOrder"><con:configuration><scriptText>def id = messageExchange.modelItem.testStep.testCase.getPropertyValue("id")
+def title = messageExchange.modelItem.testStep.testCase.getPropertyValue("bookTitle")
+def status = messageExchange.modelItem.testStep.testCase.getPropertyValue("status")
+
+def statusName = ["0":"Ordered", "1":"Ready", "2":"Executed", "3":"Canceled"]
+def statusDesc = ["0":"Zamówione", "1":"Gotowe do odbioru", "2":"Zrealizowane", "3":"Anulowane"]
+
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def holder = groovyUtils.getXmlHolder(messageExchange.responseContentAsXml.toString())
+
+holder.namespaces["ns1"] = 'http://schemas.datacontract.org/2004/07/BookStore.Logic.Models'
+holder.namespaces["i"] = 'http://www.w3.org/2001/XMLSchema-instance'
+
+use(groovy.xml.dom.DOMCategory){
+ 	for (order in holder.getDomNodes("ns1:ArrayOfOrderModel/ns1:OrderModel")){
+
+ 		if(order.'Id'.text() == id){
+ 			assert order.'BookTitle'.text() == title
+ 			assert order.'Status'.text() == statusName[status]
+ 			assert order.'StatusName'.text() == statusDesc[status]
+ 		}
+ 	}
+}</scriptText></con:configuration></con:assertion><con:assertion type="XPath Match" name="IsCorrectNumberOfOrders"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+count(ns1:ArrayOfOrderModel/ns1:OrderModel)</path><content>${#TestCase#ordersCount}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrderById"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/{id}" methodName="OrdersById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrderById" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="GroovyScriptAssertion" name="CheckOrderContent"><con:configuration><scriptText>def id = messageExchange.modelItem.testStep.testCase.getPropertyValue("id")
+def title = messageExchange.modelItem.testStep.testCase.getPropertyValue("bookTitle")
+def userName = messageExchange.modelItem.testStep.testCase.getPropertyValue("userName")
+def shopComment = messageExchange.modelItem.testStep.testCase.getPropertyValue("shopComment")
+def status = messageExchange.modelItem.testStep.testCase.getPropertyValue("status")
+def description = messageExchange.modelItem.testStep.testCase.getPropertyValue("description")
+
+def statusName = ["0":"Ordered", "1":"Ready", "2":"Executed", "3":"Canceled"]
+def statusDesc = ["0":"Zamówione", "1":"Gotowe do odbioru", "2":"Zrealizowane", "3":"Anulowane"]
+
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def holder = groovyUtils.getXmlHolder(messageExchange.responseContentAsXml.toString())
+
+holder.namespaces["ns1"] = 'http://schemas.datacontract.org/2004/07/BookStore.Logic.Models'
+holder.namespaces["i"] = 'http://www.w3.org/2001/XMLSchema-instance'
+
+use(groovy.xml.dom.DOMCategory){
+ 	
+ 	def order = holder.getDomNode("ns1:OrderDetailModel")
+
+		assert order.'BookTitle'.text() == title
+		assert order.'Id'.text() == id
+ 		assert order.'Status'.text() == statusName[status]
+ 		assert order.'StatusName'.text() == statusDesc[status]
+ 		assert order.'BookDescription'.text() == description
+ 		assert order.'UserName'.text() == userName
+		if(shopComment == '')
+ 			assert order.'ShopComment'.'@i:nil'[0] == 'true'
+ 		else
+ 			assert order.'ShopComment'.text() == shopComment
+ 				
+ 	
+}
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="${#TestCase#id}" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrdersListByUser"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/{id}" methodName="OrdersById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrdersList" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#userToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>Authorization has been denied for this request.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties><con:property><con:name>ordersCount</con:name><con:value>40</con:value></con:property><con:property><con:name>userId</con:name><con:value>6bbfd4e7-aaf0-4c6c-847c-4918629b7c39</con:value></con:property><con:property><con:name>bookTitle</con:name><con:value>Przed świtem</con:value></con:property><con:property><con:name>id</con:name><con:value>24</con:value></con:property><con:property><con:name>status</con:name><con:value>0</con:value></con:property><con:property><con:name>shopComment</con:name><con:value/></con:property><con:property><con:name>description</con:name><con:value>Przed świtem</con:value></con:property><con:property><con:name>userName</con:name><con:value>User2</con:value></con:property></con:properties></con:testCase><con:testCase failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="DisplayOrdersByStatus" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword=""><con:settings/><con:testStep type="groovy" name="GetDataFromDb"><con:settings/><con:config><script>import groovy.sql.Sql
+
+library = testRunner.testCase.testSuite.project.testSuites["Library"]
+module = library.testCases["Parser"].testSteps["ClobParser"]
+module.run(testRunner, context)
+def clobParser = context.clobParser
+
+def db = testRunner.getTestCase().getTestSuite().project.getPropertyValue("db")
+def dbUser = testRunner.getTestCase().getTestSuite().project.getPropertyValue("dbUser")
+def dbPassword = testRunner.getTestCase().getTestSuite().project.getPropertyValue("dbPassword")
+
+def rows, dbConn = null
+
+	try {
+		dbConn = Sql.newInstance('jdbc:jtds:sqlserver://'+db, dbUser, dbPassword, "net.sourceforge.jtds.jdbc.Driver")	
+		log.info "Connected"
+		
+ 		rows0 = dbConn.firstRow("select count(*) as count from Orders where status='0';")
+		testRunner.getTestCase().setPropertyValue("orders0Count", rows0.count.toString())
+
+		rows1 = dbConn.firstRow("select count(*) as count from Orders where status='1';")
+		testRunner.getTestCase().setPropertyValue("orders1Count", rows1.count.toString())
+
+		rows2 = dbConn.firstRow("select count(*) as count from Orders where status='2';")
+		testRunner.getTestCase().setPropertyValue("orders2Count", rows2.count.toString())
+
+		rows3 = dbConn.firstRow("select count(*) as count from Orders where status='3';")
+		testRunner.getTestCase().setPropertyValue("orders3Count", rows3.count.toString())
+
+
+		dbConn.close()
+		
+	} catch (Exception e) {
+	    log.error "Failed to get data from the database."
+	}</script></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrdersByStatus_0"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/status/{status}" methodName="OrdersByStatus" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrderById" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="GroovyScriptAssertion" name="CheckIfCorrectStatus"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def holder = groovyUtils.getXmlHolder(messageExchange.responseContentAsXml.toString())
+
+holder.namespaces["ns1"] = 'http://schemas.datacontract.org/2004/07/BookStore.Logic.Models'
+holder.namespaces["i"] = 'http://www.w3.org/2001/XMLSchema-instance'
+
+def count = messageExchange.modelItem.testStep.testCase.getPropertyValue("orders0Count").toInteger()
+def status = '0'
+
+def statusName = ["0":"Ordered", "1":"Ready", "2":"Executed", "3":"Canceled"]
+def statusDesc = ["0":"Zamówione", "1":"Gotowe do odbioru", "2":"Zrealizowane", "3":"Anulowane"]
+
+use(groovy.xml.dom.DOMCategory){
+	if(count>0){
+ 		for (order in holder.getDomNodes("ns1:ArrayOfOrderModel/ns1:OrderModel")){
+ 			assert order.'Status'.text() == statusName[status]
+ 			assert order.'StatusName'.text() == statusDesc[status]
+ 		}
+ 	}
+}</scriptText></con:configuration></con:assertion><con:assertion type="XPath Match" name="CheckIfCorrectCount"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+count(ns1:ArrayOfOrderModel/ns1:OrderModel)</path><content>${#TestCase#orders0Count}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="id" value="${#TestSuite#id}"/>
+  <con:entry key="status" value="0"/>
+</con:parameters><con:parameterOrder><con:entry>status</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrdersByStatus_1"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/status/{status}" methodName="OrdersByStatus" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrdersByStatus_1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="GroovyScriptAssertion" name="CheckIfCorrectStatus"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def holder = groovyUtils.getXmlHolder(messageExchange.responseContentAsXml.toString())
+
+holder.namespaces["ns1"] = 'http://schemas.datacontract.org/2004/07/BookStore.Logic.Models'
+holder.namespaces["i"] = 'http://www.w3.org/2001/XMLSchema-instance'
+
+def count = messageExchange.modelItem.testStep.testCase.getPropertyValue("orders1Count").toInteger()
+def status = '1'
+
+def statusName = ["0":"Ordered", "1":"Ready", "2":"Executed", "3":"Canceled"]
+def statusDesc = ["0":"Zamówione", "1":"Gotowe do odbioru", "2":"Zrealizowane", "3":"Anulowane"]
+
+use(groovy.xml.dom.DOMCategory){
+	if(count>0){
+ 		for (order in holder.getDomNodes("ns1:ArrayOfOrderModel/ns1:OrderModel")){
+ 			assert order.'Status'.text() == statusName[status]
+ 			assert order.'StatusName'.text() == statusDesc[status]
+ 		}
+ 	}
+}</scriptText></con:configuration></con:assertion><con:assertion type="XPath Match" name="CheckIfCorrectCount"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+count(ns1:ArrayOfOrderModel/ns1:OrderModel)</path><content>${#TestCase#orders1Count}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="${#TestSuite#id}" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>status</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrdersByStatus_2"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/status/{status}" methodName="OrdersByStatus" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrdersByStatus_2" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="GroovyScriptAssertion" name="CheckIfCorrectStatus"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def holder = groovyUtils.getXmlHolder(messageExchange.responseContentAsXml.toString())
+
+holder.namespaces["ns1"] = 'http://schemas.datacontract.org/2004/07/BookStore.Logic.Models'
+holder.namespaces["i"] = 'http://www.w3.org/2001/XMLSchema-instance'
+
+def count = messageExchange.modelItem.testStep.testCase.getPropertyValue("orders2Count").toInteger()
+def status = '2'
+
+def statusName = ["0":"Ordered", "1":"Ready", "2":"Executed", "3":"Canceled"]
+def statusDesc = ["0":"Zamówione", "1":"Gotowe do odbioru", "2":"Zrealizowane", "3":"Anulowane"]
+
+use(groovy.xml.dom.DOMCategory){
+	if(count>0){
+ 		for (order in holder.getDomNodes("ns1:ArrayOfOrderModel/ns1:OrderModel")){
+ 			assert order.'Status'.text() == statusName[status]
+ 			assert order.'StatusName'.text() == statusDesc[status]
+ 		}
+ 	}
+}</scriptText></con:configuration></con:assertion><con:assertion type="XPath Match" name="CheckIfCorrectCount"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+count(ns1:ArrayOfOrderModel/ns1:OrderModel)</path><content>${#TestCase#orders2Count}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="id" value="${#TestSuite#id}"/>
+  <con:entry key="status" value="2"/>
+</con:parameters><con:parameterOrder><con:entry>status</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrdersByStatus_3"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/status/{status}" methodName="OrdersByStatus" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrdersByStatus_3" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="GroovyScriptAssertion" name="CheckIfCorrectStatus"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def holder = groovyUtils.getXmlHolder(messageExchange.responseContentAsXml.toString())
+
+holder.namespaces["ns1"] = 'http://schemas.datacontract.org/2004/07/BookStore.Logic.Models'
+holder.namespaces["i"] = 'http://www.w3.org/2001/XMLSchema-instance'
+
+def count = messageExchange.modelItem.testStep.testCase.getPropertyValue("orders3Count").toInteger()
+def status = '3'
+
+def statusName = ["0":"Ordered", "1":"Ready", "2":"Executed", "3":"Canceled"]
+def statusDesc = ["0":"Zamówione", "1":"Gotowe do odbioru", "2":"Zrealizowane", "3":"Anulowane"]
+
+use(groovy.xml.dom.DOMCategory){
+	if(count>0){
+ 		for (order in holder.getDomNodes("ns1:ArrayOfOrderModel/ns1:OrderModel")){
+ 			assert order.'Status'.text() == statusName[status]
+ 			assert order.'StatusName'.text() == statusDesc[status]
+ 		}
+ 	}
+}</scriptText></con:configuration></con:assertion><con:assertion type="XPath Match" name="CheckIfCorrectCount"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+count(ns1:ArrayOfOrderModel/ns1:OrderModel)</path><content>${#TestCase#orders3Count}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="id" value="${#TestSuite#id}"/>
+  <con:entry key="status" value="3"/>
+</con:parameters><con:parameterOrder><con:entry>status</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrdersByStatus_ByUser"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/status/{status}" methodName="OrdersByStatus" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrdersByStatus_ByUser" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#userToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>Authorization has been denied for this request.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="id" value="${#TestSuite#id}"/>
+  <con:entry key="status" value="0"/>
+</con:parameters><con:parameterOrder><con:entry>status</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties><con:property><con:name>orders0Count</con:name><con:value>15</con:value></con:property><con:property><con:name>orders1Count</con:name><con:value>5</con:value></con:property><con:property><con:name>orders2Count</con:name><con:value>5</con:value></con:property><con:property><con:name>orders3Count</con:name><con:value>15</con:value></con:property></con:properties></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ErrorCheck" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="DisplayOrderByIncorrectId_Alpha"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/{id}" methodName="OrdersById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrderByIncorrectId" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>The request is invalid.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="CorrectErrorMessageDetail"><con:configuration><path>Error/MessageDetail</path><content>The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'BookStore.Logic.Models.OrderDetailModel Get(Int32)' in 'BookStore.Controllers.OrdersController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="abc" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrderByIncorrectId_SpecialChar"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/{id}" methodName="OrdersById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrderByIncorrectId_SpecialChar" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>The request is invalid.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="CorrectErrorMessageDetail"><con:configuration><path>Error/MessageDetail</path><content>The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'BookStore.Logic.Models.OrderDetailModel Get(Int32)' in 'BookStore.Controllers.OrdersController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="*" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrderByIncorrectId_OutOfRangePosive"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/{id}" methodName="OrdersById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Copy of DisplayOrderByIncorrectId" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>The request is invalid.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="CorrectErrorMessageDetail"><con:configuration><path>Error/MessageDetail</path><content>The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'BookStore.Logic.Models.OrderDetailModel Get(Int32)' in 'BookStore.Controllers.OrdersController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="2147483648" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrderByIncorrectId_OutOfRangeNegative"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/{id}" methodName="OrdersById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrderByIncorrectId_OutOfRangeNegative" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>The request is invalid.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="CorrectErrorMessageDetail"><con:configuration><path>Error/MessageDetail</path><content>The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'BookStore.Logic.Models.OrderDetailModel Get(Int32)' in 'BookStore.Controllers.OrdersController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="-2147483649" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrderById_Zero"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/{id}" methodName="OrdersById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrderByIncorrectId_Negative" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="NoResultsReturned"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+ns1:OrderDetailModel/@i:nil</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="0" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrderById_Negative"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/{id}" methodName="OrdersById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Copy of DisplayOrderByIdNegative" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="NoResultsReturned"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+ns1:OrderDetailModel/@i:nil</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="-1" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrderById_Negative_MaxValue"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/{id}" methodName="OrdersById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrderByIdNegative_MaxValue" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="NoResultsReturned"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+ns1:OrderDetailModel/@i:nil</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="-2147483648" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrderById_Positive_MaxValue"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/{id}" methodName="OrdersById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrderByIdPositive_MaxValue" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="NoResultsReturned"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+ns1:OrderDetailModel/@i:nil</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="2147483647" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrdersByStatus_Empty"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/status/{status}" methodName="OrdersByStatus" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrdersByStatus_Empty" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>The request is invalid.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="CorrectErrorMessageDetail"><con:configuration><path>Error/MessageDetail</path><content>The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'BookStore.Logic.Models.OrderDetailModel Get(Int32)' in 'BookStore.Controllers.OrdersController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="id" value="${#TestSuite#id}"/>
+  <con:entry key="status" value=""/>
+</con:parameters><con:parameterOrder><con:entry>status</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrdersByIncorrectStatus_NonExisting"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/status/{status}" methodName="OrdersByStatus" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Copy of DisplayOrdersByStatus_Empty" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="IsEmptyResponse"><con:configuration><path>declare namespace ns1='http://schemas.datacontract.org/2004/07/BookStore.Logic.Models';
+declare namespace i='http://www.w3.org/2001/XMLSchema-instance';
+exists(ns1:ArrayOfOrderModel/ns1:OrderModel)</path><content>false</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="id" value="${#TestSuite#id}"/>
+  <con:entry key="status" value="4"/>
+</con:parameters><con:parameterOrder><con:entry>status</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrdersByIncorrectStatus_Alpha"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/status/{status}" methodName="OrdersByStatus" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrdersByIncorrectStatus_Alpha" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>The request is invalid.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="CorrectErrorMessageDetail"><con:configuration><path>Error/MessageDetail</path><content>The parameters dictionary contains a null entry for parameter 'status' of non-nullable type 'BookStore.Entities.Models.OrderStatus' for method 'System.Collections.Generic.List`1[BookStore.Logic.Models.OrderModel] GetOrdersWithStatus(BookStore.Entities.Models.OrderStatus)' in 'BookStore.Controllers.OrdersController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="id" value="${#TestSuite#id}"/>
+  <con:entry key="status" value="x"/>
+</con:parameters><con:parameterOrder><con:entry>status</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrdersByIncorrectStatus_SpecialChar"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/status/{status}" methodName="OrdersByStatus" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrdersByIncorrectStatus_SpecialChar" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="XPath Match" name="CorrectErrorMessage"><con:configuration><path>Error/Message</path><content>The request is invalid.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="CorrectErrorMessageDetail"><con:configuration><path>Error/MessageDetail</path><content>The parameters dictionary contains a null entry for parameter 'status' of non-nullable type 'BookStore.Entities.Models.OrderStatus' for method 'System.Collections.Generic.List`1[BookStore.Logic.Models.OrderModel] GetOrdersWithStatus(BookStore.Entities.Models.OrderStatus)' in 'BookStore.Controllers.OrdersController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="id" value="${#TestSuite#id}"/>
+  <con:entry key="status" value="!"/>
+</con:parameters><con:parameterOrder><con:entry>status</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DisplayOrdersByIncorrectStatus_SpecialCharDangerous"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/status/{status}" methodName="OrdersByStatus" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayOrdersByIncorrectStatus_SpecialChar" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="Simple Contains" name="Contains"><con:configuration><token>Wykryto potencjalnie niebezpieczną wartość</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="id" value="${#TestSuite#id}"/>
+  <con:entry key="status" value="*"/>
+</con:parameters><con:parameterOrder><con:entry>status</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite name="MeTest" disabled="true"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="DisplayMe" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" id="16ca757c-65a3-4e9c-af5d-83663c6185e9"><con:settings/><con:testStep type="groovy" name="GetDataFromDB"><con:settings/><con:config><script>import groovy.sql.Sql
+
+library = testRunner.testCase.testSuite.project.testSuites["Library"]
+module = library.testCases["Parser"].testSteps["ClobParser"]
+module.run(testRunner, context)
+def clobParser = context.clobParser
+
+def db = testRunner.getTestCase().getTestSuite().project.getPropertyValue("db")
+def dbUser = testRunner.getTestCase().getTestSuite().project.getPropertyValue("dbUser")
+def dbPassword = testRunner.getTestCase().getTestSuite().project.getPropertyValue("dbPassword")
+
+def rows, dbConn = null
+
+	try {
+		dbConn = Sql.newInstance('jdbc:jtds:sqlserver://'+db, dbUser, dbPassword, "net.sourceforge.jtds.jdbc.Driver")	
+		log.info "Connected"
+ 		rows = dbConn.rows("select * from Users;")
+
+		if(rows.size()>0){
+	 		def row = rows.get(new Random().nextInt(rows.size()))
+	 		
+			testRunner.getTestCase().getTestSuite().setPropertyValue("usersCount", rows.size().toString())
+			testRunner.getTestCase().getTestSuite().setPropertyValue("id", row.Id.toString())
+			testRunner.getTestCase().getTestSuite().setPropertyValue("login", clobParser.clobToString(row.Login))
+			testRunner.getTestCase().getTestSuite().setPropertyValue("firstName", clobParser.clobToString(row.FirstName))
+			testRunner.getTestCase().getTestSuite().setPropertyValue("lastName", clobParser.clobToString(row.LastName))
+			testRunner.getTestCase().getTestSuite().setPropertyValue("email", clobParser.clobToString(row.Email))
+			testRunner.getTestCase().getTestSuite().setPropertyValue("address", clobParser.clobToString(row.Address))
+			testRunner.getTestCase().getTestSuite().setPropertyValue("role", row.RoleId.toString())
+		}
+		else
+			log.info "No data in DB"
+
+		dbConn.close()
+		
+	} catch (Exception e) {
+	    log.error "Failed to get data from the database."
+	}
+
+</script></con:config></con:testStep><con:testStep type="restrequest" name="DisplayMe"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Me" methodName="Me" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DisplayUsersList" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/books</con:originalUri><con:assertion type="GroovyScriptAssertion" name="ContainsCorrectCategories"><con:configuration><scriptText>def id = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("id")
+def login = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("login")
+def firstName = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("firstName")
+def lastName = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("lastName")
+def email = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("email")
+def address = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("address")
+def role = messageExchange.modelItem.testStep.testCase.testSuite.getPropertyValue("role")
+
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def holder = groovyUtils.getXmlHolder(messageExchange.responseContentAsXml.toString())
+
+
+use(groovy.xml.dom.DOMCategory){
+ 	for (user in holder.getDomNodes("//Response/e")){
+
+ 		if(user.'id'.text() == id){
+ 			assert user.'login'.text() == login
+ 			assert user.'firstName'.text() == firstName
+ 			assert user.'lastName'.text() == lastName
+ 			assert user.'email'.text() == email
+ 			assert user.'address'.text() == address
+ 			assert user.'role'.text() == role
+ 		}
+ 	}
+
+ 	}</scriptText></con:configuration></con:assertion><con:assertion type="XPath Match" name="IsCorrectNumberOfUsers"><con:configuration><path>count(Response/e)</path><content>${#TestSuite#usersCount}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry/></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties><con:property><con:name>usersCount</con:name><con:value>2</con:value></con:property><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>login</con:name><con:value>Admin</con:value></con:property><con:property><con:name>firstName</con:name><con:value>Admin</con:value></con:property><con:property><con:name>lastName</con:name><con:value>Admin</con:value></con:property><con:property><con:name>email</con:name><con:value>Admin@Admin.com</con:value></con:property><con:property><con:name>address</con:name><con:value>Ulica świętego Admina</con:value></con:property><con:property><con:name>role</con:name><con:value>1</con:value></con:property></con:properties></con:testSuite><con:testSuite name="MakeEditDeleteOrder" disabled="true"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="OrderBook" searchProperties="true"><con:settings/><con:testStep type="groovy" name="GetDataFromDb"><con:settings/><con:config><script>import groovy.sql.Sql
+
+library = testRunner.testCase.testSuite.project.testSuites["Library"]
+module = library.testCases["Parser"].testSteps["ClobParser"]
+module.run(testRunner, context)
+def clobParser = context.clobParser
+
+def db = testRunner.getTestCase().getTestSuite().project.getPropertyValue("db")
+def dbUser = testRunner.getTestCase().getTestSuite().project.getPropertyValue("dbUser")
+def dbPassword = testRunner.getTestCase().getTestSuite().project.getPropertyValue("dbPassword")
+
+def rows, dbConn = null
+
+	try {
+		dbConn = Sql.newInstance('jdbc:jtds:sqlserver://'+db, dbUser, dbPassword, "net.sourceforge.jtds.jdbc.Driver")	
+		log.info "Connected"
+		
+ 		rows = dbConn.rows("select * from Books;")
+
+		if(rows.size()>0){
+	 		def row = rows.get(new Random().nextInt(rows.size()))
+
+			testRunner.getTestCase().getTestSuite().setPropertyValue("title", row.Title.toString())
+			testRunner.getTestCase().getTestSuite().setPropertyValue("bookId", row.Id.toString())
+		//	testRunner.getTestCase().getTestSuite().setPropertyValue("status", row.Status.toString())
+		//	testRunner.getTestCase().getTestSuite().setPropertyValue("shopComment", clobParser.clobToString(row.ShopComment))
+		//	testRunner.getTestCase().getTestSuite().setPropertyValue("description", clobParser.clobToString(row.Description))
+			
+		}
+		
+		else
+			log.info "No data in DB"
+
+		dbConn.close()
+		
+	} catch (Exception e) {
+	    log.error "Failed to get data from the database."
+	}</script></con:config></con:testStep><con:testStep type="restrequest" name="OrderBook"><con:settings/><con:config service="http://localhost:49979" resourcePath="/Api/Orders/orderbook/{bookId}" methodName="OrderBook" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="OrderBook" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Authorization" value="${#Project#adminToken}"/>
+  &lt;con:entry key="Content-type" value="${#Project#contentType}"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#endpoint}</con:endpoint><con:request/><con:originalUri>http://localhost/Api/Orders/Status</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="bookId" value="${#TestSuite#bookId}" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>bookId</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties><con:property><con:name>bookId</con:name><con:value>4</con:value></con:property><con:property><con:name>title</con:name><con:value>Przed świtem</con:value></con:property></con:properties></con:testSuite><con:properties><con:property><con:name>endpoint</con:name><con:value>http://localhost:23285</con:value></con:property><con:property><con:name>username</con:name><con:value/></con:property><con:property><con:name>password</con:name><con:value/></con:property><con:property><con:name>db</con:name><con:value>91.236.74.193:1433/BookStoreDatabase</con:value></con:property><con:property><con:name>dbUser</con:name><con:value>abis</con:value></con:property><con:property><con:name>dbPassword</con:name><con:value>siba</con:value></con:property><con:property><con:name>contentType</con:name><con:value>application/xml</con:value></con:property><con:property><con:name>adminToken</con:name><con:value>Bearer x6Idid2bQhHoytmu-iddT7dbCG5ZeAGM9UktBrDdd61HLjMe0fIzG3koZyDXrRn0I426ramrf8V--lYszENmyoup4vL6pZ9SrU_3_CrpJ_ChZw_baDNamfGQhN8hlv0wfZLqb9mSBc7UT1x_P5TE4F2nrMJLrS6kq0J1Ywy7suFmoth29ecwQloyDYpoXTR0x92WzKMXIcyszp4TXDzuNskqtcNgXZu4oztzxagRFZU70H89pTm6ilLhw8myQGOx62nhe8hpMA-eMB3Z6ix74bFUZE-vhbpDR7PmY2RWWToJtlVC8QaVbHrHzet88d8Vu7fxZJI37IyxNg4MbJquAtn39FjJ96y5bV7WUOHmZ-3hBs7LVhjDSDqk9yAuFjhC1PYDjvHngbYVaMxfznWXp0i1VCwIVNTP34iXR64_IAtANIHQTpypBKVYUdSuilcqxpOVgsuzNMTftkHF4EeTMnPXTc8dRbCDLOSH0clZk5m4gvvLJOezIMdcNiiJvtPm</con:value></con:property><con:property><con:name>userToken</con:name><con:value>Bearer RE4-RN4r0jSYErPSa_JMyDe7rqdDcfEpOTfwF1-TliJn5L78U5AZnzGoipvgJo7pqz00RYDepXyFB5TpKBkZ5mfYLDka1Imlpizt-kWDH5IQC_aIt5DvXW5lfTfe96NOv-A9VbxD3dTuLYIbUZ9D5ooLTfGZHlLO128nxq2DuQDmeNUmReKRg7uTGCwTDGIAj3a_G1RSk41zTU0gczDaK_HwQXaycwCjnMeeOVERpqXuUUH-rn1A9WOMlHH7KzZcJ2mo09366RbCZ0b7sglf5hEqXShqKxaHZeo3wiJrPe6d5IkmG7KGJ9bG3rM9zAG7Pv72Mls6JpXkH3lVHp8tJH26tUJ4jre4xC_8PdhQ5R9UwKm1ieoyLKIGP1Pv_uYDyh_BRU_TNtf-R9ZuPVcSwrRuaP3tMRwCLrkCFS9YyC275IBhxW3PxVYHBWVjkhyL_vWBleefQbSIJXmYiDETNhd82HieCQA0lxH5lA2yNKDBIdNxtCyHz0eEyl77Aa1z</con:value></con:property></con:properties><con:afterLoadScript>//com.eviware.soapui.support.GroovyUtils.registerJdbcDriver( "com.microsoft.sqlserver.jdbc.SQLServerDriver")
+com.eviware.soapui.support.GroovyUtils.registerJdbcDriver( "net.sourceforge.jtds.jdbc.Driver" )</con:afterLoadScript><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

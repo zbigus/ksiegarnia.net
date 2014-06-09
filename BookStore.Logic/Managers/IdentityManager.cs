@@ -3,7 +3,6 @@ using System.Linq;
 using BookStore.Entities.Dal;
 using BookStore.Entities.Models;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BookStore.Logic.Managers
 {
