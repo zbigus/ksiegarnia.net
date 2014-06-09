@@ -1,48 +1,64 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Dependencies;
 using BookStore.Logic.Interfaces;
 using BookStore.Logic.Managers;
-using BookStore.Logic.Models;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Practices.Unity;
 
 namespace BookStore.Controllers
 {
+    /// <summary>
+    /// Klasa bazowa dla kontrolerów
+    /// </summary>
     public class BaseApiController : ApiController
     {
-        private static IRepository _repo ;
-        public UserManager UserManager = UserManager.Create();
-        
-        protected static IRepository Repo {
-            get {
-                return _repo;
-            }
-        }
+        /// <summary>
+        /// Instancja repozytorium
+        /// </summary>
+        public IRepository Repo { get; private set; }
 
-        protected ModelFactory ModelFactory;
-
-        protected ModelFactory TheModelFactory
+        private UserManager _userManager;
+        /// <summary>
+        /// Instancja menadżera użytkowników
+        /// </summary>
+        public UserManager UserManager
         {
             get
             {
-                if (ModelFactory == null)
-                {
-                    ModelFactory = new ModelFactory();
-                }
-                return ModelFactory;
+                return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<UserManager>();
+            }
+            private set
+            {
+                _userManager = value;
             }
         }
-        
-        public BaseApiController(IRepository repo) {
-            _repo = repo;
+
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="repo">Interfejs repozytorium</param>
+        public BaseApiController(IRepository repo)
+        {
+            Repo = repo;
+            UserManager = UserManager.Create();
         }
 
     }
+
+    /// <summary>
+    /// Kontener do dependency injection
+    /// </summary>
     public class UnityResolver : IDependencyResolver
     {
         protected IUnityContainer Container;
 
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="container">Interfejs definiujący kontener</param>
         public UnityResolver(IUnityContainer container)
         {
             if (container == null)

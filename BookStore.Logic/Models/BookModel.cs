@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using BookStore.Entities.Models;
 
 namespace BookStore.Logic.Models
 {
     public class BookModel
     {
-        //TODO: Dodaæ walidacjê, tylko 13 cyfr
-
         public BookModel()
         {
         }
@@ -31,34 +30,28 @@ namespace BookStore.Logic.Models
         }
 
         public int Id { get; set; }
+        [Required]
+        [StringLength(255, ErrorMessage = "{0} nie mo¿e zawieraæ wiêcej ni¿ {1} znaków.")]
         public string Title { get; set; }
+        [Required]
+        [StringLength(255, ErrorMessage = "{0} nie mo¿e zawieraæ wiêcej ni¿ {1} znaków.")]
         public string Author { get; set; }
         public int Price { get; set; }
+        [Required]
+        [StringLength(13, ErrorMessage = "{0} musi zawieraæ {1} znaków.", MinimumLength = 13)]
         public string Isbn { get; set; }
+        [Required]
+        [StringLength(255, ErrorMessage = "{0} nie mo¿e zawieraæ wiêcej ni¿ {1} znaków.")]
         public string Publisher { get; set; }
         public DateTime Year { get; set; }
+        [Required]
         public string Description { get; set; }
         public List<AttachmentModel> Attachments { get; set; }
         public List<CategoryModel> Categories { get; set; }
 
-        public void SetAttachments(IEnumerable<Attachment> attachments)
-        {
-            foreach (Attachment attachment in attachments)
-            {
-                Attachments.Add(AttachmentModel.Create(attachment));
-            }
-        }
-
         public static BookModel Create(Book book)
         {
             return new BookModel(book);
-        }
-
-        public static BookModel Create(Book book, IEnumerable<Attachment> attachments)
-        {
-            var result = new BookModel(book);
-            result.SetAttachments(attachments);
-            return result;
         }
     }
 }

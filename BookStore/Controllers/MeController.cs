@@ -7,20 +7,33 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace BookStore.Controllers
 {
+    /// <summary>
+    /// Kontroler odpowiedzialny za wyświetlenie danych o aktualnie zalogowanym użytkowniku
+    /// </summary>
     [Authorize]
     public class MeController : ApiController
     {
         private UserManager _userManager;
 
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
         public MeController()
         {
         }
 
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="userManager">Menadżer użytkowników</param>
         public MeController(UserManager userManager)
         {
             UserManager = userManager;
         }
 
+        /// <summary>
+        /// Instancja menadżera użytkowników
+        /// </summary>
         public UserManager UserManager
         {
             get
@@ -33,11 +46,18 @@ namespace BookStore.Controllers
             }
         }
 
+        
         // GET api/Me
+        /// <summary>
+        /// Pobranie informacji o aktualnie zalogowanym użytkowniku
+        /// </summary>
+        /// <returns>Model informacji o użytkowniku</returns>
         [Authorize]
         public GetViewModel Get()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
+            if (user == null)
+                return null;
             return new GetViewModel
             {
                 UserName = user.UserName,
