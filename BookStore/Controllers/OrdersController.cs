@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using BookStore.Logic.Interfaces;
 using BookStore.Entities.Models;
@@ -19,10 +21,26 @@ namespace BookStore.Controllers
             return Repo.GetOrders();
         }
 
-        [Authorize]
+        [Authorize(Roles = Role.Admin)]
         public OrderDetailModel Get(int id)
         {
             return Repo.GetOrder(id);
+        }
+
+        [Route("api/Orders/user/detail/{id}")]
+        [Authorize]
+        public OrderDetailModel GetForUser(int id)
+        {
+            var order = Repo.GetOrder(id);
+            if (order != null)
+            {
+                //sprawdzenie czy zamówienie jest przypisane do tego usera
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                //TODO: można by był tu zwrócić not autorize
+                if (order.UserName != user.UserName)
+                    order = null;
+            }
+            return order;
         }
 
         //get all orders with OrderStatus = status
