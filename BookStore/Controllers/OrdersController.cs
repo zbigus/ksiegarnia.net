@@ -9,24 +9,41 @@ using Microsoft.AspNet.Identity;
 
 namespace BookStore.Controllers
 {
+    /// <summary>
+    /// Controller responsible for managing bookstore orders
+    /// </summary>
     public class OrdersController : BaseApiController
     {
         public OrdersController(IRepository repo) : base(repo)
         {
         }
 
-        //[Authorize(Roles = Role.Admin)]
+        /// <summary>
+        /// Get all orders from database
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Roles = Role.Admin)]
         public List<OrderModel> Get()
         {
             return Repo.GetOrders();
         }
 
+        /// <summary>
+        /// Get order details from order with given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Roles = Role.Admin)]
         public OrderDetailModel Get(int id)
         {
             return Repo.GetOrder(id);
         }
 
+        /// <summary>
+        /// Get order details for user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Route("api/Orders/user/detail/{id}")]
         [Authorize]
         public OrderDetailModel GetForUser(int id)
@@ -43,7 +60,11 @@ namespace BookStore.Controllers
             return order;
         }
 
-        //get all orders with OrderStatus = status
+        /// <summary>
+        /// get all orders with given status
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
         [Authorize(Roles = Role.Admin)]
         [Route("api/Orders/status/{status}")]
         public List<OrderModel> GetOrdersWithStatus(OrderStatus status)
@@ -51,6 +72,10 @@ namespace BookStore.Controllers
             return Repo.GetOrders(status);
         }
 
+        /// <summary>
+        /// Get all orders for logged in user
+        /// </summary>
+        /// <returns></returns>
         [Route("api/Orders/user")]
         [Authorize]
         public List<OrderModel> GetOrdersForUser()
@@ -60,6 +85,11 @@ namespace BookStore.Controllers
             return Repo.GetOrders(id);
         }
 
+        /// <summary>
+        /// Get all orders for logged in user with given status
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
         [Route("api/Orders/user/{status}")]
         [Authorize]
         public List<OrderModel> GetOrdersForUserWithStatus(OrderStatus status)
@@ -69,6 +99,11 @@ namespace BookStore.Controllers
             return Repo.GetOrders(id,status);
         }
 
+        /// <summary>
+        /// Order book with given bookId
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/orders/orderbook/{bookId}")]
         //[Authorize]
@@ -83,6 +118,11 @@ namespace BookStore.Controllers
             return Conflict();
         }
 
+        /// <summary>
+        /// Drop order with given id (as Admin)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles=Role.Admin)]
         [Route("api/orders/drop/{id}")]
@@ -95,6 +135,11 @@ namespace BookStore.Controllers
             return Conflict();
         }
 
+        /// <summary>
+        /// Cancel order (as User)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = Role.User)]
         [Route("api/orders/drop/{id}")]
@@ -107,6 +152,11 @@ namespace BookStore.Controllers
             return Conflict();
         }
 
+        /// <summary>
+        /// Execute order (set OrderStatus for order with given id to executed)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = Role.Admin)]
         [Route("api/orders/execute/{id}")]
@@ -119,6 +169,11 @@ namespace BookStore.Controllers
             return Conflict();
         }
 
+        /// <summary>
+        /// Update OrderStatus for given order
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles=Role.Admin)]
         [Route("api/orders/update")]
