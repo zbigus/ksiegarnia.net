@@ -19,6 +19,7 @@ namespace BookStore.Logic.Models
 
         public int Id { get; set; }
         public int BookId { get; set; }
+        [Required]
         [StringLength(255, ErrorMessage = "{0} nie może zawierać więcej niż {1} znaków.")]
         public string Name { get; set; }
         [Required]

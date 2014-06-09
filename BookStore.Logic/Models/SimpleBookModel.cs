@@ -1,4 +1,5 @@
-﻿using BookStore.Entities.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using BookStore.Entities.Models;
 
 namespace BookStore.Logic.Models
 {
@@ -18,8 +19,13 @@ namespace BookStore.Logic.Models
         }
 
         public int Id { get; set; }
+        [Required]
+        [StringLength(255, ErrorMessage = "{0} nie może zawierać więcej niż {1} znaków.")]
         public string Title { get; set; }
+        [Required]
+        [StringLength(255, ErrorMessage = "{0} nie może zawierać więcej niż {1} znaków.")]
         public string Author { get; set; }
+        [Required]
         public string Description { get; set; }
         public int Price { get; set; }
         public AttachmentModel Attachment { get; set; }
