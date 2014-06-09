@@ -124,6 +124,10 @@ namespace BookStore.Controllers
         [Route("api/orders/update")]
         public IHttpActionResult UpdateOrderStatus([FromBody] OrderModel order)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             if (Repo.UpdateOrderStatus(order.Id, order.Status))
             {
                 return Ok();

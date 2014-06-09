@@ -22,10 +22,14 @@ namespace BookStore.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles=Role.Admin)]
+        //[Authorize(Roles=Role.Admin)]
         [Route("api/Categories/Add")]
         public IHttpActionResult AddCategory([FromBody]CategoryModel category)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             if (!Repo.AddCategory(category.Name))
             {
                 return Conflict();
@@ -38,6 +42,10 @@ namespace BookStore.Controllers
         [Route("api/Categories/Update")]
         public IHttpActionResult UpdateCategory([FromBody]CategoryModel category)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             if (!Repo.UpdateCategory(category))
             {
                 return Conflict();
