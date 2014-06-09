@@ -66,7 +66,6 @@ namespace BookStore.UnitTests.Controllers
         [TestMethod]
         public void PostWithExistingId_ShouldReturnConflict()
         {
-            int i;
             _mockUserRepo.Setup(m => m.AddBook(It.IsAny<BookModel>())).Returns(true);
             var result = booksController.Post(It.IsAny<BookModel>());
             Assert.IsTrue(result.GetType() == typeof(CreatedAtRouteNegotiatedContentResult<BookModel>));

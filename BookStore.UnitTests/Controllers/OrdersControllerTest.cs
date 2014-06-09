@@ -67,7 +67,6 @@ namespace BookStore.UnitTests.Controllers
         [TestMethod]
         public void DropOrderAsAdmin_ShouldReturnTypeOk()
         {
-            int i;
             _mockUserRepo.Setup(m => m.UpdateOrderStatus(It.IsAny<int>(), It.IsAny<OrderStatus>(),It.IsAny<string>())).Returns(true);
             var result = ordersController.DropOrderAsAdmin(It.IsAny<int>());
             Assert.IsTrue(result.GetType() == typeof(OkResult));
@@ -76,41 +75,9 @@ namespace BookStore.UnitTests.Controllers
         [TestMethod]
         public void DropOrderAsAdmin_ShouldReturnTypeConflict()
         {
-            int i;
             _mockUserRepo.Setup(m => m.UpdateOrderStatus(It.IsAny<int>(), It.IsAny<OrderStatus>(), It.IsAny<string>())).Returns(false);
             var result = ordersController.DropOrderAsAdmin(It.IsAny<int>());
             Assert.IsTrue(result.GetType() == typeof(ConflictResult));
         }
-
-        //[TestMethod]
-        //public void GetOrderStatus_ShouldReturnTypeOkNegotiatedContext()
-        //{
-        //    string stats;
-        //    _mockUserRepo.Setup(m => m.GetOrderStatus(It.IsAny<int>(), out stats)).Returns(true);
-        //    var result = ordersController.GetOrderStatus(It.IsAny<int>());
-        //    Assert.IsTrue(result.GetType() == typeof(OkNegotiatedContentResult<string>));
-        //}
-        //[TestMethod]
-        //public void GetOrderStatus_ShouldReturnTypeNotFound()
-        //{
-        //    string stats;
-        //    _mockUserRepo.Setup(m => m.GetOrderStatus(It.IsAny<int>(), out stats)).Returns(false);
-        //    var result = ordersController.GetOrderStatus(It.IsAny<int>());
-        //    Assert.IsTrue(result.GetType() == typeof(NotFoundResult));
-        //}
-        //[TestMethod]
-        //public void Delete_ShouldReturnTypeNotFound()
-        //{
-        //    _mockUserRepo.Setup(m => m.DeleteOrder(It.IsAny<int>())).Returns(false);
-        //    var result = ordersController.Delete(It.IsAny<int>());
-        //    Assert.IsTrue(result.GetType() == typeof(NotFoundResult));
-        //}
-        //[TestMethod]
-        //public void Delete_ShouldReturnTypeOk()
-        //{
-        //    _mockUserRepo.Setup(m => m.DeleteOrder(It.IsAny<int>())).Returns(true);
-        //    var result = ordersController.Delete(It.IsAny<int>());
-        //    Assert.IsTrue(result.GetType() == typeof(OkResult));
-        //}
     }
 }
