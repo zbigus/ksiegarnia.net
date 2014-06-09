@@ -37,7 +37,8 @@ namespace BookStore.Controllers
         [Authorize]
         public List<OrderModel> GetOrdersForUser()
         {
-            var id = UserManager.FindById(User.Identity.GetUserId()).Id;
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            var id = user.Id;
             return Repo.GetOrders(id);
         }
 
@@ -45,8 +46,8 @@ namespace BookStore.Controllers
         [Authorize]
         public List<OrderModel> GetOrdersForUserWithStatus(OrderStatus status)
         {
-            
-            var id = UserManager.FindById(User.Identity.GetUserId()).Id;
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            var id = user.Id;
             return Repo.GetOrders(id,status);
         }
 
@@ -55,7 +56,8 @@ namespace BookStore.Controllers
         [Authorize]
         public IHttpActionResult Post(int bookId)
         {
-            var userId = UserManager.FindById(User.Identity.GetUserId()).Id;
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            var userId = user.Id;
             if (Repo.AddOrder(bookId, userId))
             {
                 return Ok();

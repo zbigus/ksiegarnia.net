@@ -38,6 +38,8 @@ namespace BookStore.Controllers
         public GetViewModel Get()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
+            if (user == null)
+                return null;
             return new GetViewModel
             {
                 UserName = user.UserName,
