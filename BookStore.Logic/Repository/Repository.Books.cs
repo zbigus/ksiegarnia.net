@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BookStore.Entities.Models;
-using BookStore.Logic.Interfaces;
 using BookStore.Logic.Models;
 
 namespace BookStore.Logic.Repository
@@ -10,26 +9,21 @@ namespace BookStore.Logic.Repository
     {
         public BookModel GetBook(int id)
         {
-            Book book = GetBookImpl(id);
+            var book = GetBookImpl(id);
             if (book == null)
                 return null;
-            var result = new BookModel(book);
-            result.SetAttachments(_db.Attachments.Where(att => att.BookId == id).ToList());
+            var result = BookModel.Create(book);
+            result.Attachments = GetAttachments(id);
             return result;
         }
 
         public List<SimpleBookModel> GetBooks()
         {
-            var books = _db.Books.AsEnumerable()
+            var books = _db.Books
+                .AsEnumerable()
                 .Select(SimpleBookModel.Create)
                 .ToList();
-            books.ForEach(model =>
-            {
-                var att = _db.Attachments.OrderBy(attachment => attachment.Id)
-                    .FirstOrDefault(attachment => attachment.BookId == model.Id);
-                if (att != null)
-                    model.Attachment = AttachmentModel.Create(att);
-            });
+            AddFirstAttToBook(books);
             return books;
         }
 
@@ -38,6 +32,11 @@ namespace BookStore.Logic.Repository
             var bookIds = _db.BookCategories
                 .Where(bc => bc.CategoryId == categoryId)
                 .Select(bc => bc.BookId).ToArray();
+            return GetBooksImpl(bookIds);
+        }
+
+        private List<SimpleBookModel> GetBooksImpl(IEnumerable<int> bookIds)
+        {
             var result = new List<SimpleBookModel>();
             foreach (var bookId in bookIds)
             {
@@ -45,10 +44,7 @@ namespace BookStore.Logic.Repository
                 if (book != null)
                 {
                     var bookModel = SimpleBookModel.Create(book);
-                    var att = _db.Attachments.OrderBy(attachment => attachment.Id)
-                    .FirstOrDefault(attachment => attachment.BookId == book.Id);
-                    if (att != null)
-                        bookModel.Attachment = AttachmentModel.Create(att);
+                    AddFirstAttToBookImpl(bookModel);
                     result.Add(bookModel);
                 }
             }
@@ -57,26 +53,57 @@ namespace BookStore.Logic.Repository
 
         public List<SimpleBookModel> GetTopNewBooks()
         {
-            throw new System.NotImplementedException();
+            var books = _db.Books
+                .OrderByDescending(book => book.InsertDate)
+                .Take(10)
+                .AsEnumerable()
+                .Select(SimpleBookModel.Create)
+                .ToList();
+            AddFirstAttToBook(books);
+            return books;
+        }
+
+        private void AddFirstAttToBook(List<SimpleBookModel> books)
+        {
+            books.ForEach(AddFirstAttToBookImpl);
+        }
+
+        private void AddFirstAttToBookImpl(SimpleBookModel model)
+        {
+            var att = _db.Attachments.OrderBy(attachment => attachment.Id)
+                .FirstOrDefault(attachment => attachment.BookId == model.Id);
+            if (att != null)
+                model.Attachment = AttachmentModel.Create(att);
         }
 
         public List<SimpleBookModel> GetTopSaleBooks()
         {
-            throw new System.NotImplementedException();
+            var bookIds = _db.Orders
+                .GroupBy(order => order.BookId)
+                .Select(orders => new {Id = orders.Key, Count = orders.Count()})
+                .OrderByDescending(arg => arg.Count)
+                .Take(5)
+                .Select(arg => arg.Id);
+            return GetBooksImpl(bookIds);
         }
 
         public List<SimpleBookModel> SearchBooks(string searchPhrase)
         {
-            throw new System.NotImplementedException();
+            var books = _db.Books.Where(book =>
+                book.Title.Contains(searchPhrase) || book.Author.Contains(searchPhrase) ||
+                book.Description.Contains(searchPhrase))
+                .AsEnumerable()
+                .Select(SimpleBookModel.Create)
+                .ToList();
+            AddFirstAttToBook(books);
+            return books;
         }
 
-        bool IBooksRepository.AddBook(BookModel book)
+        public bool AddBook(BookModel book)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public BookModel AddBook(BookModel book)
-        {
+            //przerywamy jeżeli książka z takim id już istniej
+            if (BookExists(book.Id))
+                return false;
             var newBook = new Book
             {
                 Author = book.Author,
@@ -88,23 +115,19 @@ namespace BookStore.Logic.Repository
                 Year = book.Year
             };
             _db.Books.Add(newBook);
-            //zapisujemy powiązane kategorie
-            foreach (var categories in book.Categories)
-            {
-                _db.BookCategories.Add(new BookCategory {BookId = newBook.Id, CategoryId = categories.Id});
-            }
-            //dodajemy załączniki
-            foreach (var attachment in book.Attachments)
-            {
-                _db.Attachments.Add(new Attachment
-                {
-                    BookId = newBook.Id,
-                    Name = attachment.Name,
-                    Content = attachment.Content
-                });
-            }
+            //zapisujemy żeby wyciągnąć id
             _db.SaveChanges();
-            return GetBook(newBook.Id);
+            //zapisujemy powiązane kategorie
+            if (book.Categories != null)
+                AddBookCategories(newBook.Id, book.Categories.Select(arg => arg.Id));
+            if (book.Attachments != null)
+            {
+                //ustawiamy załącznikom id nowej książki
+                book.Attachments.ForEach(arg => arg.BookId = newBook.Id);
+                //dodajemy załączniki
+                AddAttachments(book.Attachments);    
+            }
+            return true;
         }
 
         public bool UpdateBook(BookModel book)
@@ -119,21 +142,13 @@ namespace BookStore.Logic.Repository
             dalBook.Publisher = book.Publisher;
             dalBook.Title = book.Title;
             dalBook.Year = book.Year;
-            AddDeleteBookCatedories(book.Id, book.Categories.Select(cat => cat.Id));
-
-            //TODO: zoptymalizować dodawanie i usuwanie załączników i kategorii
-            var currentAttachents = _db.Attachments.Where(att => att.BookId == book.Id);
-            _db.Attachments.RemoveRange(currentAttachents);
-            foreach (var attachment in book.Attachments)
-            {
-                _db.Attachments.Add(new Attachment
-                {
-                    BookId = book.Id,
-                    Content = attachment.Content,
-                    Name = attachment.Name
-                });
-            }
             _db.SaveChanges();
+
+            if (book.Categories != null)
+                AddDeleteBookCatedories(book.Id, book.Categories.Select(cat => cat.Id));
+            if (book.Attachments != null)
+                AddDeleteAttachments(book.Attachments);
+            
             return true;
         }
 

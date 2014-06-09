@@ -41,24 +41,9 @@ namespace BookStore.Logic.Models
         public List<AttachmentModel> Attachments { get; set; }
         public List<CategoryModel> Categories { get; set; }
 
-        public void SetAttachments(IEnumerable<Attachment> attachments)
-        {
-            foreach (Attachment attachment in attachments)
-            {
-                Attachments.Add(AttachmentModel.Create(attachment));
-            }
-        }
-
         public static BookModel Create(Book book)
         {
             return new BookModel(book);
-        }
-
-        public static BookModel Create(Book book, IEnumerable<Attachment> attachments)
-        {
-            var result = new BookModel(book);
-            result.SetAttachments(attachments);
-            return result;
         }
     }
 }
