@@ -1,9 +1,37 @@
 ﻿$(function () {
     app.initialize();
-
+    console.log('b');
     // Activate Knockout
     ko.validation.init({ grouping: { observable: false } });
     ko.applyBindings(app);
+
+    $.fn.serializeObject = function () {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+
+    isNumber = function(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
+    readImage = function(input, func) {
+        if (input.files && input.files[0]) {
+            var FR = new FileReader();
+            FR.onload = func;
+            FR.readAsDataURL(input.files[0]);
+        }
+    }
 
     l = function () {
         return {
@@ -114,12 +142,12 @@
             errorCallback = function (res) { };
         }
 
-        var _dataToSend = $.extend({}, data);
+        var _dataToSend = JSON.stringify(data);
 
         $.ajax({
             method: method,
             url: url,
-            contentType: "application/json; charset=utf-8",
+            contentType: "application/json",
             data: _dataToSend,
             headers: {
                 'Authorization': 'Bearer ' + app.dataModel.getAccessToken()
@@ -232,10 +260,91 @@
     
 
     var _setupBasicEvents = function () {
+        $('#admin-add-book').on('click', function () {
+            $('#adminModal').modal('show')
+            _call('get', '/api/Categories', {}, function (data) {
+                $.each(data, function (k, v) {
+                    if (v.id && v.name) {
+                        $('#categorySelect').append('<option id="' + v.id + '">' + v.name + '</option>')
+                    }
+                });
+            });
+
+            _data = {};
+
+            $("#fileSelect").off('change').on('change', function () {
+                readImage(this, function (e) {
+                    _base = e.target.result.replace('data:image/jpeg;base64,', '');
+                    _data.attachments = [{ "name": "photo", "content": _base }]
+                });
+            });
+
+            $("#categorySelect").off('change').on('change', function () {
+                _data.categories = [{ "id": $('option:selected', this).attr('id'), "name": $(this).val() }]
+            });
+            
+            $('#adminModal .new-book').off('click').on('click', function () {
+                $('.validate').remove();
+                _canSend = true;
+                $.each($('.validateble'), function (k, v) {
+                    _v = $(v)
+                    if (_v.hasClass('number')) {
+                        if (!isNumber(_v.val())) {
+                            _canSend = false;
+                            _v.after('<span class="validate" style="color:red">Wartość  liczbowa jest wymagana</span>');
+                        }
+                    }
+
+                    if (_v.hasClass('text')) {
+                        if (_v.val().length < 5 || _v.val().length > 200) {
+                            _canSend = false;
+                            _v.after('<span class="validate" style="color:red">Treść musi mieć więcej niz 5 znaków i mniej niz 250</span>');
+                        }
+                    }
+
+                    if (_v.hasClass('isbn')) {
+                        if (_v.val().length != 13) {
+                            _canSend = false;
+                            _v.after('<span class="validate" style="color:red">Isbn musi zawierać dokładnie 13 cyfr</span>');
+                        }
+
+                        if (!isNumber(_v.val())) {
+                            _canSend = false;
+                            _v.after('<br><span class="validate" style="color:red">Wartość  liczbowa jest wymagana</span>');
+                        }
+                    }
+                })
+
+                if (!_data.attachments)
+                {
+                    $("#fileSelect").after('<span class="validate" style="color:red">Musisz wybrać obrazek</span>');
+                }
+
+                if (!_data.categories) {
+                    $("#categorySelect").after('<span class="validate" style="color:red">Musisz wybrać kategorię</span>');
+                }
+
+                if (_canSend)
+                {
+                    $.extend(_data, $('#adminModal form#basic').serializeObject());
+                    _call('post', '/api/Books', _data, function (data) {
+                        
+                        location.reload();
+                        _data = {};
+                    });
+                    
+                }
+
+                
+            })
+
+           
+            return false;
+        })
+
         $('#search-by-string').on('click', function () {
             if ($("#search-string").val().trim().length > 0) {
                 _call('get', '/api/Books/search/' + $("#search-string").val(), {}, function (data) {
-                    console.log(data);
                     $('#productsrow').html('');
                     $.each(data, function (k, v) {
                         if (v.id && v.attachment && v.attachment.content && v.description) {

@@ -22,6 +22,18 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    @if (User.IsInRole(Role.Admin))
+                    {
+                        <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin</a>
+                                <ul class="dropdown-menu" style="padding: 12px;">
+                                    <li>@Html.ActionLink("Admin", "Index", "Account")</li>
+                                    <li><a href="/" id="admin-add-book">Dodaj książkę</a></li>
+                                </ul>
+                        </li>
+                        
+                    }
+                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)</li>
                         @if (Request.IsAuthenticated)
                         {
                             <li class="dropdown">
@@ -38,11 +50,7 @@
                             </li>
                         }
                         
-                    @if (User.IsInRole(Role.Admin))
-                    {
-                        <li>@Html.ActionLink("Admin", "Index", "Account")</li>
-                    }
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)</li>
+                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
