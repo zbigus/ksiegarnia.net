@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using BookStore.Entities.Dal;
 using BookStore.Entities.Models;
+using BookStore.Logic.Extensions;
 using BookStore.Logic.Managers;
 
 namespace BookStore.Logic.Dal
@@ -31,10 +32,16 @@ namespace BookStore.Logic.Dal
             books.ForEach(b => context.BookCategories.Add(new BookCategory {BookId = b.Id, CategoryId = 1}));
             context.SaveChanges();
 
+            var att = ImageHelper.GetSimpleImage();
+            books.ForEach(book => context.Attachments.Add(new Attachment() { BookId = book.Id, Name = "SimpleImage.jpg", Content = att}));
+            context.SaveChanges();
+
             //Dodajemy domyślne zamówienia
             CreateDefaultOrders(users).ForEach(order => context.Orders.Add(order));
             context.SaveChanges();
         }
+
+        
 
         private static void CreateDefaultRoles(BookStoreContext context)
         {
