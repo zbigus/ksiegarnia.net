@@ -8,12 +8,18 @@ namespace BookStore.Controllers
     public class BooksController : BaseApiController
     {
         public BooksController(IRepository repo) : base(repo) { }
+        /// <summary>
+        /// Gets all the books from the bookstore
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public List<SimpleBookModel> Get()
         {
             return Repo.GetBooks();
         }
         //[HttpGet]
         //[Authorize]
+        
         [Route("api/Books/{id}")]
         public BookModel Get(int id)
         {
@@ -24,6 +30,25 @@ namespace BookStore.Controllers
         public List<SimpleBookModel> GetBooksByCategory(int id)
         {
             return Repo.GetBooksByCategory(id);
+        }
+
+        [Route("api/Books/top")]
+        public List<SimpleBookModel> GetTopBooks()
+        {
+            return Repo.GetTopNewBooks();
+        }
+
+        [Route("api/Books/bestsellers")]
+        public List<SimpleBookModel> GetBestsellers()
+        {
+            return Repo.GetTopSaleBooks();
+        }
+
+        [HttpGet]
+        [Route("api/Books/search/{phrase}")]
+        public List<SimpleBookModel> Search(string phrase)
+        {
+            return Repo.SearchBooks(phrase);
         }
 
         //[Route("api/Books/Initial")]
@@ -53,5 +78,21 @@ namespace BookStore.Controllers
             }
             return Conflict();
         }
+
+        [HttpPost]
+        [Route("api/Books/update")]
+        public IHttpActionResult UpdateBook([FromBody] BookModel book)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (Repo.UpdateBook(book))
+            {
+                return Ok();
+            }
+            return Conflict();
+        }
+
     }
 }
