@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using BookStore.Logic.Interfaces;
 using BookStore.Entities.Models;
@@ -14,6 +12,10 @@ namespace BookStore.Controllers
     /// </summary>
     public class OrdersController : BaseApiController
     {
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="repo">Interfejs repozytorium</param>
         public OrdersController(IRepository repo) : base(repo)
         {
         }
@@ -53,7 +55,6 @@ namespace BookStore.Controllers
             {
                 //sprawdzenie czy zamówienie jest przypisane do tego usera
                 var user = UserManager.FindById(User.Identity.GetUserId());
-                //TODO: można by był tu zwrócić not autorize
                 if (order.UserName != user.UserName)
                     order = null;
             }
