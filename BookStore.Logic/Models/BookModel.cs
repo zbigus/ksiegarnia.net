@@ -43,6 +43,7 @@ namespace BookStore.Logic.Models
         [Required]
         [StringLength(255, ErrorMessage = "{0} nie mo¿e zawieraæ wiêcej ni¿ {1} znaków.")]
         public string Publisher { get; set; }
+        [Required]
         public DateTime Year { get; set; }
         [Required]
         public string Description { get; set; }
