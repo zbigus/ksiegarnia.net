@@ -126,6 +126,13 @@ ul.catygory-list li a:active {
 	top:1px;
 }
 
+ul.catygory-list-js li a i {
+	display: none;
+}
+
+ul.catygory-list-js li a.active i {
+	display: inline-block;
+}
 .form-control {
     width: 85%!important;
 }
