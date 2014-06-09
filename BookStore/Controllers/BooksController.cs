@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using BookStore.Entities.Models;
 using BookStore.Logic.Interfaces;
 using BookStore.Logic.Models;
 
 namespace BookStore.Controllers
 {
+    /// <summary>
+    /// Controller responsible for managing book-related actions
+    /// </summary>
     public class BooksController : BaseApiController
     {
         public BooksController(IRepository repo) : base(repo) { }
@@ -16,9 +20,7 @@ namespace BookStore.Controllers
         {
             return Repo.GetBooks();
         }
-        //[HttpGet]
-        //[Authorize]
-        
+
         /// <summary>
         /// Get book with specific id
         /// </summary>
@@ -41,7 +43,7 @@ namespace BookStore.Controllers
         }
 
         /// <summary>
-        /// Get top 10 books from bookstore
+        /// Get last 10 books added to bookstore
         /// </summary>
         /// <returns></returns>
         [Route("api/Books/top")]
@@ -83,6 +85,7 @@ namespace BookStore.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize(Roles = Role.Admin)]
         [Route("api/Books/Delete/{id}")]
         public IHttpActionResult Delete(int id) {
             if (Repo.DeleteBook(id)) {
@@ -97,6 +100,7 @@ namespace BookStore.Controllers
         /// <param name="book"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Roles = Role.Admin)]
         public IHttpActionResult Post([FromBody] BookModel book)
         {
             if (!ModelState.IsValid)
@@ -116,6 +120,7 @@ namespace BookStore.Controllers
         /// <param name="book"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Roles=Role.Admin)]
         [Route("api/Books/update")]
         public IHttpActionResult UpdateBook([FromBody] BookModel book)
         {

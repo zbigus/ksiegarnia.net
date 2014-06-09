@@ -15,7 +15,7 @@ namespace BookStore.Controllers
         {
         }
 
-        [Authorize(Roles = Role.Admin)]
+        //[Authorize(Roles = Role.Admin)]
         public List<OrderModel> Get()
         {
             return Repo.GetOrders();
@@ -71,7 +71,7 @@ namespace BookStore.Controllers
 
         [HttpPost]
         [Route("api/orders/orderbook/{bookId}")]
-        [Authorize]
+        //[Authorize]
         public IHttpActionResult Post(int bookId)
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
