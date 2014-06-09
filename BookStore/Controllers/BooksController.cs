@@ -11,7 +11,12 @@ namespace BookStore.Controllers
     /// </summary>
     public class BooksController : BaseApiController
     {
+        /// <summary>
+        /// Konstruktor kontrolera
+        /// </summary>
+        /// <param name="repo">Interfejs repozytorium</param>
         public BooksController(IRepository repo) : base(repo) { }
+        
         /// <summary>
         /// Gets all the books from the bookstore
         /// </summary>

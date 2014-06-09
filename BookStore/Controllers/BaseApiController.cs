@@ -10,11 +10,20 @@ using Microsoft.Practices.Unity;
 
 namespace BookStore.Controllers
 {
+    /// <summary>
+    /// Klasa bazowa dla kontrolerów
+    /// </summary>
     public class BaseApiController : ApiController
     {
+        /// <summary>
+        /// Instancja repozytorium
+        /// </summary>
         public IRepository Repo { get; private set; }
 
         private UserManager _userManager;
+        /// <summary>
+        /// Instancja menadżera użytkowników
+        /// </summary>
         public UserManager UserManager
         {
             get
@@ -27,6 +36,10 @@ namespace BookStore.Controllers
             }
         }
 
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="repo">Interfejs repozytorium</param>
         public BaseApiController(IRepository repo)
         {
             Repo = repo;
@@ -34,10 +47,18 @@ namespace BookStore.Controllers
         }
 
     }
+
+    /// <summary>
+    /// Kontener do dependency injection
+    /// </summary>
     public class UnityResolver : IDependencyResolver
     {
         protected IUnityContainer Container;
 
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="container">Interfejs definiujący kontener</param>
         public UnityResolver(IUnityContainer container)
         {
             if (container == null)

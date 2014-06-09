@@ -33,7 +33,7 @@ namespace BookStore.Logic.Dal
             context.SaveChanges();
 
             var att = ImageHelper.GetSimpleImage();
-            books.ForEach(book => context.Attachments.Add(new Attachment() { BookId = book.Id, Name = "SimpleImage.jpg", Content = att}));
+            books.ForEach(book => context.Attachments.Add(new Attachment { BookId = book.Id, Name = "SimpleImage.jpg", Content = att}));
             context.SaveChanges();
 
             //Dodajemy domyślne zamówienia

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BookStore.Entities.Models;
 using BookStore.Logic.Interfaces;
 using System.Web.Http;
@@ -11,6 +12,10 @@ namespace BookStore.Controllers
     /// </summary>
     public class CategoriesController : BaseApiController
     {
+        /// <summary>
+        /// Konstruktor kontrolera
+        /// </summary>
+        /// <param name="repo">Interfejs repozytorium</param>
         public CategoriesController(IRepository repo) : base(repo) { }
 
         /// <summary>
@@ -74,7 +79,6 @@ namespace BookStore.Controllers
             }
             return Ok();
         }
-        //do przeniesienia
 
         /// <summary>
         /// Add book with given id to categories
@@ -87,11 +91,7 @@ namespace BookStore.Controllers
         [Route("api/BookCategories/{bookId}/Add")]
         public IHttpActionResult AddBookCategories([FromBody] List<CategoryModel> categories,int bookId)
         {
-            var categoriesIds = new List<int>();
-            foreach (var item in categories)
-            {
-                categoriesIds.Add(item.Id);
-            }
+            var categoriesIds = categories.Select(item => item.Id).ToList();
             Repo.AddBookCategories(bookId,categoriesIds);
             return Ok();
         }
@@ -107,16 +107,11 @@ namespace BookStore.Controllers
         [Route("api/BookCategories/{bookId}/Update")]
         public IHttpActionResult UpdateBookCategories([FromBody] List<CategoryModel> categories, int bookId)
         {
-            var categoriesIds = new List<int>();
-            foreach (var item in categories)
-            {
-                categoriesIds.Add(item.Id);
-            }
+            var categoriesIds = categories.Select(item => item.Id).ToList();
             Repo.AddDeleteBookCatedories(bookId, categoriesIds);
             return Ok();
         }
 
-        //do przeniesienia
         /// <summary>
         /// Delete book from category
         /// </summary>
@@ -131,6 +126,7 @@ namespace BookStore.Controllers
             Repo.DeleteBookCategory( category,bookId);
             return Ok();
         }
+
         /// <summary>
         /// Delete category with given id from database
         /// </summary>
