@@ -57,5 +57,12 @@ namespace BookStore.UnitTests.Repository
             Assert.IsTrue(result == false);
         }
 
+        [TestMethod]
+        public void DeleteNonExistingCategory()
+        {
+            var result = _repository.DeleteCategory(0);
+            Assert.IsTrue(result == false);
+        }
+
     }
 }
