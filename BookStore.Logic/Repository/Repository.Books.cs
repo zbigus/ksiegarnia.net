@@ -116,7 +116,7 @@ namespace BookStore.Logic.Repository
                 Price = book.Price,
                 Publisher = book.Publisher,
                 Title = book.Title,
-                Year = book.Year
+                Year = DateTime.Now
             };
             _db.Books.Add(newBook);
             //zapisujemy żeby wyciągnąć id
