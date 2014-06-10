@@ -26,7 +26,7 @@ namespace BookStore.Logic.Models
             {
                 Id = order.Id,
                 BookDescription = order.Book.Description,
-                BookTitle = order.Book.Description,
+                BookTitle = order.Book.Title,
                 ModificationDate = order.ModificationDate,
                 OrderDate = order.InsertDate,
                 ShopComment = order.ShopComment,
