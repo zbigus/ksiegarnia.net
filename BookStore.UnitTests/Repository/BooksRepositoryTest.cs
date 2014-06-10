@@ -69,14 +69,14 @@ namespace BookStore.UnitTests.Repository
         {
             var result = _repository.GetTopSaleBooks();
             Assert.IsNotNull(result);
-            Assert.IsTrue(result.Count <= 10);
+            Assert.IsTrue(result.Count <= Logic.Repository.Repository.TopSaleCount);
         }
         [TestMethod]
         public void GetLatestBooks()
         {
             var result = _repository.GetTopNewBooks();
             Assert.IsNotNull(result);
-            Assert.IsTrue(result.Count <= 5);
+            Assert.IsTrue(result.Count <= Logic.Repository.Repository.TopBooksCount);
         }
 
         [TestMethod]

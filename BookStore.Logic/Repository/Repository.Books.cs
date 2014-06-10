@@ -8,8 +8,8 @@ namespace BookStore.Logic.Repository
 {
     public partial class Repository
     {
-        private const int TopBooksCount = 10;
-        private const int TopSaleCount = 5;
+        public const int TopBooksCount = 10;
+        public const int TopSaleCount = 5;
 
         public BookModel GetBook(int id)
         {
