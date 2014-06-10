@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://91.236.74.193:81/" />
+<title>EditUserContent</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">EditUserContent</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Witaj testUser!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Edycja profilu.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=label.control-label.col-md-2</td>
+	<td>Nazwa użytkownika</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=UserName</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/label</td>
+	<td>Email</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=Email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[3]/label</td>
+	<td>Imię</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=FirstName</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[4]/label</td>
+	<td>Nazwisko</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=LastName</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[5]/label</td>
+	<td>Adres</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=Address</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>css=input.btn.btn-default</td>
+	<td>Zapisz</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-default</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=body</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
