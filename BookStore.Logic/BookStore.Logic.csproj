@@ -67,7 +67,6 @@
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ManageUserViewModel.cs" />
     <Compile Include="Models\MeViewModels.cs" />
-    <Compile Include="Models\ModelFactory.cs" />
     <Compile Include="Models\OrderDetailModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />

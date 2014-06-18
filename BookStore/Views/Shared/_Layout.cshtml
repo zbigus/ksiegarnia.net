@@ -24,9 +24,33 @@
                 <ul class="nav navbar-nav">
                     @if (User.IsInRole(Role.Admin))
                     {
-                        <li>@Html.ActionLink("Admin", "Index", "Account")</li>
+                        <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin</a>
+                                <ul class="dropdown-menu" style="padding: 12px;">
+                                    <li>@Html.ActionLink("Admin", "Index", "Account")</li>
+                                    <li><a href="/" id="admin-add-book">Dodaj książkę</a></li>
+                                </ul>
+                        </li>
+                        
                     }
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)</li>
+                        @if (Request.IsAuthenticated)
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategoria</a>
+                                <ul class="dropdown-menu catygory-list-js" style="padding: 12px;"></ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Szukaj</a>
+                                <ul class="dropdown-menu" style="padding: 12px;">
+                                    <form class="form-inline">
+                                        <button type="submit" id="search-by-string-top" class="btn btn-default pull-left"><i class="glyphicon glyphicon-search"></i></button><input type="text" id="search-string-top" class="form-control pull-left" placeholder="Wyszukaj">
+                                    </form>
+                                </ul>
+                            </li>
+                        }
+                        
+                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

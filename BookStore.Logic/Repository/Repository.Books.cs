@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BookStore.Entities.Models;
 using BookStore.Logic.Models;
@@ -7,8 +8,8 @@ namespace BookStore.Logic.Repository
 {
     public partial class Repository
     {
-        private const int TopBooksCount = 10;
-        private const int TopSaleCount = 5;
+        public const int TopBooksCount = 10;
+        public const int TopSaleCount = 5;
 
         public BookModel GetBook(int id)
         {
@@ -115,7 +116,7 @@ namespace BookStore.Logic.Repository
                 Price = book.Price,
                 Publisher = book.Publisher,
                 Title = book.Title,
-                Year = book.Year
+                Year = DateTime.Now
             };
             _db.Books.Add(newBook);
             //zapisujemy żeby wyciągnąć id
