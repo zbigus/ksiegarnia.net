@@ -88,7 +88,7 @@ namespace BookStore.Controllers
             return View();
         }
 
-        //
+        //Test
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
