@@ -10,7 +10,7 @@ namespace BookStore.Entities.Dal
     public class BookStoreContext : IdentityDbContext<User>
     {
         public BookStoreContext()
-            : base(ConnectionStringManager.Current)
+            : base()
         {
         }
 
